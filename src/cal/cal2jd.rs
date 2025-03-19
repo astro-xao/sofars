@@ -1,4 +1,4 @@
-use crate::consts::{D1900, DJ00, DJM0, DTY, IYMIN, MTAB};
+use crate::consts::{DJM0, IYMIN, MTAB};
 
 /// Gregorian calendar to Julian Day number
 pub fn cal2jd(iy: i32, im: i32, id: i32) -> Result<(f64, f64), i32> {

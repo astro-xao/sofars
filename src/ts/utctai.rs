@@ -84,7 +84,7 @@ pub fn utctai(utc1: f64, utc2: f64) -> Result<(f64, f64), i32> {
     );
 
     // Put the two parts of the UTC into big-first order.
-    big1 = (utc1.abs() >= utc2.abs());
+    big1 = utc1.abs() >= utc2.abs();
     if big1 {
         u1 = utc1;
         u2 = utc2;
