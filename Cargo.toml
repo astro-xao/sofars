@@ -1,6 +1,12 @@
 [package]
 name = "sofars"
+license = "MIT"
 version = "0.1.0"
 edition = "2024"
+description = "Pure Rust implementation of the IAU SOFA library"
+authors = ["Huxulm <huxulm@gmail.com>"]
+documentation = "https://docs.rs/sofars"
+keywords = ["astronomy", "iau", "sofa"]
+readme = "README.md"
 
 [dependencies]
