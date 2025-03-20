@@ -1,4 +1,4 @@
-use sofars::astro::{ab, apcg, apci, apci13, apco, apco13, apcs, atcc13, atciq, atco13, ld, ldsun, pvtob, IauAstrom};
+use sofars::astro::{ab, apcg, apci, apci13, apco, apco13, apcs, atcc13, atci13, atciq, atco13, ld, ldsun, pvtob, IauAstrom};
 
 #[test]
 fn test_ab() {
@@ -314,6 +314,24 @@ fn test_apco13() {
     assert!((astrom.refb - -0.2361408314943696227e-6).abs() < 1e-18, "apco13: refb");
     assert!((eo - -0.003020548354802412839).abs() < 1e-14, "apco13: eo");
     assert_eq!(j, 0, "apco13: j");
+}
+
+#[test]
+fn test_atci13() {
+    let rc = 2.71;
+    let dc = 0.174;
+    let pr = 1e-5;
+    let pd = 5e-6;
+    let px = 0.1;
+    let rv = 55.0;
+    let date1 = 2456165.5;
+    let date2 = 0.401182685;
+
+    let (ri, di, eo) = atci13(rc, dc, pr, pd, px, rv, date1, date2);
+
+    assert!((ri - 2.710121572968696744).abs() < 1e-12, "atci13: ri");
+    assert!((di - 0.1729371367219539137).abs() < 1e-12, "atci13: di");
+    assert!((eo - -0.002900618712657375647).abs() < 1e-14, "atci13: eo");
 }
 
 #[test]

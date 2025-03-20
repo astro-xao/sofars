@@ -82,6 +82,9 @@ pub use atcc13::*;
 mod atccq;
 pub use atccq::*;
 
+mod atci13;
+pub use atci13::*;
+
 mod atciq;
 pub use atciq::*;
 
