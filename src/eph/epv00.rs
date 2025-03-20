@@ -1,18 +1,16 @@
-//! Ephemerides (limited precision)
 #![allow(non_upper_case_globals)]
-use super::consts::{DJ00, DJY};
-/*
-** Matrix elements for orienting the analytical model to DE405.
-**
-** The corresponding Euler angles are:
-**
-**                       d  '  "
-**   1st rotation    -  23 26 21.4091 about the x-axis  (obliquity)
-**   2nd rotation    +         0.0475 about the z-axis  (RA offset)
-**
-** These were obtained empirically, by comparisons with DE405 over
-** 1900-2100.
-*/
+use crate::consts::{DJ00, DJY};
+
+// Matrix elements for orienting the analytical model to DE405.
+//
+// The corresponding Euler angles are:
+//
+//                       d  '  "
+//   1st rotation    -  23 26 21.4091 about the x-axis  (obliquity)
+//   2nd rotation    +         0.0475 about the z-axis  (RA offset)
+//
+// These were obtained empirically, by comparisons with DE405 over
+// 1900-2100.
 const am12: f64 = 0.000000211284;
 const am13: f64 = -0.000000091603;
 const am21: f64 = -0.000000230286;
@@ -2213,12 +2211,6 @@ const s2z: [f64; 6] =  [
     0.3749920358054e-12, 0.3230285558668e+01, 0.2132990797783e+00,
     0.2735037220939e-12, 0.6154322683046e+01, 0.5296909721118e+00 ];
 
-
-///
-///  - - - - - - - - -
-///   i a u E p v 0 0
-///  - - - - - - - - -
-///
 ///  Earth position and velocity, heliocentric and barycentric, with
 ///  respect to the Barycentric Celestial Reference System.
 ///
@@ -2311,13 +2303,6 @@ const s2z: [f64; 6] =  [
 ///
 ///  5) It is permissible to use the same array for pvh and pvb, which
 ///     will receive the barycentric values.
-///
-///  This revision:  2023 March 1
-///
-///  SOFA release 2023-10-11
-///
-///  Copyright (C) 2023 IAU SOFA Board.  See notes at end.
-///
 pub fn epv00(date1: f64, date2: f64) -> Option<([[f64; 3]; 2], [[f64; 3]; 2])> {
     // Pointers to coefficient arrays, in x,y,z sets
     let ce0: [&[f64]; 3] = [&e0x, &e0y, &e0z];
@@ -2485,9 +2470,3 @@ pub fn epv00(date1: f64, date2: f64) -> Option<([[f64; 3]; 2], [[f64; 3]; 2])> {
         _ => None,
     }
 }
-
-/// Moon position and velocity
-pub fn moon98() {}
-
-/// Major-planet position and velocity
-pub fn plan94() {}
