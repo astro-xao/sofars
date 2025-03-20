@@ -4,7 +4,7 @@ This project is a basic astronomy calculation library implemented purely in Rust
 Refer to the [documentation](https://docs.rs/sofars/0.1.0) for detail.
 
 ## License
-sofa-rs follows the MIT license.
+sofars follows the MIT license.
 
 In addition to the MIT license, any use of this module must also comply with the SOFA license and terms of use, which are detailed in the license file.
 

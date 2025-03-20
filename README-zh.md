@@ -4,7 +4,7 @@
 请参阅 [文档](https://docs.rs/sofars/0.1.0) 了解详细信息。
 
 ## License
-sofa-rs 遵循 MIT 许可证。
+sofars 遵循 MIT 许可证。
 
 除了 MIT 许可证之外，任何使用该模块的行为还应遵守 SOFA 的许可证和使用条款，这些条款在许可证文件中有详细说明。
 
