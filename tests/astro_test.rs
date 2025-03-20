@@ -1,4 +1,4 @@
-use sofars::astro::{IauAstrom, ab, apco, apco13, apcg, apci, apci13, apcs, atcc13, atciq, atco13, pvtob};
+use sofars::astro::{ab, apcg, apci, apci13, apco, apco13, apcs, atcc13, atciq, atco13, ld, ldsun, pvtob, IauAstrom};
 
 #[test]
 fn test_ab() {
@@ -374,4 +374,32 @@ fn test_atco13() {
         }
         Err(j) => assert_eq!(j, 0, "atco13: j"),
     }
+}
+
+#[test]
+fn test_ld() {
+    let bm = 0.00028574;
+    let p = [-0.763276255, -0.608633767, -0.216735543];
+    let q = [-0.763276255, -0.608633767, -0.216735543];
+    let e = [0.76700421, 0.605629598, 0.211937094];
+    let em = 8.91276983;
+    let dlim = 3e-10;
+    let p1 = ld(bm, p, q, e, em, dlim);
+
+    assert!((p1[0] - -0.7632762548968159627).abs() < 1e-12, "ld: p1[0]");
+    assert!((p1[1] - -0.6086337670823762701).abs() < 1e-12, "ld: p1[1]");
+    assert!((p1[2] - -0.2167355431320546947).abs() < 1e-12, "ld: p1[2]");
+}
+
+#[test]
+fn test_ldsun() {
+    let p = [-0.763276255, -0.608633767, -0.216735543];
+    let e = [-0.973644023, -0.20925523, -0.0907169552];
+    let em = 0.999809214;
+
+    let p1 = ldsun(p, e, em);
+
+    assert!((p1[0] - -0.7632762580731413169).abs() < 1e-12, "ldsun: p1[0]");
+    assert!((p1[1] - -0.6086337635262647900).abs() < 1e-12, "ldsun: p1[1]");
+    assert!((p1[2] - -0.2167355419322321302).abs() < 1e-12, "ldsun: p1[2]");
 }
