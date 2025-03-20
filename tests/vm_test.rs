@@ -18,6 +18,23 @@ fn test_af2a() {
 }
 
 #[test]
+fn test_a2tf() {
+    let (sign, ihmsf) = a2tf(4, -3.01234);
+
+    assert_eq!(sign, '-');
+    assert_eq!(ihmsf[0], 11);
+    assert_eq!(ihmsf[1], 30);
+    assert_eq!(ihmsf[2], 22);
+    assert_eq!(ihmsf[3], 6484);
+}
+
+#[test]
+fn test_tf2a() {
+    let a = tf2a('+', 4, 58, 20.2).unwrap();
+    assert!((a - 1.301739278189537429).abs() < 1e-12, "tf2a");
+}
+
+#[test]
 fn test_tr() {
     let r = &[
         [2.0, 3.0, 2.0],
