@@ -1,6 +1,8 @@
 use crate::{eph::epv00, pnp::{bpn2xy, eors, pnm06a, s06}};
 use super::{apci, IauAstrom};
 
+///  prepare for ICRS <−> CIRS, terrestrial
+/// 
 ///  For a terrestrial observer, prepare star-independent astrometry
 ///  parameters for transformations between ICRS and geocentric CIRS
 ///  coordinates.  The caller supplies the date, and SOFA models are used
@@ -108,8 +110,6 @@ use super::{apci, IauAstrom};
 ///     iauS06       the CIO locator s, given X,Y, IAU 2006
 ///     iauApci      astrometry parameters, ICRS-CIRS
 ///     iauEors      equation of the origins, given NPB matrix and s
-///
-///  This revision:   2022 May 3
 pub fn apci13(date1: f64, date2: f64, astrom: &mut IauAstrom, eo: &mut f64) {
     /* Earth barycentric & heliocentric position/velocity (au, au/d). */
     let (ehpv, ebpv) = epv00(date1, date2).unwrap();

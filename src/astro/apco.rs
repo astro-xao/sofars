@@ -2,6 +2,8 @@ use super::{apcs, pvtob, IauAstrom};
 use crate::pnp::c2ixys;
 use crate::vm::{anpm, cr, ir, rx, ry, rz, trxpv};
 
+///  prepare for ICRS <−> observed, terrestrial, special 
+/// 
 ///  For a terrestrial observer, prepare star-independent astrometry
 ///  parameters for transformations between ICRS and observed
 ///  coordinates.  The caller supplies the Earth ephemeris, the Earth

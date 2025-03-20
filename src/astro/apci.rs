@@ -2,6 +2,8 @@ use crate::pnp::c2ixys;
 
 use super::{apcg, IauAstrom};
 
+///  prepare for ICRS <−> CIRS, terrestrial, special
+///
 ///  For a terrestrial observer, prepare star-independent astrometry
 ///  parameters for transformations between ICRS and geocentric CIRS
 ///  coordinates.  The Earth ephemeris and CIP/CIO are supplied by the

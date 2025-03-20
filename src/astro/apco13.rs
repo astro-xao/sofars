@@ -4,6 +4,8 @@ use crate::erst::era00;
 use crate::pnp::{bpn2xy, eors, pnm06a, s06, sp00};
 use crate::ts::{taitt, utctai, utcut1};
 
+///  prepare for ICRS <−> observed, terrestrial
+/// 
 ///  For a terrestrial observer, prepare star-independent astrometry
 ///  parameters for transformations between ICRS and observed
 ///  coordinates.  The caller supplies UTC, site coordinates, ambient air

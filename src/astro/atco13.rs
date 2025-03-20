@@ -1,5 +1,7 @@
 use super::{apco13, atciq, atioq, IauAstrom};
 
+///  ICRS −> observed
+/// 
 ///  ICRS RA,Dec to observed place.  The caller supplies UTC, site
 ///  coordinates, ambient air conditions and observing wavelength.
 ///

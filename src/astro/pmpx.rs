@@ -1,5 +1,7 @@
 use crate::{consts::{AULT, DAU, DAYSEC, DJM, DJY}, vm::{pdp, pn}};
 
+///  apply proper motion and parallax
+/// 
 ///  Proper motion and parallax.
 ///
 ///  This function is part of the International Astronomical Union's

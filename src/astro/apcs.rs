@@ -2,6 +2,8 @@ use super::IauAstrom;
 use crate::vm::{cp, ir, pn};
 use crate::consts::{DAU, DAYSEC, DJ00, DJY, AULT};
 
+///  prepare for ICRS <−> CIRS, space, special
+/// 
 ///  For an observer whose geocentric position and velocity are known,
 ///  prepare star-independent astrometry parameters for transformations
 ///  between ICRS and GCRS.  The Earth ephemeris is supplied by the
