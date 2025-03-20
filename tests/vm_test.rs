@@ -12,6 +12,12 @@ fn test_a2af() {
 }
 
 #[test]
+fn test_af2a() {
+    let a = af2a('-', 45, 13, 27.2).unwrap();
+    assert!((a - (-0.7893115794313644842)).abs() < 1e-12, "af2a a");
+}
+
+#[test]
 fn test_tr() {
     let r = &[
         [2.0, 3.0, 2.0],
