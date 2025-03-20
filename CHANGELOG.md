@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 ## [unreleased]
 
+## [0.2.0](https://github.com/astro-xao/sofars/compare/v0.1.2...v0.2.0) - 2025-03-20
+
+### Added
+
+- add atci13
+- reorganize eph module
+
+### Other
+
+- update README
+
 ## [0.1.2](https://github.com/astro-xao/sofars/compare/v0.1.1...v0.1.2) - 2025-03-20
 
 ### Added
