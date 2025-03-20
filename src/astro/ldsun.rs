@@ -1,6 +1,6 @@
 use super::ld;
 
-///  light deflection by the Sun
+///  Light deflection by the Sun
 /// 
 ///  Deflection of starlight by the Sun.
 ///

@@ -1,3 +1,4 @@
+//! Earth rotation angle and sidereal time
 mod erst;
 pub use erst::*;
 

@@ -1,3 +1,5 @@
+//!  Vector and Matrix
+
 mod a2af;
 pub use a2af::*;
 

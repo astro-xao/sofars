@@ -1,3 +1,5 @@
+//! Astrometry
+
 // Star-independent astrometry parameters
 pub struct IauAstrom {
     pub pmt: f64,           // PM time interval (SSB, Julian years)

@@ -3,7 +3,7 @@ use crate::vm::{anp, c2s, s2c};
 
 use super::IauAstrom;
 
-///  quick CIRS −> observed
+///  Quick CIRS −> observed
 /// 
 ///  Quick CIRS to observed place transformation.
 ///

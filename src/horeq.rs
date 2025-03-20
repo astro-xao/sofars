@@ -1,3 +1,4 @@
+//! Horizon/equatorial
 /// AE2HD (azimuth, altitude) to (hour angle, declination)
 pub fn ae2hd() {}
 

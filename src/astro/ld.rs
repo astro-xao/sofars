@@ -1,6 +1,6 @@
 use crate::{consts::SRS, vm::{pdp, pxp}};
 
-///  light deflection by a single solar−system body
+///  Light deflection by a single solar−system body
 /// 
 ///  Apply light deflection by a solar-system body, as part of
 ///  transforming coordinate direction into natural direction.

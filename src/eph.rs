@@ -1,3 +1,4 @@
+//! Ephemerides (limited precision)
 #![allow(non_upper_case_globals)]
 use super::consts::{DJ00, DJY};
 /*

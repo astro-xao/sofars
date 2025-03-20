@@ -1,5 +1,5 @@
 use super::{apcs, IauAstrom};
-///  prepare for ICRS <−> GCRS, geocentric, special
+///  Prepare for ICRS <−> GCRS, geocentric, special
 /// 
 ///  For a geocentric observer, prepare star-independent astrometry
 ///  parameters for transformations between ICRS and GCRS coordinates.

@@ -1,7 +1,7 @@
 use super::{IauAstrom, ldsun, pmpx, ab};
 use crate::vm::{rxp, c2s, anp};
 
-///  quick ICRS −> CIRS
+///  Quick ICRS −> CIRS
 /// 
 ///  Quick ICRS, epoch J2000.0, to CIRS transformation, given precomputed
 ///  star-independent astrometry parameters.

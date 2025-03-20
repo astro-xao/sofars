@@ -1,3 +1,5 @@
+//! Calendars
+
 #![allow(ambiguous_glob_reexports)]
 mod cal2jd;
 pub use cal2jd::*;

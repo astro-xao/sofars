@@ -1,3 +1,4 @@
+//! Star catalog conversions
 /// transform FK5 star data into the Hipparcos system
 pub fn fk52h() {}
 

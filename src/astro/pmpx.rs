@@ -1,6 +1,6 @@
 use crate::{consts::{AULT, DAU, DAYSEC, DJM, DJY}, vm::{pdp, pn}};
 
-///  apply proper motion and parallax
+///  Apply proper motion and parallax
 /// 
 ///  Proper motion and parallax.
 ///

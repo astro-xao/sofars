@@ -1,7 +1,7 @@
 use crate::vm::{anp, c2s};
 use super::{pmpx, IauAstrom};
 
-///  quick catalog −> astrometric
+///  Quick catalog −> astrometric
 ///
 ///  Quick transformation of a star's ICRS catalog entry (epoch J2000.0)
 ///  into ICRS astrometric place, given precomputed star-independent

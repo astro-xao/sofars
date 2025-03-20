@@ -1,3 +1,4 @@
+//! Fundamental arguments for nutation etc.
 use std::ops::Rem;
 use crate::consts::{DAS2R, TURNAS, D2PI};
 

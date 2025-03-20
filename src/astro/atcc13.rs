@@ -1,6 +1,6 @@
 use super::{apci13, atccq, IauAstrom};
 
-///  catalog -> astrometric.
+///  Catalog -> astrometric.
 ///
 ///  Transform a star's ICRS catalog entry (epoch J2000.0) into ICRS
 ///  astrometric place.

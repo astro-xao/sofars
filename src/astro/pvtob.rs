@@ -4,7 +4,7 @@ use crate::coords::gd2gc;
 use crate::pnp::pom00;
 use crate::vm::trxp;
 
-///  observatory position and velocity
+///  Observatory position and velocity
 ///
 ///  Position and velocity of a terrestrial observing station.
 ///

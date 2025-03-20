@@ -1,3 +1,5 @@
+//! Time scales
+ 
 mod dat;
 pub use dat::*;
 

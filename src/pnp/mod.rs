@@ -1,3 +1,4 @@
+//! Precession, nutation, polar motion
 mod pnp;
 pub use pnp::*;
 

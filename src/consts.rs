@@ -1,3 +1,4 @@
+//! Constants
 #![allow(dead_code)]
 /// Pi
 pub const DPI: f64 = 3.141592653589793238462643;

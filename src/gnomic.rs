@@ -1,3 +1,4 @@
+//! Gnomonic projection
 /// Solve for tangent point, spherical
 pub fn tpors() {}
 
