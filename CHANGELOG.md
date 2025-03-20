@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [unreleased]
 
+## [0.1.1] - 2025-03-20
+
 ### 🚀 Features
 
 - Add release CI
