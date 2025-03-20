@@ -1,5 +1,7 @@
 use super::{apci13, atciq, IauAstrom};
 
+///  Catalog −> CIRS
+///
 ///  Transform ICRS star data, epoch J2000.0, to CIRS.
 ///
 ///  This function is part of the International Astronomical Union's
@@ -8,6 +10,7 @@ use super::{apci13, atciq, IauAstrom};
 ///  Status:  support function.
 ///
 ///  Given:
+///  ```
 ///     rc     double  ICRS right ascension at J2000.0 (radians, Note 1)
 ///     dc     double  ICRS declination at J2000.0 (radians, Note 1)
 ///     pr     double  RA proper motion (radians/year, Note 2)
@@ -16,11 +19,12 @@ use super::{apci13, atciq, IauAstrom};
 ///     rv     double  radial velocity (km/s, +ve if receding)
 ///     date1  double  TDB as a 2-part...
 ///     date2  double  ...Julian Date (Note 3)
-///
+///  ``` 
 ///  Return:
+///  ```
 ///     ri,di  double* CIRS geocentric RA,Dec (radians)
 ///     eo     double* equation of the origins (ERA-GST, radians, Note 5)
-///
+///  ``` 
 ///  Notes:
 ///
 ///  1) Star data for an epoch other than J2000.0 (for example from the
@@ -33,14 +37,14 @@ use super::{apci13, atciq, IauAstrom};
 ///     convenient way between the two arguments.  For example,
 ///     JD(TDB)=2450123.7 could be expressed in any of these ways, among
 ///     others:
-///
+///  ```
 ///            date1          date2
 ///
 ///         2450123.7           0.0       (JD method)
 ///         2451545.0       -1421.3       (J2000 method)
 ///         2400000.5       50123.2       (MJD method)
 ///         2450123.5           0.2       (date & time method)
-///
+///  ```
 ///     The JD method is the most natural and convenient to use in cases
 ///     where the loss of several decimal digits of resolution is
 ///     acceptable.  The J2000 method is best matched to the way the
