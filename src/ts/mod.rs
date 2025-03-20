@@ -1,11 +1,11 @@
+mod dat;
+pub use dat::*;
+
 mod dtf2d;
 pub use dtf2d::*;
 
 mod utctai;
 pub use utctai::*;
-
-mod dat;
-pub use dat::*;
 
 mod taitt;
 pub use taitt::*;
