@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [unreleased]
 
+## [0.1.2](https://github.com/astro-xao/sofars/compare/v0.1.1...v0.1.2) - 2025-03-20
+
+### Added
+
+- manually update CHANGELOG
+
 ## [0.1.1] - 2025-03-20
 
 ### 🚀 Features
