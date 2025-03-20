@@ -76,6 +76,12 @@ pub use atco13::*;
 mod apcs;
 pub use apcs::*;
 
+mod apio;
+pub use apio::*;
+
+mod apio13;
+pub use apio13::*;
+
 mod atcc13;
 pub use atcc13::*;
 
@@ -87,6 +93,9 @@ pub use atci13::*;
 
 mod atciq;
 pub use atciq::*;
+
+mod atio13;
+pub use atio13::*;
 
 mod atioq;
 pub use atioq::*;

@@ -1,4 +1,4 @@
-use sofars::astro::{ab, apcg, apci, apci13, apco, apco13, apcs, atcc13, atci13, atciq, atco13, ld, ldsun, pvtob, IauAstrom};
+use sofars::astro::{ab, apcg, apci, apci13, apco, apco13, apcs, atcc13, atci13, atciq, atco13, atio13, ld, ldsun, pvtob, IauAstrom};
 
 #[test]
 fn test_ab() {
@@ -392,6 +392,34 @@ fn test_atco13() {
         }
         Err(j) => assert_eq!(j, 0, "atco13: j"),
     }
+}
+
+#[test]
+fn test_atio13() {
+    let ri = 2.710121572969038991;
+    let di = 0.1729371367218230438;
+    let utc1 = 2456384.5;
+    let utc2 = 0.969254051;
+    let dut1 = 0.1550675;
+    let elong = -0.527800806;
+    let phi = -1.2345856;
+    let hm = 2738.0;
+    let xp = 2.47230737e-7;
+    let yp = 1.82640464e-6;
+    let phpa = 731.0;
+    let tc = 12.8;
+    let rh = 0.59;
+    let wl = 0.55;
+
+    let (aob, zob, hob, dob, rob) = atio13(
+        ri, di, utc1, utc2, dut1, elong, phi, hm, xp, yp, phpa, tc, rh, wl
+    ).unwrap();
+
+    assert!((aob - 0.9233952224895122499e-1).abs() < 1e-12, "atio13: aob");
+    assert!((zob - 1.407758704513549991).abs() < 1e-12, "atio13: zob");
+    assert!((hob - -0.9247619879881698140e-1).abs() < 1e-12, "atio13: hob");
+    assert!((dob - 0.1717653435756234676).abs() < 1e-12, "atio13: dob");
+    assert!((rob - 2.710085107988480746).abs() < 1e-12, "atio13: rob");
 }
 
 #[test]
