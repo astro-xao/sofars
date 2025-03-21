@@ -1,4 +1,4 @@
-use sofars::pnp::{c2ixys, nut00a, nut06a, pnm06a, s06};
+use sofars::pnp::{c2ixys, nut00a, nut06a, pnm00a, pnm06a, s06};
 
 #[test]
 fn test_c2ixys() {
@@ -36,6 +36,24 @@ fn test_nut00a() {
 
     assert!((dpsi - (-0.9630909107115518431e-5)).abs() < 1e-13, "nut00a dpsi");
     assert!((deps - 0.4063239174001678710e-4).abs() < 1e-13, "nut00a deps");
+}
+
+#[test]
+fn test_pnm00a() {
+    let rbpn = &mut [[0.0; 3]; 3];
+    pnm00a(2400000.5, 50123.9999, rbpn);
+
+    assert!((rbpn[0][0] - 0.9999995832793134257).abs() < 1e-12, "pnm00a 11");
+    assert!((rbpn[0][1] - 0.8372384254137809439e-3).abs() < 1e-14, "pnm00a 12");
+    assert!((rbpn[0][2] - 0.3639684306407150645e-3).abs() < 1e-14, "pnm00a 13");
+
+    assert!((rbpn[1][0] - -0.8372535226570394543e-3).abs() < 1e-14, "pnm00a 21");
+    assert!((rbpn[1][1] - 0.9999996486491582471).abs() < 1e-12, "pnm00a 22");
+    assert!((rbpn[1][2] - 0.4132915262664072381e-4).abs() < 1e-14, "pnm00a 23");
+
+    assert!((rbpn[2][0] - -0.3639337004054317729e-3).abs() < 1e-14, "pnm00a 31");
+    assert!((rbpn[2][1] - -0.4163386925461775873e-4).abs() < 1e-14, "pnm00a 32");
+    assert!((rbpn[2][2] - 0.9999999329094390695).abs() < 1e-12, "pnm00a 33");
 }
 
 #[test]
