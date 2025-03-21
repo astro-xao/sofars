@@ -51,6 +51,9 @@ pub use rxp::*;
 mod rxpv;
 pub use rxpv::*;
 
+mod rxr;
+pub use rxr::*;
+
 mod ry;
 pub use ry::*;
 

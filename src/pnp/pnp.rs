@@ -1,9 +1,3 @@
-/// frame bias components, IAU 2000
-pub fn bi00() {}
-
-/// frame bias and precession matrices, IAU 2000
-pub fn bp00() {}
-
 /// frame bias and precession matrices, IAU 2006
 pub fn bp06() {}
 
@@ -70,9 +64,6 @@ pub fn num00b() {}
 /// nutation matrix, IAU 2006/2000A
 pub fn num06a() {}
 
-/// form nutation matrix
-pub fn numat() {}
-
 /// nutation, IAU 2000B
 pub fn nut00b() {}
 
@@ -81,9 +72,6 @@ pub fn nut80() {}
 
 /// nutation matrix, IAU 1980
 pub fn nutm80() {}
-
-/// mean obliquity, IAU 1980
-pub fn obl80() {}
 
 /// zeta,z,theta precession angles, IAU 2006, including bias
 pub fn pb06() {}
@@ -97,12 +85,6 @@ pub fn pmat06() {}
 /// precession matrix, IAU 1976
 pub fn pmat76() {}
 
-/// bias/precession/nutation results, IAU 2000
-pub fn pn00() {}
-
-/// bias/precession/nutation, IAU 2000A
-pub fn pn00a() {}
-
 /// bias/precession/nutation, IAU 2000B
 pub fn pn00b() {}
 
@@ -112,9 +94,6 @@ pub fn pn06() {}
 /// bias/precession/nutation results, IAU 2006/2000A
 pub fn pn06a() {}
 
-/// classical NPB matrix, IAU 2000A
-pub fn pnm00a() {}
-
 /// classical NPB matrix, IAU 2000B
 pub fn pnm00b() {}
 
@@ -123,9 +102,6 @@ pub fn pnm80() {}
 
 /// precession angles, IAU 2006, equinox based
 pub fn p06e() {}
-
-/// IAU 2000 precession adjustments
-pub fn pr00() {}
 
 /// accumulated precession angles, IAU 1976
 pub fn prec76() {}
