@@ -1,8 +1,6 @@
 use super::{fw2m, nut06a, pfw06};
 
-///  - - - - - - - - - -
-///   i a u P n m 0 6 a
-///  - - - - - - - - - -
+///  Classical NPB matrix, IAU 2006/2000A
 ///
 ///  Form the matrix of precession-nutation for a given date (including
 ///  frame bias), equinox based, IAU 2006 precession and IAU 2000A
@@ -55,12 +53,6 @@ use super::{fw2m, nut06a, pfw06};
 ///  Reference:
 ///
 ///     Capitaine, N. & Wallace, P.T., 2006, Astron.Astrophys. 450, 855.
-///
-///  This revision:  2021 May 11
-///
-///  SOFA release 2023-10-11
-///
-///  Copyright (C) 2023 IAU SOFA Board.  See notes at end.
 pub fn pnm06a(date1: f64, date2: f64) -> [[f64; 3]; 3] {
     let mut rbpn = [[0.0; 3]; 3];
     /* Fukushima-Williams angles for frame bias and precession. */

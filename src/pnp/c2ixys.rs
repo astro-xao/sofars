@@ -1,5 +1,6 @@
 use crate::vm::{ry, rz, ir};
 
+///  Celestial−to−intermediate matrix, given X,Y, IAU 2000
 pub fn c2ixys(x: f64, y: f64, s: f64, rc2i: &mut [[f64; 3]; 3]) {
   let r2 = x * x + y * y;
   let e = if r2 > 0.0 { y.atan2(x) } else { 0.0 };
