@@ -21,6 +21,7 @@ use super::{pmpx, IauAstrom};
 ///  Status:  support function.
 ///
 ///  Given:
+///  ```
 ///     rc,dc  double     ICRS RA,Dec at J2000.0 (radians)
 ///     pr     double     RA proper motion (radians/year, Note 3)
 ///     pd     double     Dec proper motion (radians/year)
@@ -43,10 +44,11 @@ use super::{pmpx, IauAstrom};
 ///      eral   double       "local" Earth rotation angle (radians)
 ///      refa   double       refraction constant A (radians)
 ///      refb   double       refraction constant B (radians)
-///
+///  ```
 ///  Returned:
+///  ```
 ///     ra,da  double*    ICRS astrometric RA,Dec (radians)
-///
+///  ```
 ///  Notes:
 ///
 ///  1) All the vectors are with respect to BCRS axes.
@@ -58,9 +60,11 @@ use super::{pmpx, IauAstrom};
 ///  3) The proper motion in RA is dRA/dt rather than cos(Dec)*dRA/dt.
 ///
 ///  Called:
+///  ```
 ///     iauPmpx      proper motion and parallax
 ///     iauC2s       p-vector to spherical
 ///     iauAnp       normalize angle into range 0 to 2pi
+///  ```
 pub fn atccq(
     rc: f64, dc: f64,
     pr: f64, pd: f64, px: f64, rv: f64,
