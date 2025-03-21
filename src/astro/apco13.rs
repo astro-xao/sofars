@@ -22,6 +22,7 @@ use crate::ts::{taitt, utctai, utcut1};
 ///  Status:  support function.
 ///
 ///  Given:
+///  ```
 ///     utc1   double     UTC as a 2-part...
 ///     utc2   double     ...quasi Julian Date (Notes 1,2)
 ///     dut1   double     UT1-UTC (seconds, Note 3)
@@ -33,8 +34,9 @@ use crate::ts::{taitt, utctai, utcut1};
 ///     tc     double     ambient temperature at the observer (deg C)
 ///     rh     double     relative humidity at the observer (range 0-1)
 ///     wl     double     wavelength (micrometers, Note 7)
-///
+///  ```
 ///  Returned:
+///  ```
 ///     astrom iauASTROM* star-independent astrometry parameters:
 ///      pmt    double       PM time interval (SSB, Julian years)
 ///      eb     double[3]    SSB to observer (vector, au)
@@ -53,12 +55,13 @@ use crate::ts::{taitt, utctai, utcut1};
 ///      refa   double       refraction constant A (radians)
 ///      refb   double       refraction constant B (radians)
 ///     eo     double*    equation of the origins (ERA-GST, radians)
-///
+///  ```
 ///  Returned (function value):
+///  ```
 ///            int        status: +1 = dubious year (Note 2)
 ///                                0 = OK
 ///                               -1 = unacceptable date
-///
+///  ```
 ///  Notes:
 ///
 ///  1)  utc1+utc2 is quasi Julian Date (see Note 2), apportioned in any
@@ -137,7 +140,7 @@ use crate::ts::{taitt, utctai, utcut1};
 ///
 ///      The various functions support different classes of observer and
 ///      portions of the transformation chain:
-///
+///  ```
 ///          functions         observer        transformation
 ///
 ///       iauApcg iauApcg13    geocentric      ICRS <-> GCRS
@@ -146,7 +149,7 @@ use crate::ts::{taitt, utctai, utcut1};
 ///       iauApcs iauApcs13    space           ICRS <-> GCRS
 ///       iauAper iauAper13    terrestrial     update Earth rotation
 ///       iauApio iauApio13    terrestrial     CIRS <-> observed
-///
+///  ```
 ///      Those with names ending in "13" use contemporary SOFA models to
 ///      compute the various ephemerides.  The others accept ephemerides
 ///      supplied by the caller.
@@ -162,6 +165,7 @@ use crate::ts::{taitt, utctai, utcut1};
 ///      by iauAtioq, iauAtoiq, iauAtciq* and iauAticq*.
 ///
 ///  Called:
+///  ```
 ///     iauUtctai    UTC to TAI
 ///     iauTaitt     TAI to TT
 ///     iauUtcut1    UTC to UT1
@@ -174,6 +178,7 @@ use crate::ts::{taitt, utctai, utcut1};
 ///     iauRefco     refraction constants for given ambient conditions
 ///     iauApco      astrometry parameters, ICRS-observed
 ///     iauEors      equation of the origins, given NPB matrix and s
+///  ```
 pub fn apco13(
     utc1: f64, utc2: f64, dut1: f64, elong: f64, phi: f64, hm: f64, xp: f64, yp: f64, 
     phpa: f64, tc: f64, rh: f64, wl: f64, astrom: &mut IauAstrom, eo: &mut f64,
