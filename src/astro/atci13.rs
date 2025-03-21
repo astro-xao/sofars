@@ -75,8 +75,10 @@ use super::{apci13, atciq, IauAstrom};
 ///     required, to keep the result in the conventional 0-2pi range.)
 ///
 ///  Called:
+///  ```
 ///     iauApci13    astrometry parameters, ICRS-CIRS, 2013
 ///     iauAtciq     quick ICRS to CIRS
+///  ```
 pub fn atci13(
     rc: f64, dc: f64, pr: f64, pd: f64, px: f64, rv: f64, 
                                 date1: f64, date2: f64) -> (f64, f64, f64) {

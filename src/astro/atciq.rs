@@ -20,6 +20,7 @@ use crate::vm::{rxp, c2s, anp};
 ///  Status:  support function.
 ///
 ///  Given:
+///  ```
 ///     rc,dc  double     ICRS RA,Dec at J2000.0 (radians, Note 1)
 ///     pr     double     RA proper motion (radians/year, Note 2)
 ///     pd     double     Dec proper motion (radians/year)
@@ -42,10 +43,11 @@ use crate::vm::{rxp, c2s, anp};
 ///      eral   double       "local" Earth rotation angle (radians)
 ///      refa   double       refraction constant A (radians)
 ///      refb   double       refraction constant B (radians)
-///
+///  ```
 ///  Returned:
+///  ```
 ///     ri,di   double    CIRS RA,Dec (radians)
-///
+///  ```
 ///  Notes:
 ///
 ///  1) Star data for an epoch other than J2000.0 (for example from the
@@ -55,12 +57,13 @@ use crate::vm::{rxp, c2s, anp};
 ///  2) The proper motion in RA is dRA/dt rather than cos(Dec)*dRA/dt.
 ///
 ///  Called:
+///  ```
 ///     iauPmpx      proper motion and parallax
 ///     iauLdsun     light deflection by the Sun
 ///     iauAb        stellar aberration
 ///     iauRxp       product of r-matrix and pv-vector
 ///     iauC2s       p-vector to spherical
-///     iauAnp       normalize angle into range 0 to 2pi
+///  ```
 pub fn atciq(rc: f64, dc: f64, pr: f64, pd: f64, px: f64, rv: f64, 
                             astrom: &mut IauAstrom,) -> (f64, f64) {
     let pco = pmpx(rc, dc, pr, pd, px, rv, astrom.pmt, astrom.eb);

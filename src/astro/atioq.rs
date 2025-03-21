@@ -18,6 +18,7 @@ use super::IauAstrom;
 ///  Status:  support function.
 ///
 ///  Given:
+///  ```
 ///     ri     double     CIRS right ascension
 ///     di     double     CIRS declination
 ///     astrom iauASTROM* star-independent astrometry parameters:
@@ -37,14 +38,15 @@ use super::IauAstrom;
 ///      eral   double       "local" Earth rotation angle (radians)
 ///      refa   double       refraction constant A (radians)
 ///      refb   double       refraction constant B (radians)
-///
+///  ```
 ///  Returned:
+///  ```
 ///     aob    double*    observed azimuth (radians: N=0,E=90)
 ///     zob    double*    observed zenith distance (radians)
 ///     hob    double*    observed hour angle (radians)
 ///     dob    double*    observed declination (radians)
 ///     rob    double*    observed right ascension (CIO-based, radians)
-///
+///  ```
 ///  Notes:
 ///
 ///  1) This function returns zenith distance rather than altitude in
@@ -94,9 +96,11 @@ use super::IauAstrom;
 ///     perform the requisite adjustment to the astrom structure.
 ///
 ///  Called:
+///  ```
 ///     iauS2c       spherical coordinates to unit vector
 ///     iauC2s       p-vector to spherical
 ///     iauAnp       normalize angle into range 0 to 2pi
+///  ```
 pub fn atioq(ri: f64, di: f64, astrom: &IauAstrom) -> (f64, f64, f64, f64, f64) {
     /* Minimum cos(alt) and sin(alt) for refraction purposes */
     let CELMIN = 1e-6;

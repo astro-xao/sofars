@@ -10,6 +10,7 @@ use crate::{consts::{AULT, DAU, DAYSEC, DJM, DJY}, vm::{pdp, pn}};
 ///  Status:  support function.
 ///
 ///  Given:
+///  ```
 ///     rc,dc  double     ICRS RA,Dec at catalog epoch (radians)
 ///     pr     double     RA proper motion (radians/year, Note 1)
 ///     pd     double     Dec proper motion (radians/year)
@@ -17,10 +18,11 @@ use crate::{consts::{AULT, DAU, DAYSEC, DJM, DJY}, vm::{pdp, pn}};
 ///     rv     double     radial velocity (km/s, +ve if receding)
 ///     pmt    double     proper motion time interval (SSB, Julian years)
 ///     pob    double[3]  SSB to observer vector (au)
-///
+///  ```
 ///  Returned:
+///  ```
 ///     pco    double[3]  coordinate direction (BCRS unit vector)
-///
+///  ```
 ///  Notes:
 ///
 ///  1) The proper motion in RA is dRA/dt rather than cos(Dec)*dRA/dt.
@@ -42,8 +44,10 @@ use crate::{consts::{AULT, DAU, DAYSEC, DJM, DJY}, vm::{pdp, pn}};
 ///     (2013), Section 7.2.
 ///
 ///  Called:
+///  ```
 ///     iauPdp       scalar product of two p-vectors
 ///     iauPn        decompose p-vector into modulus and direction
+///  ```
 pub fn pmpx(rc: f64, dc: f64, pr: f64, pd: f64, px: f64, rv: f64, pmt: f64, 
                                                 pob: [f64; 3],) -> [f64; 3] {
     /* Km/s to au/year */

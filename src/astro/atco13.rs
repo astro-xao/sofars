@@ -14,6 +14,7 @@ use super::{apco13, atciq, atioq, IauAstrom};
 ///  Status:  support function.
 ///
 ///  Given:
+///  ```
 ///     rc,dc  double   ICRS right ascension at J2000.0 (radians, Note 1)
 ///     pr     double   RA proper motion (radians/year, Note 2)
 ///     pd     double   Dec proper motion (radians/year)
@@ -30,19 +31,22 @@ use super::{apco13, atciq, atioq, IauAstrom};
 ///     tc     double   ambient temperature at the observer (deg C)
 ///     rh     double   relative humidity at the observer (range 0-1)
 ///     wl     double   wavelength (micrometers, Note 9)
-///
-///  Returned:
+///  ```
+///  Returned
+///  ```
 ///     aob    double*  observed azimuth (radians: N=0,E=90)
 ///     zob    double*  observed zenith distance (radians)
 ///     hob    double*  observed hour angle (radians)
 ///     dob    double*  observed declination (radians)
 ///     rob    double*  observed right ascension (CIO-based, radians)
 ///     eo     double*  equation of the origins (ERA-GST, radians)
-///
+///  ```
 ///  Returned (function value):
+///  ```
 ///            int      status: +1 = dubious year (Note 4)
 ///                              0 = OK
 ///                             -1 = unacceptable date
+///  ```
 ///
 ///  Notes:
 ///
@@ -142,9 +146,11 @@ use super::{apco13, atciq, atioq, IauAstrom};
 ///      accordance with the models used.
 ///
 ///  Called:
+///  ```
 ///     iauApco13    astrometry parameters, ICRS-observed, 2013
 ///     iauAtciq     quick ICRS to CIRS
 ///     iauAtioq     quick CIRS to observed
+///  ```
 pub fn atco13(
     rc: f64, dc: f64, pr: f64, pd: f64, px: f64, rv: f64,
     utc1: f64, utc2: f64, dut1: f64,

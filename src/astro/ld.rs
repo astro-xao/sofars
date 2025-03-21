@@ -11,16 +11,18 @@ use crate::{consts::SRS, vm::{pdp, pxp}};
 ///  Status:  support function.
 ///
 ///  Given:
+///  ```
 ///     bm     double     mass of the gravitating body (solar masses)
 ///     p      double[3]  direction from observer to source (unit vector)
 ///     q      double[3]  direction from body to source (unit vector)
 ///     e      double[3]  direction from body to observer (unit vector)
 ///     em     double     distance from body to observer (au)
 ///     dlim   double     deflection limiter (Note 4)
-///
+///  ```
 ///  Returned:
+///  ```
 ///     p1     double[3]  observer to deflected source (unit vector)
-///
+///  ```
 ///  Notes:
 ///
 ///  1) The algorithm is based on Expr. (70) in Klioner (2003) and
@@ -65,8 +67,10 @@ use crate::{consts::SRS, vm::{pdp, pxp}};
 ///     arcsecond astrometry in space", Astr. J. 125, 1580-1597 (2003).
 ///
 ///  Called:
+///  ```
 ///     iauPdp       scalar product of two p-vectors
 ///     iauPxp       vector product of two p-vectors
+///  ```
 pub fn ld(bm: f64, p: [f64; 3], q: [f64; 3], e: [f64; 3], 
                         em: f64, dlim: f64,) -> [f64; 3] {
     let mut qpe = [0.0; 3];

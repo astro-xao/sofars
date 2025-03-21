@@ -14,16 +14,18 @@ use crate::vm::trxp;
 ///  Status:  support function.
 ///
 ///  Given:
+///  ```
 ///     elong   double       longitude (radians, east +ve, Note 1)
 ///     phi     double       latitude (geodetic, radians, Note 1)
 ///     hm      double       height above ref. ellipsoid (geodetic, m)
 ///     xp,yp   double       coordinates of the pole (radians, Note 2)
 ///     sp      double       the TIO locator s' (radians, Note 2)
 ///     theta   double       Earth rotation angle (radians, Note 3)
-///
+///  ```
 ///  Returned:
+///  ```
 ///     pv      double[2][3] position/velocity vector (m, m/s, CIRS)
-///
+///  ```
 ///  Notes:
 ///
 ///  1) The terrestrial coordinates are with respect to the WGS84
@@ -60,9 +62,11 @@ use crate::vm::trxp;
 ///     (2013), Section 7.4.3.3.
 ///
 ///  Called:
+///  ```
 ///     iauGd2gc     geodetic to geocentric transformation
 ///     iauPom00     polar motion matrix
 ///     iauTrxp      product of transpose of r-matrix and p-vector
+///  ```
 pub fn pvtob(
     elong: f64,
     phi: f64,

@@ -13,15 +13,17 @@
 ///  Status:  support function.
 ///
 ///  Given:
+///  ```
 ///    phpa   double    pressure at the observer (hPa = millibar)
 ///    tc     double    ambient temperature at the observer (deg C)
 ///    rh     double    relative humidity at the observer (range 0-1)
 ///    wl     double    wavelength (micrometers)
-///
+///  ```
 ///  Returned:
+///  ```
 ///    refa   double*   tan Z coefficient (radians)
 ///    refb   double*   tan^3 Z coefficient (radians)
-///
+///  ```
 ///  Notes:
 ///
 ///  1) The model balances speed and accuracy to give good results in
@@ -47,14 +49,14 @@
 ///
 ///     The accuracy with respect to raytracing through a model
 ///     atmosphere was as follows:
-///
+///  ```
 ///                            worst         RMS
 ///
 ///       optical/IR           62 mas       8 mas
 ///       radio               319 mas      49 mas
-///
+///  ```
 ///     For this particular set of conditions:
-///
+///  ```
 ///       lapse rate 0.0065 K/meter
 ///       latitude 50 degrees
 ///       sea level
@@ -62,9 +64,9 @@
 ///       temperature 280.15 K
 ///       humidity 80%
 ///       wavelength 5740 Angstroms
-///
+///  ```
 ///     the results were as follows:
-///
+///  ```
 ///       ZD       raytrace     iauRefco   Saastamoinen
 ///
 ///       10         10.27        10.27        10.27
@@ -84,7 +86,7 @@
 ///       80        319.13       318.55       319.10
 ///
 ///      deg        arcsec       arcsec       arcsec
-///
+///  ```
 ///     The values for Saastamoinen's formula (which includes terms
 ///     up to tan^5) are taken from Hohenkerk and Sinclair (1985).
 ///
