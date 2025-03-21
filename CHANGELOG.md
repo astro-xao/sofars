@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 ## [unreleased]
 
+## [0.1.6](https://github.com/astro-xao/sofars/compare/v0.1.5...v0.1.6) - 2025-03-21
+
+### Fixed
+
+- docs format
+- atccq docs format
+- atcc13 docs format
+- apcs docs format
+- apco13 docs format
+- apci13 docs format
+- apci docs format
+- apcg docs format
+
 ## [0.1.5](https://github.com/astro-xao/sofars/compare/v0.1.4...v0.1.5) - 2025-03-21
 
 ### Added
