@@ -19,14 +19,16 @@ use super::{apcg, IauAstrom};
 ///  Status:  support function.
 ///
 ///  Given:
+///  ```
 ///     date1  double       TDB as a 2-part...
 ///     date2  double       ...Julian Date (Note 1)
 ///     ebpv   double[2][3] Earth barycentric position/velocity (au, au/day)
 ///     ehp    double[3]    Earth heliocentric position (au)
 ///     x,y    double       CIP X,Y (components of unit vector)
 ///     s      double       the CIO locator s (radians)
-///
+///  ```
 ///  Returned:
+///  ```
 ///     astrom iauASTROM*   star-independent astrometry parameters:
 ///      pmt    double       PM time interval (SSB, Julian years)
 ///      eb     double[3]    SSB to observer (vector, au)
@@ -44,21 +46,21 @@ use super::{apcg, IauAstrom};
 ///      eral   double       unchanged
 ///      refa   double       unchanged
 ///      refb   double       unchanged
-///
+///  ```
 ///  Notes:
 ///
 ///  1) The TDB date date1+date2 is a Julian Date, apportioned in any
 ///     convenient way between the two arguments.  For example,
 ///     JD(TDB)=2450123.7 could be expressed in any of these ways, among
 ///     others:
-///
+///  ```
 ///            date1          date2
 ///
 ///         2450123.7           0.0       (JD method)
 ///         2451545.0       -1421.3       (J2000 method)
 ///         2400000.5       50123.2       (MJD method)
 ///         2450123.5           0.2       (date & time method)
-///
+///  ```
 ///     The JD method is the most natural and convenient to use in cases
 ///     where the loss of several decimal digits of resolution is
 ///     acceptable.  The J2000 method is best matched to the way the
@@ -84,7 +86,7 @@ use super::{apcg, IauAstrom};
 ///
 ///     The various functions support different classes of observer and
 ///     portions of the transformation chain:
-///
+///  ```
 ///          functions         observer        transformation
 ///
 ///       iauApcg iauApcg13    geocentric      ICRS <-> GCRS
@@ -93,7 +95,7 @@ use super::{apcg, IauAstrom};
 ///       iauApcs iauApcs13    space           ICRS <-> GCRS
 ///       iauAper iauAper13    terrestrial     update Earth rotation
 ///       iauApio iauApio13    terrestrial     CIRS <-> observed
-///
+///  ```
 ///     Those with names ending in "13" use contemporary SOFA models to
 ///     compute the various ephemerides.  The others accept ephemerides
 ///     supplied by the caller.
@@ -109,9 +111,10 @@ use super::{apcg, IauAstrom};
 ///     iauAtciq* and iauAticq*.
 ///
 ///  Called:
+///  ```
 ///     iauApcg      astrometry parameters, ICRS-GCRS, geocenter
 ///     iauC2ixys    celestial-to-intermediate matrix, given X,Y and s
-///
+///  ```
 ///  This revision:   2013 September 25
 pub fn apci(
     date1: f64, date2: f64, ebpv: &[[f64; 3]; 2], ehp: &[f64; 3], 
