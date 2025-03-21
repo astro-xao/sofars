@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 ## [unreleased]
 
+## [0.1.5](https://github.com/astro-xao/sofars/compare/v0.1.4...v0.1.5) - 2025-03-21
+
+### Added
+
+- update pnp tests
+- add new impls
+- add bp00
+- add bi00
+
+### Other
+
+- add example
+- update
+
 ## [0.1.4](https://github.com/astro-xao/sofars/compare/v0.1.3...v0.1.4) - 2025-03-21
 
 ### Added
