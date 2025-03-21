@@ -1,7 +1,7 @@
 //! # Sofa
 //! This project is a basic astronomy calculation library implemented purely in Rust, based on the official [Standards of Fundamental Astronomy (SOFA)](http://iausofa.org) by the International Astronomical Union.
 //! 
-//! Refer to the [documentation](https://docs.rs/sofars/0.1.0) for detail.
+//! Refer to the [documentation](https://docs.rs/sofars/) for detail.
 //! 
 //! ## License
 //! sofa-rs follows the MIT license.

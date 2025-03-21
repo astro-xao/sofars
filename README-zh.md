@@ -1,7 +1,7 @@
 # Sofa
 该项目是一个用纯 Rust 实现的基础天文计算库，基于国际天文联合会官方的 [基础天文标准库 (SOFA)](http://iausofa.org) 实现。
 
-请参阅 [文档](https://docs.rs/sofars/0.1.0) 了解详细信息。
+请参阅 [文档](https://docs.rs/sofars) 了解详细信息。
 
 ## License
 sofars 遵循 MIT 许可证。
