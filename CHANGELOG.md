@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 
 ## [unreleased]
 
+## [0.1.7](https://github.com/astro-xao/sofars/compare/v0.1.6...v0.1.7) - 2025-03-24
+
+### Added
+
+- add aticqn
+- add aticq, atic13
+- add atciqz
+- add atciqn, ldn
+- add pmp, ppp, ppsp
+- add aper and aper13
+- add apcs13
+- add apcg13
+
+### Other
+
+- update ldn documentation
+- update apcs13 documentation
+- update apcs13 documentation
+- update atciqn documentation
+
 ## [0.1.6](https://github.com/astro-xao/sofars/compare/v0.1.5...v0.1.6) - 2025-03-21
 
 ### Fixed
