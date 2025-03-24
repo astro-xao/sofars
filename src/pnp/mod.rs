@@ -29,6 +29,9 @@ pub use numat::*;
 mod nut00a;
 pub use nut00a::*;
 
+mod nut00b;
+pub use nut00b::*;
+
 mod nut06a;
 pub use nut06a::*;
 

@@ -64,9 +64,6 @@ pub fn num00b() {}
 /// nutation matrix, IAU 2006/2000A
 pub fn num06a() {}
 
-/// nutation, IAU 2000B
-pub fn nut00b() {}
-
 /// nutation, IAU 1980
 pub fn nut80() {}
 
