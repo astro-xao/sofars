@@ -1,5 +1,5 @@
 use sofars::astro::{
-    ab, apcg, apcg13, apci, apci13, apco, apco13, apcs, atcc13, atci13, 
+    ab, apcg, apcg13, apci, apci13, apco, apco13, apcs, apcs13, atcc13, atci13, 
     atciq, atco13, atio13, ld, ldsun, pvtob, IauAstrom
 };
 
@@ -218,6 +218,41 @@ fn test_apcs() {
     assert!((astrom.bpn[0][2] - 0.0).abs() < 1e-12, "apcs: bpn(1,3)");
     assert!((astrom.bpn[1][2] - 0.0).abs() < 1e-12, "apcs: bpn(2,3)");
     assert!((astrom.bpn[2][2] - 1.0).abs() < 1e-12, "apcs: bpn(3,3)");
+}
+
+#[test]
+fn test_apcs13() {
+    let date1 = 2456165.5;
+    let date2 = 0.401182685;
+    let pv = [
+        [-6241497.16, 401346.896, -1251136.04],
+        [-29.264597, -455.021831, 0.0266151194],
+    ];
+    let astrom = &mut IauAstrom::default();
+
+    apcs13(date1, date2, &pv, astrom);
+
+    assert!((astrom.pmt - 12.65133794027378508).abs() < 1e-11, "apcs13: pmt");
+    assert!((astrom.eb[0] - 0.9012691529025250644).abs() < 1e-12, "apcs13: eb(1)");
+    assert!((astrom.eb[1] - -0.4173999812023194317).abs() < 1e-12, "apcs13: eb(2)");
+    assert!((astrom.eb[2] - -0.1809906511146429670).abs() < 1e-12, "apcs13: eb(3)");
+    assert!((astrom.eh[0] - 0.8939939101760130792).abs() < 1e-12, "apcs13: eh(1)");
+    assert!((astrom.eh[1] - -0.4111053891734021478).abs() < 1e-12, "apcs13: eh(2)");
+    assert!((astrom.eh[2] - -0.1782336880636997374).abs() < 1e-12, "apcs13: eh(3)");
+    assert!((astrom.em - 1.010428384373491095).abs() < 1e-12, "apcs13: em");
+    assert!((astrom.v[0] - 0.4279877294121697570e-4).abs() < 1e-16, "apcs13: v(1)");
+    assert!((astrom.v[1] - 0.7963255087052120678e-4).abs() < 1e-16, "apcs13: v(2)");
+    assert!((astrom.v[2] - 0.3517564013384691531e-4).abs() < 1e-16, "apcs13: v(3)");
+    assert!((astrom.bm1 - 0.9999999952947980978).abs() < 1e-12, "apcs13: bm1");
+    assert!((astrom.bpn[0][0] - 1.0).abs() < 1e-12, "apcs13: bpn(1,1)");
+    assert!((astrom.bpn[1][0] - 0.0).abs() < 1e-12, "apcs13: bpn(2,1)");
+    assert!((astrom.bpn[2][0] - 0.0).abs() < 1e-12, "apcs13: bpn(3,1)");
+    assert!((astrom.bpn[0][1] - 0.0).abs() < 1e-12, "apcs13: bpn(1,2)");
+    assert!((astrom.bpn[1][1] - 1.0).abs() < 1e-12, "apcs13: bpn(2,2)");
+    assert!((astrom.bpn[2][1] - 0.0).abs() < 1e-12, "apcs13: bpn(3,2)");
+    assert!((astrom.bpn[0][2] - 0.0).abs() < 1e-12, "apcs13: bpn(1,3)");
+    assert!((astrom.bpn[1][2] - 0.0).abs() < 1e-12, "apcs13: bpn(2,3)");
+    assert!((astrom.bpn[2][2] - 1.0).abs() < 1e-12, "apcs13: bpn(3,3)");
 }
 
 #[test]
