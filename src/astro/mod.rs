@@ -52,6 +52,12 @@ pub struct IauLdBody {
     pub pv: [[f64; 3]; 2], // barycentric PV of the body (au, au/day)
 }
 
+impl IauLdBody {
+    pub fn new(bm: f64, dl: f64, pv: [[f64; 3]; 2]) -> Self {
+        IauLdBody { bm, dl, pv }
+    }
+}
+
 mod ab;
 pub use ab::*;
 
@@ -106,6 +112,9 @@ pub use atci13::*;
 mod atciq;
 pub use atciq::*;
 
+mod atciqn;
+pub use atciqn::*;
+
 mod atio13;
 pub use atio13::*;
 
@@ -123,6 +132,9 @@ pub use refco::*;
 
 mod ld;
 pub use ld::*;
+
+mod ldn;
+pub use ldn::*;
 
 mod ldsun;
 pub use ldsun::*;
