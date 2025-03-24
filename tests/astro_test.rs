@@ -1,6 +1,6 @@
 use sofars::astro::{
     IauAstrom, IauLdBody, ab, apcg, apcg13, apci, apci13, apco, apco13, apcs, apcs13, aper, aper13,
-    atcc13, atci13, atciq, atciqn, atciqz, atco13, atic13, aticq, atio13, ld, ldn, ldsun, pvtob,
+    atcc13, atci13, atciq, atciqn, atciqz, atco13, atic13, aticq, aticqn, atio13, ld, ldn, ldsun, pvtob,
 };
 
 #[test]
@@ -1066,6 +1066,51 @@ fn test_aticq() {
 
     assert!((rc - 2.710126504531716819).abs() < 1e-12, "aticq: rc");
     assert!((dc - 0.1740632537627034482).abs() < 1e-12, "aticq: dc");
+}
+
+#[test]
+fn test_aticqn() {
+    let date1 = 2456165.5;
+    let date2 = 0.401182685;
+    let astrom = &mut IauAstrom::default();
+    let mut eo = 0.0;
+
+    apci13(date1, date2, astrom, &mut eo);
+
+    let ri = 2.709994899247599271;
+    let di = 0.1728740720983623469;
+
+    let b = [
+        IauLdBody::new(
+            0.00028574,
+            3e-10,
+            [
+                [-7.81014427, -5.60956681, -1.98079819],
+                [0.0030723249, -0.00406995477, -0.00181335842],
+            ],
+        ),
+        IauLdBody::new(
+            0.00095435,
+            3e-9,
+            [
+                [0.738098796, 4.63658692, 1.9693136],
+                [-0.00755816922, 0.00126913722, 0.000727999001],
+            ],
+        ),
+        IauLdBody::new(
+            1.0,
+            6e-6,
+            [
+                [-0.000712174377, -0.00230478303, -0.00105865966],
+                [6.29235213e-6, -3.30888387e-7, -2.96486623e-7],
+            ],
+        ),
+    ];
+
+    let (rc, dc) = aticqn(ri, di, astrom, 3, &b);
+
+    assert!((rc - 2.709999575033027333).abs() < 1e-12, "aticqn: rc");
+    assert!((dc - 0.1739999656316469990).abs() < 1e-12, "aticqn: dc");
 }
 
 #[test]

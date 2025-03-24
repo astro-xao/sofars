@@ -124,6 +124,9 @@ pub use atic13::*;
 mod aticq;
 pub use aticq::*;
 
+mod aticqn;
+pub use aticqn::*;
+
 mod atio13;
 pub use atio13::*;
 
