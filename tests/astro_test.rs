@@ -1,4 +1,7 @@
-use sofars::astro::{ab, apcg, apci, apci13, apco, apco13, apcs, atcc13, atci13, atciq, atco13, atio13, ld, ldsun, pvtob, IauAstrom};
+use sofars::astro::{
+    ab, apcg, apcg13, apci, apci13, apco, apco13, apcs, atcc13, atci13, 
+    atciq, atco13, atio13, ld, ldsun, pvtob, IauAstrom
+};
 
 #[test]
 fn test_ab() {
@@ -69,6 +72,37 @@ fn test_apcg() {
     assert!((astrom.bpn[0][2] - 0.0).abs() < 1e-12, "apcg: bpn(1,3)");
     assert!((astrom.bpn[1][2] - 0.0).abs() < 1e-12, "apcg: bpn(2,3)");
     assert!((astrom.bpn[2][2] - 1.0).abs() < 1e-12, "apcg: bpn(3,3)");
+}
+
+#[test]
+fn test_apcg13() {
+    let date1 = 2456165.5;
+    let date2 = 0.401182685;
+    let astrom = &mut IauAstrom::default();
+
+    apcg13(date1, date2, astrom);
+
+    assert!((astrom.pmt - 12.65133794027378508).abs() < 1e-11, "apcg13: pmt");
+    assert!((astrom.eb[0] - 0.9013108747340644755).abs() < 1e-12, "apcg13: eb(1)");
+    assert!((astrom.eb[1] - -0.4174026640406119957).abs() < 1e-12, "apcg13: eb(2)");
+    assert!((astrom.eb[2] - -0.1809822877867817771).abs() < 1e-12, "apcg13: eb(3)");
+    assert!((astrom.eh[0] - 0.8940025429255499549).abs() < 1e-12, "apcg13: eh(1)");
+    assert!((astrom.eh[1] - -0.4110930268331896318).abs() < 1e-12, "apcg13: eh(2)");
+    assert!((astrom.eh[2] - -0.1782189006019749850).abs() < 1e-12, "apcg13: eh(3)");
+    assert!((astrom.em - 1.010465295964664178).abs() < 1e-12, "apcg13: em");
+    assert!((astrom.v[0] - 0.4289638912941341125e-4).abs() < 1e-16, "apcg13: v(1)");
+    assert!((astrom.v[1] - 0.8115034032405042132e-4).abs() < 1e-16, "apcg13: v(2)");
+    assert!((astrom.v[2] - 0.3517555135536470279e-4).abs() < 1e-16, "apcg13: v(3)");
+    assert!((astrom.bm1 - 0.9999999951686013142).abs() < 1e-12, "apcg13: bm1");
+    assert!((astrom.bpn[0][0] - 1.0).abs() < 1e-12, "apcg13: bpn(1,1)");
+    assert!((astrom.bpn[1][0] - 0.0).abs() < 1e-12, "apcg13: bpn(2,1)");
+    assert!((astrom.bpn[2][0] - 0.0).abs() < 1e-12, "apcg13: bpn(3,1)");
+    assert!((astrom.bpn[0][1] - 0.0).abs() < 1e-12, "apcg13: bpn(1,2)");
+    assert!((astrom.bpn[1][1] - 1.0).abs() < 1e-12, "apcg13: bpn(2,2)");
+    assert!((astrom.bpn[2][1] - 0.0).abs() < 1e-12, "apcg13: bpn(3,2)");
+    assert!((astrom.bpn[0][2] - 0.0).abs() < 1e-12, "apcg13: bpn(1,3)");
+    assert!((astrom.bpn[1][2] - 0.0).abs() < 1e-12, "apcg13: bpn(2,3)");
+    assert!((astrom.bpn[2][2] - 1.0).abs() < 1e-12, "apcg13: bpn(3,3)");
 }
 
 #[test]
