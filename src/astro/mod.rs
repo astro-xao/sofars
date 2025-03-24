@@ -118,6 +118,12 @@ pub use atciqn::*;
 mod atciqz;
 pub use atciqz::*;
 
+mod atic13;
+pub use atic13::*;
+
+mod aticq;
+pub use aticq::*;
+
 mod atio13;
 pub use atio13::*;
 

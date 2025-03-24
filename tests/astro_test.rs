@@ -1,6 +1,6 @@
 use sofars::astro::{
     IauAstrom, IauLdBody, ab, apcg, apcg13, apci, apci13, apco, apco13, apcs, apcs13, aper, aper13,
-    atcc13, atci13, atciq, atciqn, atciqz, atco13, atio13, ld, ldn, ldsun, pvtob,
+    atcc13, atci13, atciq, atciqn, atciqz, atco13, atic13, aticq, atio13, ld, ldn, ldsun, pvtob,
 };
 
 #[test]
@@ -1034,6 +1034,38 @@ fn test_atco13() {
         }
         Err(j) => assert_eq!(j, 0, "atco13: j"),
     }
+}
+
+#[test]
+fn test_atic13() {
+    let ri = 2.710121572969038991;
+    let di = 0.1729371367218230438;
+    let date1 = 2456165.5;
+    let date2 = 0.401182685;
+
+    let (rc, dc, eo) = atic13(ri, di, date1, date2);
+
+    assert!((rc - 2.710126504531716819).abs() < 1e-12, "aticq13: rc");
+    assert!((dc - 0.1740632537627034482).abs() < 1e-12, "aticq13: dc");
+    assert!((eo - -0.002900618712657375647).abs() < 1e-14, "aticq13: eo");
+}
+
+#[test]
+fn test_aticq() {
+    let date1 = 2456165.5;
+    let date2 = 0.401182685;
+    let astrom = &mut IauAstrom::default();
+    let mut eo = 0.0;
+
+    apci13(date1, date2, astrom, &mut eo);
+
+    let ri = 2.710121572969038991;
+    let di = 0.1729371367218230438;
+
+    let (rc, dc) = aticq(ri, di, astrom);
+
+    assert!((rc - 2.710126504531716819).abs() < 1e-12, "aticq: rc");
+    assert!((dc - 0.1740632537627034482).abs() < 1e-12, "aticq: dc");
 }
 
 #[test]
