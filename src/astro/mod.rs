@@ -115,6 +115,9 @@ pub use atciq::*;
 mod atciqn;
 pub use atciqn::*;
 
+mod atciqz;
+pub use atciqz::*;
+
 mod atio13;
 pub use atio13::*;
 

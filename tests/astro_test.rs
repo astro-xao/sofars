@@ -1,6 +1,6 @@
 use sofars::astro::{
     IauAstrom, IauLdBody, ab, apcg, apcg13, apci, apci13, apco, apco13, apcs, apcs13, aper, aper13,
-    atcc13, atci13, atciq, atciqn, atco13, atio13, ld, ldn, ldsun, pvtob,
+    atcc13, atci13, atciq, atciqn, atciqz, atco13, atio13, ld, ldn, ldsun, pvtob,
 };
 
 #[test]
@@ -972,6 +972,24 @@ fn test_atciqn() {
 
     assert!((ri - 2.710122008104983335).abs() < 1e-12, "atciqn: ri");
     assert!((di - 0.1729371916492767821).abs() < 1e-12, "atciqn: di");
+}
+
+#[test]
+fn test_atciqz() {
+    let date1 = 2456165.5;
+    let date2 = 0.401182685;
+    let astrom = &mut IauAstrom::default();
+    let eo = &mut 0.0;
+
+    apci13(date1, date2, astrom, eo);
+
+    let rc = 2.71;
+    let dc = 0.174;
+
+    let (ri, di) = atciqz(rc, dc, astrom);
+
+    assert!((ri - 2.709994899247256984).abs() < 1e-12, "atciqz: ri");
+    assert!((di - 0.1728740720984931891).abs() < 1e-12, "atciqz: di");
 }
 
 #[test]
