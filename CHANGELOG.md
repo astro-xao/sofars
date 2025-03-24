@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 ## [unreleased]
 
+## [0.2.0](https://github.com/astro-xao/sofars/compare/v0.1.7...v0.2.0) - 2025-03-24
+
+### Added
+
+- reorganize erst module and with some implementations
+- add vm impl: ppp, ppsp, pv2s, s2pv
+- remove horeq(module)
+- add nut00b impl
+- add pvstar, starpv
+- add hd2ae, hd2pa
+- add ae2hd
+
+### Other
+
+- update example
+
 ## [0.1.7](https://github.com/astro-xao/sofars/compare/v0.1.6...v0.1.7) - 2025-03-24
 
 ### Added
