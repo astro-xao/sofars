@@ -2,7 +2,7 @@ use crate::eph::epv00;
 
 use super::{apcs, IauAstrom};
 
-///  - - - - - - - - - -
+///  Prepare for ICRS <−> CIRS, space
 ///
 ///  For an observer whose geocentric position and velocity are known,
 ///  prepare star-independent astrometry parameters for transformations
