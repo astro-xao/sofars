@@ -48,6 +48,9 @@ pub use ppp::*;
 mod ppsp;
 pub use ppsp::*;
 
+mod pv2s;
+pub use pv2s::*;
+
 mod pxp;
 pub use pxp::*;
 
@@ -71,6 +74,9 @@ pub use rz::*;
 
 mod s2c;
 pub use s2c::*;
+
+mod s2pv;
+pub use s2pv::*;
 
 mod sxp;
 pub use sxp::*;

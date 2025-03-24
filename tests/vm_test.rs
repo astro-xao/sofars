@@ -12,12 +12,6 @@ fn test_a2af() {
 }
 
 #[test]
-fn test_af2a() {
-    let a = af2a('-', 45, 13, 27.2).unwrap();
-    assert!((a - (-0.7893115794313644842)).abs() < 1e-12, "af2a a");
-}
-
-#[test]
 fn test_a2tf() {
     let (sign, ihmsf) = a2tf(4, -3.01234);
 
@@ -29,34 +23,26 @@ fn test_a2tf() {
 }
 
 #[test]
-fn test_tf2a() {
-    let a = tf2a('+', 4, 58, 20.2).unwrap();
-    assert!((a - 1.301739278189537429).abs() < 1e-12, "tf2a");
+fn test_af2a() {
+    let a = af2a('-', 45, 13, 27.2).unwrap();
+    assert!((a - (-0.7893115794313644842)).abs() < 1e-12, "af2a a");
 }
 
 #[test]
-fn test_tr() {
-    let r = &[
-        [2.0, 3.0, 2.0],
-        [3.0, 2.0, 3.0],
-        [3.0, 4.0, 5.0],
+fn test_pv2s() {
+    let pv = [
+        [-0.4514964673880165, 0.03093394277342585, 0.05594668105108779],
+        [1.292270850663260e-5, 2.652814182060692e-6, 2.568431853930293e-6],
     ];
 
-    let rt = &mut [[0.0; 3]; 3];
+    let (theta, phi, r, td, pd, rd) = pv2s(&pv);
 
-    tr(r, rt);
-
-    assert!((rt[0][0] - 2.0).abs() < 1e-12, "tr 11");
-    assert!((rt[0][1] - 3.0).abs() < 1e-12, "tr 12");
-    assert!((rt[0][2] - 3.0).abs() < 1e-12, "tr 13");
-
-    assert!((rt[1][0] - 3.0).abs() < 1e-12, "tr 21");
-    assert!((rt[1][1] - 2.0).abs() < 1e-12, "tr 22");
-    assert!((rt[1][2] - 4.0).abs() < 1e-12, "tr 23");
-
-    assert!((rt[2][0] - 2.0).abs() < 1e-12, "tr 31");
-    assert!((rt[2][1] - 3.0).abs() < 1e-12, "tr 32");
-    assert!((rt[2][2] - 5.0).abs() < 1e-12, "tr 33");
+    assert!((theta - 3.073185307179586515).abs() < 1e-12, "pv2s theta");
+    assert!((phi - 0.1229999999999999992).abs() < 1e-12, "pv2s phi");
+    assert!((r - 0.4559999999999999757).abs() < 1e-12, "pv2s r");
+    assert!((td - -0.7800000000000000364e-5).abs() < 1e-16, "pv2s td");
+    assert!((pd - 0.9010000000000001639e-5).abs() < 1e-16, "pv2s pd");
+    assert!((rd - -0.1229999999999999832e-4).abs() < 1e-16, "pv2s rd");
 }
 
 #[test]
@@ -101,6 +87,37 @@ fn test_rxpv() {
 
     assert!((rpv[0][2] - 7.1).abs() < 1e-12);
     assert!((rpv[1][2] - 5.8).abs() < 1e-12);
+}
+
+#[test]
+fn test_tf2a() {
+    let a = tf2a('+', 4, 58, 20.2).unwrap();
+    assert!((a - 1.301739278189537429).abs() < 1e-12, "tf2a");
+}
+
+#[test]
+fn test_tr() {
+    let r = &[
+        [2.0, 3.0, 2.0],
+        [3.0, 2.0, 3.0],
+        [3.0, 4.0, 5.0],
+    ];
+
+    let rt = &mut [[0.0; 3]; 3];
+
+    tr(r, rt);
+
+    assert!((rt[0][0] - 2.0).abs() < 1e-12, "tr 11");
+    assert!((rt[0][1] - 3.0).abs() < 1e-12, "tr 12");
+    assert!((rt[0][2] - 3.0).abs() < 1e-12, "tr 13");
+
+    assert!((rt[1][0] - 3.0).abs() < 1e-12, "tr 21");
+    assert!((rt[1][1] - 2.0).abs() < 1e-12, "tr 22");
+    assert!((rt[1][2] - 4.0).abs() < 1e-12, "tr 23");
+
+    assert!((rt[2][0] - 2.0).abs() < 1e-12, "tr 31");
+    assert!((rt[2][1] - 3.0).abs() < 1e-12, "tr 32");
+    assert!((rt[2][2] - 5.0).abs() < 1e-12, "tr 33");
 }
 
 #[test]
