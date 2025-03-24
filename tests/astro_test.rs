@@ -1,5 +1,6 @@
 use sofars::astro::{
-    ab, apcg, apcg13, apci, apci13, apco, apco13, apcs, apcs13, atcc13, atci13, 
+    ab, apcg, apcg13, apci, apci13, apco, apco13, apcs, apcs13, 
+    aper, aper13, atcc13, atci13, 
     atciq, atco13, atio13, ld, ldsun, pvtob, IauAstrom
 };
 
@@ -253,6 +254,31 @@ fn test_apcs13() {
     assert!((astrom.bpn[0][2] - 0.0).abs() < 1e-12, "apcs13: bpn(1,3)");
     assert!((astrom.bpn[1][2] - 0.0).abs() < 1e-12, "apcs13: bpn(2,3)");
     assert!((astrom.bpn[2][2] - 1.0).abs() < 1e-12, "apcs13: bpn(3,3)");
+}
+
+#[test]
+fn test_aper() {
+    let mut astrom = IauAstrom::default();
+
+    astrom.along = 1.234;
+    let theta = 5.678;
+
+    aper(theta, &mut astrom);
+
+    assert!((astrom.eral - 6.912000000000000000).abs() < 1e-12, "aper: pmt");
+}
+
+#[test]
+fn test_aper13() {
+    let mut astrom = IauAstrom::default();
+
+    astrom.along = 1.234;
+    let ut11 = 2456165.5;
+    let ut12 = 0.401182685;
+
+    aper13(ut11, ut12, &mut astrom);
+
+    assert!((astrom.eral - 3.316236661789694933).abs() < 1e-12, "aper: pmt");
 }
 
 #[test]
