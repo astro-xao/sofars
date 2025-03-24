@@ -36,8 +36,17 @@ pub use pdp::*;
 mod pm;
 pub use pm::*;
 
+mod pmp;
+pub use pmp::*;
+
 mod pn;
 pub use pn::*;
+
+mod ppp;
+pub use ppp::*;
+
+mod ppsp;
+pub use ppsp::*;
 
 mod pxp;
 pub use pxp::*;
