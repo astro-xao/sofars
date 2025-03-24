@@ -215,7 +215,6 @@ pub mod eph;
 pub mod erst;
 pub mod fundargs;
 pub mod gnomic;
-pub mod horeq;
 pub mod pnp;
 pub mod star;
 pub mod ts;
