@@ -83,11 +83,7 @@ pub fn pvtob(
     let xyzm = &mut [0.0; 3];
     let rpm = &mut [[0.0; 3]; 3];
     let xyz = &mut [0.0; 3];
-    let mut x = 0.0;
-    let mut y = 0.0;
-    let mut z = 0.0;
-    let mut s = 0.0;
-    let mut c = 0.0;
+    let (x, y, z, s, c): (f64, f64, f64, f64, f64);
 
     /* Geodetic to geocentric transformation (WGS84). */
     #[allow(unused_must_use)]
