@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 ## [unreleased]
 
+## [0.3.0](https://github.com/astro-xao/sofars/compare/v0.2.0...v0.3.0) - 2025-03-25
+
+### Added
+
+- implement Greenwich apparent sidereal time functions for IAU 2000A, 2000B, and 1994
+- implement Greenwich mean sidereal time functions for IAU 2000, 2006, and 1982
+- add IAU 1994 equation of the equinoxes and update related functions
+- add nutation function for IAU 1980 and update module exports
+
+### Other
+
+- add tests for Greenwich mean and apparent sidereal time functions
+- enhance documentation for Greenwich apparent sidereal time functions in gst06 and gst06a
+- improve documentation formatting in obl80.rs
+- simplify variable declarations in pvtob function
+
 ## [0.2.0](https://github.com/astro-xao/sofars/compare/v0.1.7...v0.2.0) - 2025-03-24
 
 ### Added
