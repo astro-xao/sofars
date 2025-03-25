@@ -35,6 +35,9 @@ pub use nut00b::*;
 mod nut06a;
 pub use nut06a::*;
 
+mod nut80;
+pub use nut80::*;
+
 mod obl80;
 pub use obl80::*;
 

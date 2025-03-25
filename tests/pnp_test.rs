@@ -1,4 +1,4 @@
-use sofars::pnp::{c2ixys, nut00a, nut00b, nut06a, pnm00a, pnm06a, s06};
+use sofars::pnp::{c2ixys, nut00a, nut80, nut00b, nut06a, pnm00a, pnm06a, s06};
 
 #[test]
 fn test_c2ixys() {
@@ -44,6 +44,14 @@ fn test_nut00b() {
 
     assert!((dpsi - (-0.9632552291148362783e-5)).abs() < 1e-13, "nut00b dpsi");
     assert!((deps - 0.4063197106621159367e-4).abs() < 1e-13, "nut00b deps");
+}
+
+#[test]
+fn test_nut80() {
+    let (dpsi, deps) = nut80(2400000.5, 53736.0);
+
+    assert!((dpsi - (-0.9643658353226563966e-5)).abs() < 1e-13, "nut80 dpsi");
+    assert!((deps - 0.4060051006879713322e-4).abs() < 1e-13, "nut80 deps");
 }
 
 #[test]
