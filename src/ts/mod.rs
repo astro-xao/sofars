@@ -1,5 +1,8 @@
 //! Time scales
  
+mod d2dtf;
+pub use d2dtf::*;
+
 mod dat;
 pub use dat::*;
 
