@@ -26,3 +26,11 @@ fn test_dat() {
     deltat = ts::dat(2017, 9, 1, 0.0).unwrap();
     assert!((deltat - 37.0).abs() < 1e-12, "dat: d3");
 }
+
+#[test]
+fn test_ut1tt() {
+    let (t1, t2) = ts::ut1tt(2453750.5, 0.892104561, 64.8499).unwrap();
+
+    assert!((t1 - 2453750.5).abs() < 1e-6, "ut1tt: t1");
+    assert!((t2 - 0.8928551385462962963).abs() < 1e-12, "ut1tt: t2");
+}

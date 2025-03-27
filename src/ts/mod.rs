@@ -9,6 +9,9 @@ pub use dat::*;
 mod dtf2d;
 pub use dtf2d::*;
 
+mod ut1tt;
+pub use ut1tt::*;
+
 mod utctai;
 pub use utctai::*;
 
