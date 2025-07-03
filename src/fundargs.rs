@@ -1,15 +1,13 @@
 //! Fundamental arguments for nutation etc.
+use crate::consts::{D2PI, DAS2R, TURNAS};
 use std::ops::Rem;
-use crate::consts::{DAS2R, TURNAS, D2PI};
 
 /// mean elongation of the Moon from the Sun
 pub fn fad03(t: f64) -> f64 {
     /* Mean elongation of the Moon from the Sun (IERS Conventions 2003). */
-    (            1072260.703692 +
-        t * ( 1602961601.2090 +
-        t * (         -6.3706 +
-        t * (          0.006593 +
-        t *           -0.00003169 )))).rem(TURNAS) * DAS2R
+    (1072260.703692 + t * (1602961601.2090 + t * (-6.3706 + t * (0.006593 + t * -0.00003169))))
+        .rem(TURNAS)
+        * DAS2R
 }
 
 /// mean longitude of Earth
@@ -19,11 +17,9 @@ pub fn fae03(t: f64) -> f64 {
 
 /// mean argument of the latitude of the Moon
 pub fn faf03(t: f64) -> f64 {
-    (335779.526232 +
-                    t * ( 1739527262.8478 +
-                    t * (       - 12.7512 +
-                    t * (        - 0.001037 +
-                    t * (          0.00000417 ) ) ) )).rem(TURNAS ) * DAS2R
+    (335779.526232 + t * (1739527262.8478 + t * (-12.7512 + t * (-0.001037 + t * (0.00000417)))))
+        .rem(TURNAS)
+        * DAS2R
 }
 
 /// mean longitude of Jupiter
@@ -34,21 +30,17 @@ pub fn faju03(t: f64) -> f64 {
 /// mean anomaly of the Moon
 pub fn fal03(t: f64) -> f64 {
     /* Mean anomaly of the Moon (IERS Conventions 2003). */
-    (             485868.249036 +
-        t * ( 1717915923.2178 +
-        t * (         31.8792 +
-        t * (          0.051635 +
-        t * (         -0.00024470 ))))).rem(TURNAS) * DAS2R
+    (485868.249036 + t * (1717915923.2178 + t * (31.8792 + t * (0.051635 + t * (-0.00024470)))))
+        .rem(TURNAS)
+        * DAS2R
 }
 
 /// mean anomaly of the Sun
 pub fn falp03(t: f64) -> f64 {
     /* Mean anomaly of the Sun (IERS Conventions 2003). */
-    (          1287104.79305 +
-        t * (129596581.0481 +
-        t * (       -0.5532 +
-        t * (        0.000136 +
-        t * (       -0.00001149 ))))).rem(TURNAS) * DAS2R
+    (1287104.79305 + t * (129596581.0481 + t * (-0.5532 + t * (0.000136 + t * (-0.00001149)))))
+        .rem(TURNAS)
+        * DAS2R
 }
 
 /// mean longitude of Mars
@@ -68,11 +60,9 @@ pub fn fane03() {}
 
 /// mean longitude of the Moon’s ascending node
 pub fn faom03(t: f64) -> f64 {
-    (           450160.398036 +
-                    t * ( - 6962890.5431 +
-                    t * (         7.4722 +
-                    t * (         0.007702 +
-                    t * (       - 0.00005939 ) )))).rem(TURNAS ) * DAS2R
+    (450160.398036 + t * (-6962890.5431 + t * (7.4722 + t * (0.007702 + t * (-0.00005939)))))
+        .rem(TURNAS)
+        * DAS2R
 }
 
 /// general accumulated precession in longitude

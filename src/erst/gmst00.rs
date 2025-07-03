@@ -75,18 +75,14 @@ use super::era00;
 ///     McCarthy, D. D., Petit, G. (eds.), IERS Conventions (2003),
 ///     IERS Technical Note No. 32, BKG (2004)
 pub fn gmst00(uta: f64, utb: f64, tta: f64, ttb: f64) -> f64 {
-
     // TT Julian centuries since J2000.0.
     let t = ((tta - DJ00) + ttb) / DJC;
 
     // Greenwich Mean Sidereal Time, IAU 2000.
-    let gmst = anp(era00(uta, utb) +
-                   (     0.014506   +
-                   (  4612.15739966 +
-                   (     1.39667721 +
-                   (    -0.00009344 +
-                   (     0.00001882 )
-          * t) * t) * t) * t) * DAS2R);
+    let gmst = anp(era00(uta, utb)
+        + (0.014506
+            + (4612.15739966 + (1.39667721 + (-0.00009344 + (0.00001882) * t) * t) * t) * t)
+            * DAS2R);
 
     gmst
 }

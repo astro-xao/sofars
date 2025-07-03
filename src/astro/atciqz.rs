@@ -1,6 +1,6 @@
 use crate::vm::{anp, c2s, rxp, s2c};
 
-use super::{ab, ldsun, IauAstrom};
+use super::{IauAstrom, ab, ldsun};
 
 ///  Quick astrometric ICRS −> CIRS
 ///
@@ -79,7 +79,7 @@ pub fn atciqz(rc: f64, dc: f64, astrom: &mut IauAstrom) -> (f64, f64) {
     let ppr = ab(&pnat, &astrom.v, astrom.em, astrom.bm1);
 
     /* Bias-precession-nutation, giving CIRS proper direction. */
-    let mut pi= [0.0; 3]; 
+    let mut pi = [0.0; 3];
     rxp(&astrom.bpn, &ppr, &mut pi);
 
     /* CIRS RA,Dec. */

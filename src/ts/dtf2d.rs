@@ -1,4 +1,7 @@
-use crate::{cal::{cal2jd, jd2cal}, consts::DAYSEC};
+use crate::{
+    cal::{cal2jd, jd2cal},
+    consts::DAYSEC,
+};
 
 use super::dat;
 
@@ -73,8 +76,15 @@ use super::dat;
 ///     iauCal2jd    Gregorian calendar to JD
 ///     iauDat       delta(AT) = TAI-UTC
 ///     iauJd2cal    JD to Gregorian calendar
-pub fn dtf2d(scale: &str, iy: i32, im: i32, id: i32, ihr: i32, imn: i32, sec: f64) 
-                                                        -> Result<(f64, f64), i32> {
+pub fn dtf2d(
+    scale: &str,
+    iy: i32,
+    im: i32,
+    id: i32,
+    ihr: i32,
+    imn: i32,
+    sec: f64,
+) -> Result<(f64, f64), i32> {
     /* Today's Julian Day Number. */
     let js = cal2jd(iy, im, id);
     let (mut dj, w) = match js {
@@ -94,13 +104,13 @@ pub fn dtf2d(scale: &str, iy: i32, im: i32, id: i32, ihr: i32, imn: i32, sec: f6
     if scale == "UTC" {
         /* TAI-UTC at 0h today. */
         match dat(iy, im, id, 0.0) {
-           Ok(d) => dat0 = d,
-           Err(j) => return Err(j),
+            Ok(d) => dat0 = d,
+            Err(j) => return Err(j),
         }
         /* TAI-UTC at 12h today (to detect drift). */
         match dat(iy, im, id, 0.5) {
-           Ok(d) => dat12 = d,
-           Err(j) => return Err(j),
+            Ok(d) => dat12 = d,
+            Err(j) => return Err(j),
         }
         /* TAI-UTC at 0h tomorrow (to detect jumps). */
         (iy2, im2, id2, w) = match jd2cal(dj, 1.5) {
@@ -108,11 +118,11 @@ pub fn dtf2d(scale: &str, iy: i32, im: i32, id: i32, ihr: i32, imn: i32, sec: f6
             Err(j) => return Err(j),
         };
         match dat(iy2, im2, id2, 0.0) {
-              Ok(d) => dat24 = d,
-              Err(j) => return Err(j),
+            Ok(d) => dat24 = d,
+            Err(j) => return Err(j),
         }
         /* Any sudden change in TAI-UTC between today and tomorrow. */
-        dleap = dat24 - (2.0*dat12 - dat0);
+        dleap = dat24 - (2.0 * dat12 - dat0);
 
         /* If leap second day, correct the day and final minute lengths. */
         day += dleap;
@@ -124,24 +134,26 @@ pub fn dtf2d(scale: &str, iy: i32, im: i32, id: i32, ihr: i32, imn: i32, sec: f6
     let mut js = 0;
     if ihr >= 0 && ihr <= 23 {
         if imn >= 0 && imn <= 59 {
-        if sec >= 0.0 {
-            if sec >= seclim {
-                js += 2;
+            if sec >= 0.0 {
+                if sec >= seclim {
+                    js += 2;
+                }
+            } else {
+                js = -6;
             }
         } else {
-            js = -6;
-        }
-        } else {
-        js = -5;
+            js = -5;
         }
     } else {
         js = -4;
     }
 
-    if js < 0 { return Err(js); }
+    if js < 0 {
+        return Err(js);
+    }
 
     /* The time in days. */
-    let time  = ( 60.0 * ( ( 60 * ihr + imn ) as f64 ) + sec ) / day;
+    let time = (60.0 * ((60 * ihr + imn) as f64) + sec) / day;
 
     /* Return the date and time */
     Ok((dj, time))

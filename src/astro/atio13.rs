@@ -1,4 +1,4 @@
-use super::{apio13, atioq, IauAstrom};
+use super::{IauAstrom, apio13, atioq};
 
 ///  CIRS −> observed
 ///
@@ -134,19 +134,31 @@ use super::{apio13, atioq, IauAstrom};
 ///     iauAtioq     quick CIRS to observed
 ///  ```
 pub fn atio13(
-    ri: f64, di: f64,
-    utc1: f64, utc2: f64, dut1: f64,
-    elong: f64, phi: f64, hm: f64, xp: f64, yp: f64,
-    phpa: f64, tc: f64, rh: f64, wl: f64
+    ri: f64,
+    di: f64,
+    utc1: f64,
+    utc2: f64,
+    dut1: f64,
+    elong: f64,
+    phi: f64,
+    hm: f64,
+    xp: f64,
+    yp: f64,
+    phpa: f64,
+    tc: f64,
+    rh: f64,
+    wl: f64,
 ) -> Result<(f64, f64, f64, f64, f64), i32> {
     let astrom = &mut IauAstrom::default();
-    
+
     /* Star-independent astrometry parameters for CIRS->observed. */
-    match apio13(utc1, utc2, dut1, elong, phi, hm, xp, yp, phpa, tc, rh, wl, astrom) {
-        Ok(_) => {
-            /* CIRS to observed. */
-        },
-        Err(j) => { return Err(j);},
+    match apio13(
+        utc1, utc2, dut1, elong, phi, hm, xp, yp, phpa, tc, rh, wl, astrom,
+    ) {
+        Ok(_) => { /* CIRS to observed. */ }
+        Err(j) => {
+            return Err(j);
+        }
     }
 
     /* Transform CIRS to observed. */

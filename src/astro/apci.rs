@@ -1,6 +1,6 @@
 use crate::pnp::c2ixys;
 
-use super::{apcg, IauAstrom};
+use super::{IauAstrom, apcg};
 
 ///  Prepare for ICRS <−> CIRS, terrestrial, special
 ///
@@ -117,12 +117,18 @@ use super::{apcg, IauAstrom};
 ///  ```
 ///  This revision:   2013 September 25
 pub fn apci(
-    date1: f64, date2: f64, ebpv: &[[f64; 3]; 2], ehp: &[f64; 3], 
-    x: f64, y: f64, s: f64, astrom: &mut IauAstrom,) {
-    
+    date1: f64,
+    date2: f64,
+    ebpv: &[[f64; 3]; 2],
+    ehp: &[f64; 3],
+    x: f64,
+    y: f64,
+    s: f64,
+    astrom: &mut IauAstrom,
+) {
     /* Star-independent astrometry parameters for geocenter. */
     apcg(date1, date2, ebpv, ehp, astrom);
-    
+
     /* CIO based BPN matrix. */
     c2ixys(x, y, s, &mut astrom.bpn);
 }

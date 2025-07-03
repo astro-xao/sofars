@@ -1,4 +1,4 @@
-use super::{apci13, aticq, IauAstrom};
+use super::{IauAstrom, apci13, aticq};
 
 ///  Transform star RA,Dec from geocentric CIRS to ICRS astrometric.
 ///
@@ -74,15 +74,14 @@ use super::{apci13, aticq, IauAstrom};
 ///     iauApci13    astrometry parameters, ICRS-CIRS, 2013
 ///     iauAticq     quick CIRS to ICRS astrometric
 ///  ```
-pub fn atic13(ri: f64, di: f64,
-    date1: f64, date2: f64) -> (f64, f64, f64) {
+pub fn atic13(ri: f64, di: f64, date1: f64, date2: f64) -> (f64, f64, f64) {
     // double *rc, double *dc, double *eo
     let astrom = &mut IauAstrom::default();
     let eo = &mut 0.0;
 
     /* Star-independent astrometry parameters. */
     apci13(date1, date2, astrom, eo);
-    
+
     /* CIRS to ICRS astrometric. */
     let (rc, dc) = aticq(ri, di, astrom);
 

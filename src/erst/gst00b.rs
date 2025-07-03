@@ -1,6 +1,6 @@
 use crate::vm::anp;
 
-use super::{gmst00, ee00b};
+use super::{ee00b, gmst00};
 
 ///  Greenwich apparent sidereal time, IAU 2000B
 ///
@@ -82,7 +82,7 @@ use super::{gmst00, ee00b};
 ///
 ///     McCarthy, D. D., Petit, G. (eds.), IERS Conventions (2003),
 ///     IERS Technical Note No. 32, BKG (2004)
-/// 
+///
 pub fn gst00b(uta: f64, utb: f64) -> f64 {
     let gmst00 = gmst00(uta, utb, uta, utb);
     let ee00b = ee00b(uta, utb);

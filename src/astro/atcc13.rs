@@ -1,4 +1,4 @@
-use super::{apci13, atccq, IauAstrom};
+use super::{IauAstrom, apci13, atccq};
 
 ///  Catalog -> astrometric.
 ///
@@ -62,9 +62,14 @@ use super::{apci13, atccq, IauAstrom};
 ///     iauAtccq     quick catalog ICRS to astrometric
 ///  ```
 pub fn atcc13(
-    rc: f64, dc: f64,
-    pr: f64, pd: f64, px: f64, rv: f64,
-    date1: f64, date2: f64
+    rc: f64,
+    dc: f64,
+    pr: f64,
+    pd: f64,
+    px: f64,
+    rv: f64,
+    date1: f64,
+    date2: f64,
 ) -> (f64, f64) {
     /* Star-independent astrometry parameters */
     let astrom = &mut IauAstrom::default();

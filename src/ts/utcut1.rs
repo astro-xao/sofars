@@ -1,5 +1,5 @@
 use crate::cal::jd2cal;
-use crate::ts::{utctai, taiut1, dat};
+use crate::ts::{dat, taiut1, utctai};
 
 pub fn utcut1(utc1: f64, utc2: f64, dut1: f64) -> Result<(f64, f64), i32> {
     let (iy, im, id, w) = match jd2cal(utc1, utc2) {

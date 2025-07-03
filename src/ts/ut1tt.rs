@@ -34,7 +34,7 @@ use crate::consts::DAYSEC;
 ///
 ///     Explanatory Supplement to the Astronomical Almanac,
 ///     P. Kenneth Seidelmann (ed), University Science Books (1992)
-/// 
+///
 pub fn ut1tt(ut11: f64, ut12: f64, dt: f64) -> Result<(f64, f64), i32> {
     let dtd = dt / DAYSEC;
 

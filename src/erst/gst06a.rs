@@ -1,5 +1,5 @@
-use crate::pnp::pnm06a;
 use super::gst06;
+use crate::pnp::pnm06a;
 
 ///  Greenwich apparent sidereal time, IAU 2006/2000A
 ///
@@ -64,9 +64,8 @@ use super::gst06;
 ///  Reference:
 ///
 ///     Wallace, P.T. & Capitaine, N., 2006, Astron.Astrophys. 459, 981
-/// 
+///
 pub fn gst06a(uta: f64, utb: f64, tta: f64, ttb: f64) -> f64 {
-
     // Classical nutation x precession x bias matrix, IAU 2000A.
     let rnpb = pnm06a(tta, ttb);
 

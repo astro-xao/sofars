@@ -45,14 +45,9 @@ use crate::consts::{DAS2R, DJ00, DJC};
 ///     P. Kenneth Seidelmann (ed), University Science Books (1992),
 ///     Expression 3.222-1 (p114).
 pub fn obl80(date1: f64, date2: f64) -> f64 {
-    
     /* Interval between fundamental epoch J2000.0 and given date (JC). */
     let t = ((date1 - DJ00) + date2) / DJC;
 
     /* Mean obliquity of date. */
-    DAS2R * (84381.448      +
-            (  -46.8150     +
-            (   -0.00059    +
-            (    0.001813 ) * t) * t) * t)
+    DAS2R * (84381.448 + (-46.8150 + (-0.00059 + (0.001813) * t) * t) * t)
 }
-

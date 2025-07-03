@@ -1,4 +1,4 @@
-use super::{apci13, atciq, IauAstrom};
+use super::{IauAstrom, apci13, atciq};
 
 ///  Catalog −> CIRS
 ///
@@ -19,12 +19,12 @@ use super::{apci13, atciq, IauAstrom};
 ///     rv     double  radial velocity (km/s, +ve if receding)
 ///     date1  double  TDB as a 2-part...
 ///     date2  double  ...Julian Date (Note 3)
-///  ``` 
+///  ```
 ///  Return:
 ///  ```
 ///     ri,di  double* CIRS geocentric RA,Dec (radians)
 ///     eo     double* equation of the origins (ERA-GST, radians, Note 5)
-///  ``` 
+///  ```
 ///  Notes:
 ///
 ///  1) Star data for an epoch other than J2000.0 (for example from the
@@ -80,17 +80,24 @@ use super::{apci13, atciq, IauAstrom};
 ///     iauAtciq     quick ICRS to CIRS
 ///  ```
 pub fn atci13(
-    rc: f64, dc: f64, pr: f64, pd: f64, px: f64, rv: f64, 
-                                date1: f64, date2: f64) -> (f64, f64, f64) {
+    rc: f64,
+    dc: f64,
+    pr: f64,
+    pd: f64,
+    px: f64,
+    rv: f64,
+    date1: f64,
+    date2: f64,
+) -> (f64, f64, f64) {
     let eo = &mut 0.0;
     /* Star-independent astrometry parameters */
     let astrom = &mut IauAstrom::default();
-    
+
     /* The transformation parameters. */
     apci13(date1, date2, astrom, eo);
 
     /* ICRS (epoch J2000.0) to CIRS. */
-    let (ri, di)= atciq(rc, dc, pr, pd, px, rv, astrom);
+    let (ri, di) = atciq(rc, dc, pr, pd, px, rv, astrom);
 
     (ri, di, *eo)
 }

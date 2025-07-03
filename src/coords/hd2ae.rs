@@ -1,6 +1,6 @@
 use crate::consts::D2PI;
 
-///  (hour angle, declination) to (azimuth, altitude) 
+///  (hour angle, declination) to (azimuth, altitude)
 ///
 ///  Equatorial to horizon coordinates:  transform hour angle and
 ///  declination to azimuth and altitude.

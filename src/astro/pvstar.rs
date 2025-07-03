@@ -1,4 +1,7 @@
-use crate::{consts::{DAU, DAYSEC, DC, DJY, DR2AS}, vm::{anp, pdp, pm, pmp, pn, ppp, pv2s, sxp}};
+use crate::{
+    consts::{DAU, DAYSEC, DC, DJY, DR2AS},
+    vm::{anp, pdp, pm, pmp, pn, ppp, pv2s, sxp},
+};
 
 ///  Space motion pv−vector to star catalog data
 ///

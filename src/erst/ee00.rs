@@ -67,5 +67,5 @@ use super::eect00;
 ///     IERS Technical Note No. 32, BKG (2004)
 pub fn ee00(date1: f64, date2: f64, epsa: f64, dpsi: f64) -> f64 {
     /* Equation of the equinoxes. */
-   dpsi * epsa.cos() + eect00(date1, date2)
+    dpsi * epsa.cos() + eect00(date1, date2)
 }

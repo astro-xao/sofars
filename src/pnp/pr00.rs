@@ -5,7 +5,6 @@ pub fn pr00(date1: f64, date2: f64) -> (f64, f64) {
     const PRECOR: f64 = -0.29965 * DAS2R;
     const OBLCOR: f64 = -0.02524 * DAS2R;
 
-
     /* Interval between fundamental epoch J2000.0 and given date (JC). */
     let t = ((date1 - DJ00) + date2) / DJC;
 

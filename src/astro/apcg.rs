@@ -1,6 +1,6 @@
-use super::{apcs, IauAstrom};
+use super::{IauAstrom, apcs};
 ///  Prepare for ICRS <−> GCRS, geocentric, special
-/// 
+///
 ///  For a geocentric observer, prepare star-independent astrometry
 ///  parameters for transformations between ICRS and GCRS coordinates.
 ///  The Earth ephemeris is supplied by the caller.

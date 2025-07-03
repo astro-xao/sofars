@@ -95,28 +95,36 @@ use super::{bp00, numat, obl80, pr00};
 ///
 ///     n.b. The celestial ephemeris origin (CEO) was renamed "celestial
 ///          intermediate origin" (CIO) by IAU 2006 Resolution 2.
-pub fn pn00(date1: f64, date2: f64, dpsi: f64, deps: f64,
+pub fn pn00(
+    date1: f64,
+    date2: f64,
+    dpsi: f64,
+    deps: f64,
     epsa: &mut f64,
-    rb: &mut [[f64; 3]; 3], rp: &mut [[f64; 3]; 3], rbp: &mut [[f64; 3]; 3],
-    rn: &mut [[f64; 3]; 3], rbpn: &mut [[f64; 3]; 3]) {
+    rb: &mut [[f64; 3]; 3],
+    rp: &mut [[f64; 3]; 3],
+    rbp: &mut [[f64; 3]; 3],
+    rn: &mut [[f64; 3]; 3],
+    rbpn: &mut [[f64; 3]; 3],
+) {
     let rbpw = &mut [[0.0; 3]; 3];
     let rnw = &mut [[0.0; 3]; 3];
 
     /* IAU 2000 precession-rate adjustments. */
     let (dpsipr, depspr) = &mut pr00(date1, date2);
-    
+
     /* Mean obliquity, consistent with IAU 2000 precession-nutation. */
     *epsa = obl80(date1, date2) + *depspr;
-    
+
     /* Frame bias and precession matrices and their product. */
     bp00(date1, date2, rb, rp, rbpw);
 
     cr(rbpw, rbp);
-    
+
     /* Nutation matrix. */
     numat(*epsa, dpsi, deps, rnw);
     cr(rnw, rn);
-    
+
     /* Bias-precession-nutation matrix (classical). */
     rxr(rnw, rbpw, rbpn);
 }

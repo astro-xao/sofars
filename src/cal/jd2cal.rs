@@ -39,7 +39,11 @@ pub fn jd2cal(dj1: f64, dj2: f64) -> Result<(i32, i32, i32, f64), i32> {
     for i in 0..2 {
         x = v[i];
         t = s + x;
-        cs += if s.abs() >= x.abs() { (s - t) + x } else { (x - t) + s };
+        cs += if s.abs() >= x.abs() {
+            (s - t) + x
+        } else {
+            (x - t) + s
+        };
         s = t;
         if s >= 1.0 {
             jd += 1;

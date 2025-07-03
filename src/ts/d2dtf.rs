@@ -76,7 +76,7 @@ use crate::{cal::jd2cal, consts::DAYSEC};
 ///     iauD2tf      decompose days to hms
 ///     iauDat       delta(AT) = TAI-UTC
 ///  ```
-/// 
+///
 pub fn d2dtf(scale: &str, ndp: i32, d1: f64, d2: f64) -> Result<(i32, i32, i32, [i32; 4]), i32> {
     let mut iy1;
     let mut im1;

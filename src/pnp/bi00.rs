@@ -51,7 +51,7 @@ use crate::consts::DAS2R;
 ///
 pub fn bi00() -> (f64, f64, f64) {
     /* The frame bias corrections in longitude and obliquity */
-    const DPBIAS: f64 = -0.041775  * DAS2R;
+    const DPBIAS: f64 = -0.041775 * DAS2R;
     const DEBIAS: f64 = -0.0068192 * DAS2R;
 
     /* The ICRS RA of the J2000.0 equinox (Chapront et al., 2002) */

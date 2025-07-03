@@ -19,7 +19,6 @@
 ///  Note:
 ///     It is permissible to re-use the same array for any of the
 ///     arguments.
-pub fn ppp(a: &[f64; 3], b: &[f64; 3]) -> [f64; 3]
-{
-   [a[0] + b[0], a[1] + b[1], a[2] + b[2]]
+pub fn ppp(a: &[f64; 3], b: &[f64; 3]) -> [f64; 3] {
+    [a[0] + b[0], a[1] + b[1], a[2] + b[2]]
 }

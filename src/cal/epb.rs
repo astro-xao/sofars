@@ -1,4 +1,4 @@
-use crate::consts::{DJ00, D1900, DTY};
+use crate::consts::{D1900, DJ00, DTY};
 
 /// Julian Date to Besselian Epoch
 pub fn epb(dj1: f64, dj2: f64) -> f64 {

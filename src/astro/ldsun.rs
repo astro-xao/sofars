@@ -1,7 +1,7 @@
 use super::ld;
 
 ///  Light deflection by the Sun
-/// 
+///
 ///  Deflection of starlight by the Sun.
 ///
 ///  This function is part of the International Astronomical Union's

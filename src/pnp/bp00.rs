@@ -78,7 +78,13 @@ use crate::vm::{cr, ir, rx, rxr, ry, rz};
 ///
 ///  Copyright (C) 2023 IAU SOFA Board.  See notes at end.
 ///
-pub fn bp00(date1: f64, date2: f64, rb: &mut [[f64; 3]; 3], rp: &mut [[f64; 3]; 3], rbp: &mut [[f64; 3]; 3]) {
+pub fn bp00(
+    date1: f64,
+    date2: f64,
+    rb: &mut [[f64; 3]; 3],
+    rp: &mut [[f64; 3]; 3],
+    rbp: &mut [[f64; 3]; 3],
+) {
     /* J2000.0 obliquity (Lieske et al. 1977) */
     const EPS0: f64 = 84381.448 * DAS2R;
 
@@ -90,19 +96,19 @@ pub fn bp00(date1: f64, date2: f64, rb: &mut [[f64; 3]; 3], rp: &mut [[f64; 3]; 
 
     /* Precession angles (Lieske et al. 1977) */
     let psia77 = (5038.7784 + (-1.07259 + (-0.001147) * t) * t) * t * DAS2R;
-    let oma77  =       EPS0 + ((0.05127 + (-0.007726) * t) * t) * t * DAS2R;
-    let chia   = (  10.5526 + (-2.38064 + (-0.001125) * t) * t) * t * DAS2R;
+    let oma77 = EPS0 + ((0.05127 + (-0.007726) * t) * t) * t * DAS2R;
+    let chia = (10.5526 + (-2.38064 + (-0.001125) * t) * t) * t * DAS2R;
 
     /* Apply IAU 2000 precession corrections. */
     let (dpsipr, depspr) = pr00(date1, date2);
     let psia = psia77 + dpsipr;
-    let oma  = oma77  + depspr;
+    let oma = oma77 + depspr;
 
     /* Frame bias matrix: GCRS to J2000.0. */
     let rbw = &mut [[0.0; 3]; 3];
     ir(rbw);
     rz(dra0, rbw);
-    ry(dpsibi*EPS0.sin(), rbw);
+    ry(dpsibi * EPS0.sin(), rbw);
     rx(-depsbi, rbw);
     cr(rbw, rb);
 

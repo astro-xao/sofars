@@ -1,5 +1,5 @@
+use super::{IauAstrom, pmpx};
 use crate::vm::{anp, c2s};
-use super::{pmpx, IauAstrom};
 
 ///  Quick catalog −> astrometric
 ///
@@ -66,17 +66,20 @@ use super::{pmpx, IauAstrom};
 ///     iauAnp       normalize angle into range 0 to 2pi
 ///  ```
 pub fn atccq(
-    rc: f64, dc: f64,
-    pr: f64, pd: f64, px: f64, rv: f64,
-    astrom: &IauAstrom
+    rc: f64,
+    dc: f64,
+    pr: f64,
+    pd: f64,
+    px: f64,
+    rv: f64,
+    astrom: &IauAstrom,
 ) -> (f64, f64) {
-
     /* Proper motion and parallax, giving BCRS coordinate direction. */
     let p = pmpx(rc, dc, pr, pd, px, rv, astrom.pmt, astrom.eb);
 
     /* ICRS astrometric RA,Dec. */
     let (w, da) = c2s(&p);
-    let ra =  anp(w);
+    let ra = anp(w);
 
     (ra, da)
 }

@@ -112,7 +112,6 @@ pub fn atciqn(
     n: i32,
     b: &[IauLdBody],
 ) -> (f64, f64) {
-
     /* Proper motion and parallax, giving BCRS coordinate direction. */
     let pco = pmpx(rc, dc, pr, pd, px, rv, astrom.pmt, astrom.eb);
 

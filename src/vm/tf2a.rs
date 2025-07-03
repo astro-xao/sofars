@@ -5,7 +5,8 @@ pub fn tf2a(s: char, ihour: i32, imin: i32, sec: f64) -> Result<f64, i32> {
     let rad = (match s {
         '-' => -1.0,
         _ => 1.0,
-    }) * ( 60.0 * ( 60.0 * ihour.abs() as f64 + imin.abs() as f64) + sec.abs()) * DS2R;
+    }) * (60.0 * (60.0 * ihour.abs() as f64 + imin.abs() as f64) + sec.abs())
+        * DS2R;
 
     /* Validate arguments and return status. */
     if ihour < 0 || ihour > 23 {

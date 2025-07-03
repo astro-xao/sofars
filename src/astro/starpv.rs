@@ -1,4 +1,7 @@
-use crate::{consts::{DAU, DAYSEC, DC, DJY, DR2AS}, vm::{pdp, pm, pmp, pn, ppp, s2pv, sxp, zp}};
+use crate::{
+    consts::{DAU, DAYSEC, DC, DJY, DR2AS},
+    vm::{pdp, pm, pmp, pn, ppp, s2pv, sxp, zp},
+};
 
 ///  Convert star catalog coordinates to position+velocity vector.
 ///
@@ -117,9 +120,13 @@ use crate::{consts::{DAU, DAYSEC, DC, DJY, DR2AS}, vm::{pdp, pm, pmp, pn, ppp, s
 ///  Copyright (C) 2023 IAU SOFA Board.  See notes at end.
 ///
 pub fn starpv(
-    ra: f64, dec: f64, pmr: f64, pmd: f64, px: f64, rv: f64,
+    ra: f64,
+    dec: f64,
+    pmr: f64,
+    pmd: f64,
+    px: f64,
+    rv: f64,
 ) -> Result<[[f64; 3]; 2], i32> {
-
     /* Smallest allowed parallax */
     const PXMIN: f64 = 1e-7;
 
@@ -130,7 +137,7 @@ pub fn starpv(
     const IMAX: i32 = 100;
 
     let mut i: i32 = 0;
-    let mut iwarn:i32;
+    let mut iwarn: i32;
     let mut w: f64;
     let (r, rd, rad, decd, v, vsr, vst): (f64, f64, f64, f64, f64, f64, f64);
     let (betst, betsr, mut bett, mut betr, mut dd, mut ddel): (f64, f64, f64, f64, f64, f64);
@@ -212,9 +219,5 @@ pub fn starpv(
     // Combine the two to obtain the inertial space velocity vector.
     pv[1] = ppp(&ur, &ut);
 
-    if iwarn == 0 {
-        Ok(pv)
-    } else {
-        Err(iwarn)
-    }
+    if iwarn == 0 { Ok(pv) } else { Err(iwarn) }
 }

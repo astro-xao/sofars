@@ -1,8 +1,8 @@
-use crate::vm::pdp;
 use crate::consts::SRS;
+use crate::vm::pdp;
 
 ///  Apply stellar aberration
-/// 
+///
 ///  Apply aberration to transform natural direction into proper
 ///  direction.
 ///

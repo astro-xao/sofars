@@ -1,5 +1,5 @@
+use super::{gmst06, gst06a};
 use crate::vm::anpm;
-use super::{gst06a, gmst06};
 
 ///  Equation of the equinoxes, IAU 2006/2000A
 ///

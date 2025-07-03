@@ -1,7 +1,10 @@
-use crate::{consts::{AULT, DAU, DAYSEC, DJM, DJY}, vm::{pdp, pn}};
+use crate::{
+    consts::{AULT, DAU, DAYSEC, DJM, DJY},
+    vm::{pdp, pn},
+};
 
 ///  Apply proper motion and parallax
-/// 
+///
 ///  Proper motion and parallax.
 ///
 ///  This function is part of the International Astronomical Union's
@@ -48,8 +51,16 @@ use crate::{consts::{AULT, DAU, DAYSEC, DJM, DJY}, vm::{pdp, pn}};
 ///     iauPdp       scalar product of two p-vectors
 ///     iauPn        decompose p-vector into modulus and direction
 ///  ```
-pub fn pmpx(rc: f64, dc: f64, pr: f64, pd: f64, px: f64, rv: f64, pmt: f64, 
-                                                pob: [f64; 3],) -> [f64; 3] {
+pub fn pmpx(
+    rc: f64,
+    dc: f64,
+    pr: f64,
+    pd: f64,
+    px: f64,
+    rv: f64,
+    pmt: f64,
+    pob: [f64; 3],
+) -> [f64; 3] {
     /* Km/s to au/year */
     let vf = DAYSEC * DJM / DAU;
 

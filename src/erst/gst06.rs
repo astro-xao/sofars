@@ -68,7 +68,7 @@ use crate::vm::anp;
 ///  Reference:
 ///
 ///     Wallace, P.T. & Capitaine, N., 2006, Astron.Astrophys. 459, 981
-/// 
+///
 pub fn gst06(uta: f64, utb: f64, tta: f64, ttb: f64, rnpb: &[[f64; 3]; 3]) -> f64 {
     let (x, y) = bpn2xy(rnpb);
 

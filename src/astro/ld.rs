@@ -1,7 +1,10 @@
-use crate::{consts::SRS, vm::{pdp, pxp}};
+use crate::{
+    consts::SRS,
+    vm::{pdp, pxp},
+};
 
 ///  Light deflection by a single solar−system body
-/// 
+///
 ///  Apply light deflection by a solar-system body, as part of
 ///  transforming coordinate direction into natural direction.
 ///
@@ -71,8 +74,7 @@ use crate::{consts::SRS, vm::{pdp, pxp}};
 ///     iauPdp       scalar product of two p-vectors
 ///     iauPxp       vector product of two p-vectors
 ///  ```
-pub fn ld(bm: f64, p: [f64; 3], q: [f64; 3], e: [f64; 3], 
-                        em: f64, dlim: f64,) -> [f64; 3] {
+pub fn ld(bm: f64, p: [f64; 3], q: [f64; 3], e: [f64; 3], em: f64, dlim: f64) -> [f64; 3] {
     let mut qpe = [0.0; 3];
     for i in 0..3 {
         qpe[i] = q[i] + e[i];

@@ -1,5 +1,5 @@
-use crate::pnp::{pr00, obl80, nut00a};
 use super::ee00;
+use crate::pnp::{nut00a, obl80, pr00};
 
 ///  Equation of the equinoxes, IAU 2000A
 ///

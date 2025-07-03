@@ -1,7 +1,7 @@
 use sofars::astro::{
     IauAstrom, IauLdBody, ab, apcg, apcg13, apci, apci13, apco, apco13, apcs, apcs13, aper, aper13,
-    atcc13, atci13, atciq, atciqn, atciqz, atco13, atic13, aticq, aticqn, atio13, 
-    ld, ldn, ldsun, pvstar, pvtob, starpv
+    atcc13, atci13, atciq, atciqn, atciqz, atco13, atic13, aticq, aticqn, atio13, ld, ldn, ldsun,
+    pvstar, pvtob, starpv,
 };
 
 #[test]
@@ -38,20 +38,34 @@ fn test_ab() {
 #[test]
 fn test_pvstar() {
     let pv = [
-        [126668.5912743160601, 2136.792716839935195, -245251.2339876830091],
-        [-0.4051854035740712739e-2, -0.6253919754866173866e-2, 0.1189353719774107189e-1],
+        [
+            126668.5912743160601,
+            2136.792716839935195,
+            -245251.2339876830091,
+        ],
+        [
+            -0.4051854035740712739e-2,
+            -0.6253919754866173866e-2,
+            0.1189353719774107189e-1,
+        ],
     ];
 
     match pvstar(&pv) {
         Ok([ra, dec, pmr, pmd, px, rv]) => {
             assert!((ra - 0.1686756e-1).abs() < 1e-12, "pvstar: ra");
             assert!((dec - -1.093989828).abs() < 1e-12, "pvstar: dec");
-            assert!((pmr - -0.1783235160000472788e-4).abs() < 1e-16, "pvstar: pmr");
-            assert!((pmd - 0.2336024047000619347e-5).abs() < 1e-16, "pvstar: pmd");
+            assert!(
+                (pmr - -0.1783235160000472788e-4).abs() < 1e-16,
+                "pvstar: pmr"
+            );
+            assert!(
+                (pmd - 0.2336024047000619347e-5).abs() < 1e-16,
+                "pvstar: pmd"
+            );
             assert!((px - 0.74723).abs() < 1e-12, "pvstar: px");
             assert!((rv - -21.60000010107306010).abs() < 1e-11, "pvstar: rv");
-        },
-        Err(_) => {},
+        }
+        Err(_) => {}
     }
 }
 
@@ -1257,10 +1271,28 @@ fn test_starpv() {
 
     let pv = starpv(ra, dec, pmr, pmd, px, rv).unwrap();
 
-    assert!((pv[0][0] - 126668.5912743160601).abs() < 1e-10, "starpv: pv[0][0]");
-    assert!((pv[0][1] - 2136.792716839935195).abs() < 1e-12, "starpv: pv[0][1]");
-    assert!((pv[0][2] - -245251.2339876830091).abs() < 1e-10, "starpv: pv[0][2]");
-    assert!((pv[1][0] - -0.4051854008955659551e-2).abs() < 1e-13, "starpv: pv[1][0]");
-    assert!((pv[1][1] - -0.6253919754414777970e-2).abs() < 1e-15, "starpv: pv[1][1]");
-    assert!((pv[1][2] - 0.1189353714588109341e-1).abs() < 1e-13, "starpv: pv[1][2]");
+    assert!(
+        (pv[0][0] - 126668.5912743160601).abs() < 1e-10,
+        "starpv: pv[0][0]"
+    );
+    assert!(
+        (pv[0][1] - 2136.792716839935195).abs() < 1e-12,
+        "starpv: pv[0][1]"
+    );
+    assert!(
+        (pv[0][2] - -245251.2339876830091).abs() < 1e-10,
+        "starpv: pv[0][2]"
+    );
+    assert!(
+        (pv[1][0] - -0.4051854008955659551e-2).abs() < 1e-13,
+        "starpv: pv[1][0]"
+    );
+    assert!(
+        (pv[1][1] - -0.6253919754414777970e-2).abs() < 1e-15,
+        "starpv: pv[1][1]"
+    );
+    assert!(
+        (pv[1][2] - 0.1189353714588109341e-1).abs() < 1e-13,
+        "starpv: pv[1][2]"
+    );
 }

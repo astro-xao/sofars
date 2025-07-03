@@ -1,9 +1,9 @@
 use crate::vm::anp;
 
-use super::{gmst82, eqeq94};
+use super::{eqeq94, gmst82};
 
 ///  Greenwich apparent sidereal time, IAU 1994
-/// 
+///
 ///  Greenwich apparent sidereal time (consistent with IAU 1982/94
 ///  resolutions).
 ///

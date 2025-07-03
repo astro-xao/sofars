@@ -153,9 +153,5 @@ pub fn utctai(utc1: f64, utc2: f64) -> Result<(f64, f64), i32> {
     a2 = z1 - u1;
     a2 += z2;
     a2 += fd + dat0 / DAYSEC;
-    if big1 {
-        Ok((u1, a2))
-    } else {
-        Ok((a2, u1))
-    }
+    if big1 { Ok((u1, a2)) } else { Ok((a2, u1)) }
 }

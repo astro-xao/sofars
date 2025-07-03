@@ -32,7 +32,7 @@ use super::{fw2m, nut06a, pfw06};
 ///         2451545.0       -1421.3       (J2000 method)
 ///         2400000.5       50123.2       (MJD method)
 ///         2450123.5           0.2       (date & time method)
-///  ``` 
+///  ```
 ///     The JD method is the most natural and convenient to use in
 ///     cases where the loss of several decimal digits of resolution
 ///     is acceptable.  The J2000 method is best matched to the way
@@ -57,10 +57,10 @@ pub fn pnm06a(date1: f64, date2: f64) -> [[f64; 3]; 3] {
     let mut rbpn = [[0.0; 3]; 3];
     /* Fukushima-Williams angles for frame bias and precession. */
     let (gamb, phib, psib, epsa) = pfw06(date1, date2);
-    
+
     /* Nutation components. */
     let (dp, de) = nut06a(date1, date2);
-    
+
     /* Equinox based nutation x precession x bias matrix. */
     fw2m(gamb, phib, psib + dp, epsa + de, &mut rbpn);
 

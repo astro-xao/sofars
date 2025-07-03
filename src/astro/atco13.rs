@@ -1,7 +1,7 @@
-use super::{apco13, atciq, atioq, IauAstrom};
+use super::{IauAstrom, apco13, atciq, atioq};
 
 ///  ICRS −> observed
-/// 
+///
 ///  ICRS RA,Dec to observed place.  The caller supplies UTC, site
 ///  coordinates, ambient air conditions and observing wavelength.
 ///
@@ -152,20 +152,37 @@ use super::{apco13, atciq, atioq, IauAstrom};
 ///     iauAtioq     quick CIRS to observed
 ///  ```
 pub fn atco13(
-    rc: f64, dc: f64, pr: f64, pd: f64, px: f64, rv: f64,
-    utc1: f64, utc2: f64, dut1: f64,
-    elong: f64, phi: f64, hm: f64, xp: f64, yp: f64,
-    phpa: f64, tc: f64, rh: f64, wl: f64,
+    rc: f64,
+    dc: f64,
+    pr: f64,
+    pd: f64,
+    px: f64,
+    rv: f64,
+    utc1: f64,
+    utc2: f64,
+    dut1: f64,
+    elong: f64,
+    phi: f64,
+    hm: f64,
+    xp: f64,
+    yp: f64,
+    phpa: f64,
+    tc: f64,
+    rh: f64,
+    wl: f64,
 ) -> Result<(f64, f64, f64, f64, f64, f64), i32> {
     let astrom = &mut IauAstrom::default();
     let eo = &mut 0.0;
 
     /* Star-independent astrometry parameters. */
-    let j = apco13(utc1, utc2, dut1, elong, phi, hm, xp, yp, 
-            phpa, tc, rh, wl, astrom, eo);
+    let j = apco13(
+        utc1, utc2, dut1, elong, phi, hm, xp, yp, phpa, tc, rh, wl, astrom, eo,
+    );
 
     /* Abort if bad UTC. */
-    if j.is_err() { return Err(j.unwrap_err()) };
+    if j.is_err() {
+        return Err(j.unwrap_err());
+    };
 
     /* Transform ICRS to CIRS. */
     let (ri, di) = atciq(rc, dc, pr, pd, px, rv, astrom);

@@ -100,16 +100,16 @@ use super::{nut00a, pn00};
 ///  Copyright (C) 2023 IAU SOFA Board.  See notes at end.
 ///
 pub fn pn00a(
-    date1: f64, 
-    date2: f64, 
-    dpsi: &mut f64, 
-    deps: &mut f64, 
-    epsa: &mut f64, 
-    rb: &mut [[f64; 3]; 3], 
-    rp: &mut [[f64; 3]; 3], 
-    rbp: &mut [[f64; 3]; 3], 
-    rn: &mut [[f64; 3]; 3], 
-    rbpn: &mut [[f64; 3]; 3]
+    date1: f64,
+    date2: f64,
+    dpsi: &mut f64,
+    deps: &mut f64,
+    epsa: &mut f64,
+    rb: &mut [[f64; 3]; 3],
+    rp: &mut [[f64; 3]; 3],
+    rbp: &mut [[f64; 3]; 3],
+    rn: &mut [[f64; 3]; 3],
+    rbpn: &mut [[f64; 3]; 3],
 ) {
     /* Nutation. */
     (*dpsi, *deps) = nut00a(date1, date2);

@@ -1,5 +1,5 @@
 ///  Refraction constants
-/// 
+///
 ///  Determine the constants A and B in the atmospheric refraction model
 ///  dZ = A tan Z + B tan^3 Z.
 ///

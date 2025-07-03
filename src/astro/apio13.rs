@@ -1,9 +1,8 @@
 use crate::erst::era00;
-use crate::ts::{taitt, utctai, utcut1};
 use crate::pnp::sp00;
+use crate::ts::{taitt, utctai, utcut1};
 
-use super::{IauAstrom, refco, apio};
-
+use super::{IauAstrom, apio, refco};
 
 ///  Prepare for CIRS <−> observed, terrestrial
 ///
@@ -56,7 +55,7 @@ use super::{IauAstrom, refco, apio};
 ///            int         status: +1 = dubious year (Note 2)
 ///                                 0 = OK
 ///                                -1 = unacceptable date
-///  ``` 
+///  ```
 ///  Notes:
 ///
 ///  1)  utc1+utc2 is quasi Julian Date (see Note 2), apportioned in any
@@ -170,10 +169,20 @@ use super::{IauAstrom, refco, apio};
 ///     iauApio      astrometry parameters, CIRS-observed
 ///  ```
 pub fn apio13(
-    utc1: f64, utc2: f64, dut1: f64, elong: f64, phi: f64, 
-    hm: f64, xp: f64, yp: f64,phpa: f64, tc: f64, rh: f64, wl: f64, 
-    astrom: &mut IauAstrom) -> Result<(), i32> {
-
+    utc1: f64,
+    utc2: f64,
+    dut1: f64,
+    elong: f64,
+    phi: f64,
+    hm: f64,
+    xp: f64,
+    yp: f64,
+    phpa: f64,
+    tc: f64,
+    rh: f64,
+    wl: f64,
+    astrom: &mut IauAstrom,
+) -> Result<(), i32> {
     let (tai1, tai2) = match utctai(utc1, utc2) {
         Ok((t1, t2)) => (t1, t2),
         Err(j) => return Err(j),
@@ -200,6 +209,6 @@ pub fn apio13(
 
     /* CIRS <-> observed astrometry parameters. */
     apio(sp, theta, elong, phi, hm, xp, yp, refa, refb, astrom);
-    
+
     Ok(())
 }

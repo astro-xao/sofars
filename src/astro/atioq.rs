@@ -4,7 +4,7 @@ use crate::vm::{anp, c2s, s2c};
 use super::IauAstrom;
 
 ///  Quick CIRS −> observed
-/// 
+///
 ///  Quick CIRS to observed place transformation.
 ///
 ///  Use of this function is appropriate when efficiency is important and
@@ -126,9 +126,9 @@ pub fn atioq(ri: f64, di: f64, astrom: &IauAstrom) -> (f64, f64, f64, f64, f64) 
     let zhdt = f * zhd;
 
     /* Cartesian -HA,Dec to Cartesian Az,El (S=0,E=90). */
-    let xaet = astrom.sphi*xhdt - astrom.cphi*zhdt;
+    let xaet = astrom.sphi * xhdt - astrom.cphi * zhdt;
     let yaet = yhdt;
-    let zaet = astrom.cphi*xhdt + astrom.sphi*zhdt;
+    let zaet = astrom.cphi * xhdt + astrom.sphi * zhdt;
 
     /* Azimuth (N=0,E=90). */
     let azobs = if xaet != 0.0 || yaet != 0.0 {
@@ -144,7 +144,6 @@ pub fn atioq(ri: f64, di: f64, astrom: &IauAstrom) -> (f64, f64, f64, f64, f64) 
     /* Cosine and sine of altitude, with precautions. */
     let r = (xaet * xaet + yaet * yaet).sqrt().max(CELMIN);
     let z = zaet.max(SELMIN);
-
 
     /* A*tan(z)+B*tan^3(z) model, with Newton-Raphson correction. */
     let tz = r / z;
@@ -164,7 +163,7 @@ pub fn atioq(ri: f64, di: f64, astrom: &IauAstrom) -> (f64, f64, f64, f64, f64) 
     /* Az/El vector to HA,Dec vector (both right-handed). */
     v[0] = astrom.sphi * xaeo + astrom.cphi * zaeo;
     v[1] = yaeo;
-    v[2] = - astrom.cphi * xaeo + astrom.sphi * zaeo;
+    v[2] = -astrom.cphi * xaeo + astrom.sphi * zaeo;
 
     /* To spherical -HA,Dec. */
     let (hmobs, dcobs) = c2s(&v);

@@ -20,7 +20,7 @@
 ///  ```
 pub fn s2pv(theta: f64, phi: f64, r: f64, td: f64, pd: f64, rd: f64) -> [[f64; 3]; 2] {
     let mut pv = [[0.0; 3]; 2];
-    
+
     let st = theta.sin();
     let ct = theta.cos();
     let sp = phi.sin();

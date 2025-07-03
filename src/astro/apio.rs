@@ -1,9 +1,9 @@
 use super::{IauAstrom, pvtob};
-use crate::vm::{ir, rz, ry, rx, anpm};
 use crate::consts::CMPS;
+use crate::vm::{anpm, ir, rx, ry, rz};
 
-///  Prepare for CIRS <−> observed, terrestrial, special 
-/// 
+///  Prepare for CIRS <−> observed, terrestrial, special
+///
 ///  For a terrestrial observer, prepare star-independent astrometry
 ///  parameters for transformations between CIRS and observed
 ///  coordinates.  The caller supplies the Earth orientation information
@@ -121,8 +121,17 @@ use crate::consts::CMPS;
 ///     iauPvtob     position/velocity of terrestrial station
 ///  ```
 pub fn apio(
-    sp: f64, theta: f64, elong: f64, phi: f64, hm: f64, xp: f64, yp: f64, 
-    refa: f64, refb: f64, astrom: &mut IauAstrom) {
+    sp: f64,
+    theta: f64,
+    elong: f64,
+    phi: f64,
+    hm: f64,
+    xp: f64,
+    yp: f64,
+    refa: f64,
+    refb: f64,
+    astrom: &mut IauAstrom,
+) {
     let r = &mut [[0.0; 3]; 3];
     let mut a;
     let mut b;
@@ -140,7 +149,11 @@ pub fn apio(
     // Solve for local Earth rotation angle.
     a = r[0][0];
     b = r[0][1];
-    eral = if a != 0.0 || b != 0.0 { b.atan2(a) } else { 0.0 };
+    eral = if a != 0.0 || b != 0.0 {
+        b.atan2(a)
+    } else {
+        0.0
+    };
     astrom.eral = eral;
 
     // Solve for polar motion [X,Y] with respect to local meridian.
@@ -149,7 +162,11 @@ pub fn apio(
     astrom.xpl = c.atan2((a * a + b * b).sqrt());
     a = r[1][2];
     b = r[2][2];
-    astrom.ypl = if a != 0.0 || b != 0.0 { -a.atan2(b) } else { 0.0 };
+    astrom.ypl = if a != 0.0 || b != 0.0 {
+        -a.atan2(b)
+    } else {
+        0.0
+    };
 
     // Adjusted longitude.
     astrom.along = anpm(eral - theta);

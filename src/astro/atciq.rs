@@ -1,8 +1,8 @@
-use super::{IauAstrom, ldsun, pmpx, ab};
-use crate::vm::{rxp, c2s, anp};
+use super::{IauAstrom, ab, ldsun, pmpx};
+use crate::vm::{anp, c2s, rxp};
 
 ///  Quick ICRS −> CIRS
-/// 
+///
 ///  Quick ICRS, epoch J2000.0, to CIRS transformation, given precomputed
 ///  star-independent astrometry parameters.
 ///
@@ -64,8 +64,15 @@ use crate::vm::{rxp, c2s, anp};
 ///     iauRxp       product of r-matrix and pv-vector
 ///     iauC2s       p-vector to spherical
 ///  ```
-pub fn atciq(rc: f64, dc: f64, pr: f64, pd: f64, px: f64, rv: f64, 
-                            astrom: &mut IauAstrom,) -> (f64, f64) {
+pub fn atciq(
+    rc: f64,
+    dc: f64,
+    pr: f64,
+    pd: f64,
+    px: f64,
+    rv: f64,
+    astrom: &mut IauAstrom,
+) -> (f64, f64) {
     let pco = pmpx(rc, dc, pr, pd, px, rv, astrom.pmt, astrom.eb);
     let pnat = ldsun(pco, astrom.eh, astrom.em);
     let mut ppr = ab(&pnat, &astrom.v, astrom.em, astrom.bm1);

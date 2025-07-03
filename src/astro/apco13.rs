@@ -1,11 +1,11 @@
-use super::{apco, refco, IauAstrom};
+use super::{IauAstrom, apco, refco};
 use crate::eph::epv00;
 use crate::erst::era00;
 use crate::pnp::{bpn2xy, eors, pnm06a, s06, sp00};
 use crate::ts::{taitt, utctai, utcut1};
 
 ///  Prepare for ICRS <−> observed, terrestrial
-/// 
+///
 ///  For a terrestrial observer, prepare star-independent astrometry
 ///  parameters for transformations between ICRS and observed
 ///  coordinates.  The caller supplies UTC, site coordinates, ambient air
@@ -180,8 +180,20 @@ use crate::ts::{taitt, utctai, utcut1};
 ///     iauEors      equation of the origins, given NPB matrix and s
 ///  ```
 pub fn apco13(
-    utc1: f64, utc2: f64, dut1: f64, elong: f64, phi: f64, hm: f64, xp: f64, yp: f64, 
-    phpa: f64, tc: f64, rh: f64, wl: f64, astrom: &mut IauAstrom, eo: &mut f64,
+    utc1: f64,
+    utc2: f64,
+    dut1: f64,
+    elong: f64,
+    phi: f64,
+    hm: f64,
+    xp: f64,
+    yp: f64,
+    phpa: f64,
+    tc: f64,
+    rh: f64,
+    wl: f64,
+    astrom: &mut IauAstrom,
+    eo: &mut f64,
 ) -> Result<i32, i32> {
     let s: f64;
     let theta: f64;
