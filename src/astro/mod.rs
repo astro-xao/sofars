@@ -1,6 +1,7 @@
 //! Astrometry
 
 // Star-independent astrometry parameters
+#[derive(Debug, Clone, Copy)]
 pub struct IauAstrom {
     pub pmt: f64,           // PM time interval (SSB, Julian years)
     pub eb: [f64; 3],       // SSB to observer (vector, au)

@@ -2,12 +2,10 @@
 name = "sofars"
 license = "MIT"
 repository = "https://github.com/astro-xao/sofars"
-version = "0.3.2"
+version = "0.3.3"
 edition = "2024"
 description = "Pure Rust implementation of the IAU SOFA library"
 authors = ["Huxulm <huxulm@gmail.com>"]
 documentation = "https://docs.rs/sofars"
 keywords = ["astronomy", "iau", "sofa"]
 readme = "README.md"
-
-[dependencies]
