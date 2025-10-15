@@ -1,0 +1,93 @@
+{
+  "name": "Rust Development Environment",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "options": [
+      "--network=host"
+    ]
+  },
+  
+  // Configure tool-specific properties
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "rust-lang.rust-analyzer",
+        "vadimcn.vscode-lldb",
+        "serayuzgur.crates",
+        "tamasfe.even-better-toml",
+        "ms-vscode.test-adapter-converter",
+        "hbenl.vscode-test-explorer",
+        "ms-vscode.vscode-json",
+        "streetsidesoftware.code-spell-checker",
+        "formulahendry.code-runner",
+        "gruntfuggly.todo-tree"
+      ],
+      "settings": {
+        "rust-analyzer.checkOnSave.command": "clippy",
+        "rust-analyzer.cargo.buildScripts.enable": true,
+        "rust-analyzer.procMacro.enable": true,
+        "rust-analyzer.diagnostics.enable": true,
+        "rust-analyzer.diagnostics.enableExperimental": false,
+        "rust-analyzer.completion.addCallParentheses": true,
+        "rust-analyzer.completion.addCallArgumentSnippets": true,
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll.rust": "explicit"
+        },
+
+        "files.watcherExclude": {
+          "**/target/**": true
+        },
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "/bin/bash"
+          }
+        }
+      }
+    }
+  },
+
+  // Features to add to the dev container. More info: https://containers.dev/implementors/features
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "installOhMyZsh": true,
+      "configureZshAsDefaultShell": true
+    }
+  },
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally
+  // "forwardPorts": [],
+
+  // Use 'postCreateCommand' to run commands after the container is created
+  "postCreateCommand": "rustc --version && cargo --version && rustup component add rustfmt clippy",
+
+  // Configure tool-specific properties
+  "mounts": [
+    "source=${localWorkspaceFolder}/.git,target=/workspaces/${localWorkspaceFolderBasename}/.git,type=bind,consistency=cached"
+  ],
+
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root
+  // "remoteUser": "root"
+
+  // Use 'remoteUser' to change the user used in the container
+  "remoteUser": "vscode",
+
+  // Add the IDs of extensions you want installed when the container is created
+  "onCreateCommand": "sudo chown -R vscode:vscode /workspaces",
+  "runArgs": [
+      "--privileged",
+      "--network", "host"
+  ],
+  // Add environment variables
+  "containerEnv": {
+    "RUST_LOG": "info",
+    "RUST_BACKTRACE": "1",
+    "http_proxy": "http://127.0.0.1:8889",
+    "https_proxy": "http://127.0.0.1:8889",
+    "no_proxy": "localhost,127.0.0.1"
+  }
+}

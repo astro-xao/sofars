@@ -1,5 +1,6 @@
 use super::cr;
 
+/// Multiply two r-matrices.
 pub fn rxr(a: &[[f64; 3]; 3], b: &[[f64; 3]; 3], atb: &mut [[f64; 3]; 3]) {
     let wm = &mut [[0.0; 3]; 3];
 

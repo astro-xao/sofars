@@ -1,3 +1,4 @@
+/// P-vector to spherical coordinates.
 pub fn c2s(p: &[f64; 3]) -> (f64, f64) {
     let x = p[0];
     let y = p[1];

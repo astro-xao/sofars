@@ -1,3 +1,4 @@
+/// Rotate an r-matrix about the y-axis.
 pub fn ry(theta: f64, r: &mut [[f64; 3]; 3]) {
     let s = theta.sin();
     let c = theta.cos();

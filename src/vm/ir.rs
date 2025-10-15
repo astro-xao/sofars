@@ -1,3 +1,4 @@
+/// Initialize an r-matrix to the identity matrix.
 pub fn ir(r: &mut [[f64; 3]; 3]) {
     r[0][0] = 1.0;
     r[0][1] = 0.0;

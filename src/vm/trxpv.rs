@@ -1,5 +1,6 @@
 use super::{rxpv, tr};
 
+/// Multiply a pv-vector by the transpose of an r-matrix.
 pub fn trxpv(r: &[[f64; 3]; 3], pv: &[[f64; 3]; 2], trpv: &mut [[f64; 3]; 2]) {
     let tr_ = &mut [[0.0; 3]; 3];
 

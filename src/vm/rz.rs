@@ -1,3 +1,4 @@
+/// Rotate an r-matrix about the z-axis.
 pub fn rz(psi: f64, r: &mut [[f64; 3]; 3]) {
     let s = psi.sin();
     let c = psi.cos();

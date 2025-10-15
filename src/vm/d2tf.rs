@@ -1,5 +1,6 @@
 use crate::consts::DAYSEC;
 
+/// Decompose days to hours, minutes, seconds, fraction.
 pub fn d2tf(ndp: i32, days: f64) -> (char, [i32; 4]) {
     // let mut ihmsf = vec![0; 4];
     let mut nrs;

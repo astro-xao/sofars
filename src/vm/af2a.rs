@@ -1,5 +1,6 @@
 use crate::consts::DAS2R;
 
+/// Convert degrees, arcminutes, arcseconds to radians.
 pub fn af2a(s: char, ideg: i32, iamin: i32, asec: f64) -> Result<f64, i32> {
     let rad: f64;
     rad = match s {

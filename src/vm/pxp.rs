@@ -1,3 +1,4 @@
+/// p-vector outer (=vector=cross) product.
 pub fn pxp(a: &[f64; 3], b: &[f64; 3]) -> [f64; 3] {
     let mut axb: [f64; 3] = [0.0; 3];
 

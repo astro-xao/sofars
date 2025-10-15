@@ -1,3 +1,4 @@
+/// Convert hours, minutes, seconds to radians.
 use crate::consts::DS2R;
 
 pub fn tf2a(s: char, ihour: i32, imin: i32, sec: f64) -> Result<f64, i32> {
