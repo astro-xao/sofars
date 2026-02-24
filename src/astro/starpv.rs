@@ -126,7 +126,7 @@ pub fn starpv(
     pmd: f64,
     px: f64,
     rv: f64,
-) -> Result<[[f64; 3]; 2], i32> {
+) -> ([[f64; 3]; 2], i32) {
     /* Smallest allowed parallax */
     const PXMIN: f64 = 1e-7;
 
@@ -219,5 +219,5 @@ pub fn starpv(
     // Combine the two to obtain the inertial space velocity vector.
     pv[1] = ppp(&ur, &ut);
 
-    if iwarn == 0 { Ok(pv) } else { Err(iwarn) }
+    (pv, iwarn)
 }
