@@ -30,23 +30,3 @@ pub fn cal2jd(iy: i32, im: i32, id: i32) -> Result<(f64, f64), i32> {
         - 2432076) as f64;
     Ok((djm0, djm))
 }
-
-/// Besselian Epoch to Julian Date
-pub fn epb2jd() {
-    // ...
-}
-
-/// Julian Date to Julian Epoch
-pub fn epj() {
-    // ...
-}
-
-/// Julian Epoch to Julian Date
-pub fn epj2jd() {
-    // ...
-}
-
-/// Julian Date to Gregorian date for formatted output
-pub fn jdcalf() {
-    // ...
-}
