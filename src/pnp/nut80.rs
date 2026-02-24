@@ -41,7 +41,7 @@ impl Coeff {
     }
 }
 
-const x: [Coeff; 106] = [
+const X: [Coeff; 106] = [
     /* 1-10 */
     Coeff::new(0, 0, 0, 0, 1, -171996.0, -174.2, 92025.0, 8.9),
     Coeff::new(0, 0, 0, 0, 2, 2062.0, 0.2, -895.0, 0.5),
@@ -166,7 +166,7 @@ pub fn nut80(date1: f64, date2: f64) -> (f64, f64) {
     const U2R: f64 = DAS2R / 1e4;
 
     /* Number of terms in the series */
-    const NT: usize = x.len();
+    const NT: usize = X.len();
 
     /* Interval between fundamental epoch J2000.0 and given date (JC). */
     let t = ((date1 - DJ00) + date2) / DJC;
@@ -217,15 +217,15 @@ pub fn nut80(date1: f64, date2: f64) -> (f64, f64) {
     let (mut arg, mut s, mut c);
     for j in (0..NT).rev() {
         /* Form argument for current term. */
-        arg = x[j].nl as f64 * el
-            + x[j].nlp as f64 * elp
-            + x[j].nf as f64 * f
-            + x[j].nd as f64 * d
-            + x[j].nom as f64 * om;
+        arg = X[j].nl as f64 * el
+            + X[j].nlp as f64 * elp
+            + X[j].nf as f64 * f
+            + X[j].nd as f64 * d
+            + X[j].nom as f64 * om;
 
         /* Accumulate current nutation term. */
-        s = x[j].sp + x[j].spt * t;
-        c = x[j].ce + x[j].cet * t;
+        s = X[j].sp + X[j].spt * t;
+        c = X[j].ce + X[j].cet * t;
         if s != 0.0 {
             dp += s * arg.sin();
         }
