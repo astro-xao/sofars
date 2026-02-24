@@ -80,9 +80,6 @@ pub use apco::*;
 mod apco13;
 pub use apco13::*;
 
-mod atco13;
-pub use atco13::*;
-
 mod apcs;
 pub use apcs::*;
 
@@ -119,6 +116,9 @@ pub use atciqn::*;
 mod atciqz;
 pub use atciqz::*;
 
+mod atco13;
+pub use atco13::*;
+
 mod atic13;
 pub use atic13::*;
 
@@ -134,8 +134,20 @@ pub use atio13::*;
 mod atioq;
 pub use atioq::*;
 
+mod atoc13;
+pub use atoc13::*;
+
+mod atoi13;
+pub use atoi13::*;
+
+mod atoiq;
+pub use atoiq::*;
+
 mod pmpx;
 pub use pmpx::*;
+
+mod pmsafe;
+pub use pmsafe::*;
 
 mod pvtob;
 pub use pvtob::*;
@@ -154,6 +166,9 @@ pub use ldsun::*;
 
 mod pvstar;
 pub use pvstar::*;
+
+mod starpm;
+pub use starpm::*;
 
 mod starpv;
 pub use starpv::*;

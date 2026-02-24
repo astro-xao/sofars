@@ -2,12 +2,134 @@ mod common;
 
 #[cfg(test)]
 mod tests {
-    use super::common::vvd;
+    use super::common::{viv, vvd};
     use sofars::astro::{
         ab, apcg, apcg13, apci, apci13, apco, apco13, apcs, apcs13, aper, aper13, atcc13, atci13,
-        atciq, atciqn, atciqz, atco13, atic13, aticq, aticqn, atio13, ld, ldn, ldsun, pvstar,
-        pvtob, starpv, IauAstrom, IauLdBody,
+        atciq, atciqn, atciqz, atco13, atic13, aticq, aticqn, atio13, atoc13, atoi13, ld, ldn,
+        ldsun, pmsafe, pvstar, pvtob, starpv, IauAstrom, IauLdBody,
     };
+
+    #[test]
+    fn test_pmsafe() {
+        let ra1 = 1.234;
+        let dec1 = 0.789;
+        let pmr1 = 1e-5;
+        let pmd1 = -2e-5;
+        let px1 = 1e-2;
+        let rv1 = 10.0;
+        let ep1a = 2400000.5;
+        let ep1b = 48348.5625;
+        let ep2a = 2400000.5;
+        let ep2b = 51544.5;
+
+        let (res, j) = pmsafe(ra1, dec1, pmr1, pmd1, px1, rv1, ep1a, ep1b, ep2a, ep2b).unwrap();
+
+        vvd(res[0], 1.234087484501017061, 1e-12, "pmsafe", "ra2");
+        vvd(res[1], 0.7888249982450468567, 1e-12, "pmsafe", "dec2");
+        vvd(res[2], 0.9996457663586073988e-5, 1e-12, "pmsafe", "pmr2");
+        vvd(res[3], -0.2000040085106754565e-4, 1e-16, "pmsafe", "pmd2");
+        vvd(res[4], 0.9999997295356830666e-2, 1e-12, "pmsafe", "px2");
+        vvd(res[5], 10.38468380293920069, 1e-10, "pmsafe", "rv2");
+        viv(j, 0, "pmsafe", "j");
+    }
+
+    #[test]
+    fn test_atoi13() {
+        let utc1 = 2456384.5;
+        let utc2 = 0.969254051;
+        let dut1 = 0.1550675;
+        let elong = -0.527800806;
+        let phi = -1.2345856;
+        let hm = 2738.0;
+        let xp = 2.47230737e-7;
+        let yp = 1.82640464e-6;
+        let phpa = 731.0;
+        let tc = 12.8;
+        let rh = 0.59;
+        let wl = 0.55;
+
+        // Test R
+        let ob1 = 2.710085107986886201;
+        let ob2 = 0.1717653435758265198;
+        let (ri, di) = atoi13(
+            "R", ob1, ob2, utc1, utc2, dut1, elong, phi, hm, xp, yp, phpa, tc, rh, wl,
+        )
+        .unwrap();
+
+        vvd(ri, 2.710121574447540810, 1e-12, "atoi13", "R/ri");
+        vvd(di, 0.1729371839116608778, 1e-12, "atoi13", "R/di");
+
+        // Test H
+        let ob1 = -0.09247619879782006106;
+        let ob2 = 0.1717653435758265198;
+        let (ri, di) = atoi13(
+            "H", ob1, ob2, utc1, utc2, dut1, elong, phi, hm, xp, yp, phpa, tc, rh, wl,
+        )
+        .unwrap();
+
+        vvd(ri, 2.710121574448138676, 1e-12, "atoi13", "H/ri");
+        vvd(di, 0.1729371839116608778, 1e-12, "atoi13", "H/di");
+
+        // Test A
+        let ob1 = 0.09233952224794989993;
+        let ob2 = 1.407758704513722461;
+        let (ri, di) = atoi13(
+            "A", ob1, ob2, utc1, utc2, dut1, elong, phi, hm, xp, yp, phpa, tc, rh, wl,
+        )
+        .unwrap();
+
+        vvd(ri, 2.710121574448138676, 1e-12, "atoi13", "A/ri");
+        vvd(di, 0.1729371839116608781, 1e-12, "atoi13", "A/di");
+    }
+
+    #[test]
+    fn test_atoc13() {
+        let utc1 = 2456384.5;
+        let utc2 = 0.969254051;
+        let dut1 = 0.1550675;
+        let elong = -0.527800806;
+        let phi = -1.2345856;
+        let hm = 2738.0;
+        let xp = 2.47230737e-7;
+        let yp = 1.82640464e-6;
+        let phpa = 731.0;
+        let tc = 12.8;
+        let rh = 0.59;
+        let wl = 0.55;
+
+        // Test R
+        let ob1 = 2.710085107986886201;
+        let ob2 = 0.1717653435758265198;
+        let (rc, dc) = atoc13(
+            "R", ob1, ob2, utc1, utc2, dut1, elong, phi, hm, xp, yp, phpa, tc, rh, wl,
+        )
+        .unwrap();
+
+        vvd(rc, 2.709956744659136129, 1e-12, "atoc13", "R/rc");
+        vvd(dc, 0.1741696500898471362, 1e-12, "atoc13", "R/dc");
+
+        // Test H
+        let ob1 = -0.09247619879782006106;
+        let ob2 = 0.1717653435758265198;
+        let (rc, dc) = atoc13(
+            "H", ob1, ob2, utc1, utc2, dut1, elong, phi, hm, xp, yp, phpa, tc, rh, wl,
+        )
+        .unwrap();
+
+        vvd(rc, 2.709956744659734086, 1e-12, "atoc13", "H/rc");
+        vvd(dc, 0.1741696500898471362, 1e-12, "atoc13", "H/dc");
+
+        // Test A
+        let ob1 = 0.09233952224794989993;
+        let ob2 = 1.407758704513722461;
+        let (rc, dc) = atoc13(
+            "A", ob1, ob2, utc1, utc2, dut1, elong, phi, hm, xp, yp, phpa, tc, rh, wl,
+        )
+        .unwrap();
+
+        vvd(rc, 2.709956744659734086, 1e-12, "atoc13", "A/rc");
+        vvd(dc, 0.1741696500898471366, 1e-12, "atoc13", "A/dc");
+    }
 
     #[test]
     fn test_ab() {
@@ -1266,7 +1388,7 @@ mod tests {
         let px = 0.74723;
         let rv = -21.6;
 
-        let pv = starpv(ra, dec, pmr, pmd, px, rv).unwrap();
+        let (pv, _) = starpv(ra, dec, pmr, pmd, px, rv);
 
         assert!(
             (pv[0][0] - 126668.5912743160601).abs() < 1e-10,
