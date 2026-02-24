@@ -1,4 +1,10 @@
 # Sofa
+
+[![Build Status](https://github.com/astro-xao/sofars/actions/workflows/publish.yaml/badge.svg)](https://github.com/astro-xao/sofars/actions)
+[![Crates.io](https://img.shields.io/crates/v/sofars.svg)](https://crates.io/crates/sofars)
+[![Documentation](https://docs.rs/sofars/badge.svg)](https://docs.rs/sofars)
+[![Rust](https://img.shields.io/badge/rust-1.85.0%2B-blue.svg?maxAge=3600)](https://github.com/astro-xao/sofars)
+
 该项目是一个用纯 Rust 实现的基础天文计算库，基于国际天文联合会官方的 [基础天文标准库 (SOFA)](http://iausofa.org) 实现。
 
 请参阅 [文档](https://docs.rs/sofars) 了解详细信息。
