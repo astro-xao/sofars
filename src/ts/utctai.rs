@@ -69,8 +69,7 @@ use crate::consts::DAYSEC;
 pub fn utctai(utc1: f64, utc2: f64) -> Result<(f64, f64), i32> {
     let big1: bool;
     let (iy, im, id, iyt, imt, idt): (i32, i32, i32, i32, i32, i32);
-    let (u1, u2, mut fd, dat0, dat12, dat24, dlod, dleap, z1, z2, mut a2): (
-        f64,
+    let (u1, u2, mut fd, dat0, dat12, dat24, dlod, dleap, z1, z2): (
         f64,
         f64,
         f64,
@@ -150,8 +149,12 @@ pub fn utctai(utc1: f64, utc2: f64) -> Result<(f64, f64), i32> {
     };
 
     // Assemble the TAI result, preserving the UTC split and order.
-    a2 = z1 - u1;
-    a2 += z2;
-    a2 += fd + dat0 / DAYSEC;
-    if big1 { Ok((u1, a2)) } else { Ok((a2, u1)) }
+    let mut res2 = z1 - u1;
+    res2 += z2;
+    res2 += fd + dat0 / DAYSEC;
+    if big1 {
+        Ok((u1, res2))
+    } else {
+        Ok((res2, u1))
+    }
 }

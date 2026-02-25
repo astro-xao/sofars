@@ -98,8 +98,8 @@ pub fn dtf2d(
     let mut seclim = 60.0;
 
     /* Deal with the UTC leap second case. */
-    let (dat0, dat12, dat24);
-    let (iy2, im2, id2, w): (i32, i32, i32, f64);
+    let (dat0, dat12, dat24): (f64, f64, f64);
+    let (iy2, im2, id2): (i32, i32, i32);
     let dleap;
     if scale == "UTC" {
         /* TAI-UTC at 0h today. */
@@ -113,8 +113,8 @@ pub fn dtf2d(
             Err(j) => return Err(j),
         }
         /* TAI-UTC at 0h tomorrow (to detect jumps). */
-        (iy2, im2, id2, w) = match jd2cal(dj, 1.5) {
-            Ok(v) => v,
+        (iy2, im2, id2) = match jd2cal(dj, 1.5) {
+            Ok((y, m, d, _)) => (y, m, d),
             Err(j) => return Err(j),
         };
         match dat(iy2, im2, id2, 0.0) {

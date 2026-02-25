@@ -118,7 +118,7 @@ pub fn d2dtf(scale: &str, ndp: i32, d1: f64, d2: f64) -> Result<(i32, i32, i32, 
 
         /* TAI-UTC at 0h tomorrow (to detect jumps). */
         match jd2cal(a1 + 1.5, b1 - fd) {
-            Ok((y, m, d, w)) => {
+            Ok((y, m, d, _)) => {
                 iy2 = y;
                 im2 = m;
                 id2 = d;

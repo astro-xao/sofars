@@ -115,9 +115,6 @@
 ///  Called:
 ///     iauCal2jd    Gregorian calendar to JD
 pub fn dat(iy: i32, im: i32, id: i32, fd: f64) -> Result<f64, i32> {
-    // Release year for this version of iauDat
-    const IYV: i32 = 2023;
-
     // Reference dates (MJD) and drift rates (s/day), pre leap seconds
     const DRIFT: &[(f64, f64)] = &[
         (37300.0, 0.0012960),
@@ -193,9 +190,6 @@ pub fn dat(iy: i32, im: i32, id: i32, fd: f64) -> Result<f64, i32> {
     let m: i32;
     let mut da: f64;
 
-    // Initialize the result to zero.
-    let mut deltat: f64 = 0.0;
-
     // If invalid fraction of a day, set error status and give up.
     if fd < 0.0 || fd > 1.0 {
         return Err(-4);
@@ -206,21 +200,15 @@ pub fn dat(iy: i32, im: i32, id: i32, fd: f64) -> Result<f64, i32> {
     let j = cal2jd(iy, im, id);
 
     // If invalid year, month, or day, give up.
-    if j.is_err() {
-        return Err(j.err().unwrap());
+    if let Err(e) = j {
+        return Err(e);
     }
 
     let (_, djm) = j.unwrap();
 
-    // If pre-UTC year, set warning status and give up.
+    // If pre-UTC year, return zero (status 1 ignored).
     if iy < CHANGES[0].0 {
-        return Err(1);
-    }
-
-    let j: i32;
-    // If suspiciously late year, set warning status but proceed.
-    if iy > IYV + 5 {
-        j = 1;
+        return Ok(0.0);
     }
 
     // Combine year and month to form a date-ordered integer...
@@ -246,8 +234,5 @@ pub fn dat(iy: i32, im: i32, id: i32, fd: f64) -> Result<f64, i32> {
     }
 
     // Return the Delta(AT) value.
-    deltat = da;
-
-    // Return the status.
-    Ok(deltat)
+    Ok(da)
 }
