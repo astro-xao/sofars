@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [unreleased]
 
+## [0.4.4](https://github.com/astro-xao/sofars/compare/v0.4.3...v0.4.4) - 2026-02-25
+
+### Other
+
+- update build status badge workflow in README files
+
 ## [0.4.3](https://github.com/astro-xao/sofars/compare/v0.4.2...v0.4.3) - 2026-02-25
 
 ### Added
