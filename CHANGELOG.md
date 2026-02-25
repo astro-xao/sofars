@@ -4,7 +4,46 @@ All notable changes to this project will be documented in this file.
 
 ## [unreleased]
 
-## [0.3.2](https://github.com/astro-xao/sofars/compare/v0.3.1...v0.3.2) - 2025-03-27
+## [0.4.1](https://github.com/astro-xao/sofars/compare/v0.4.0...v0.4.1) - 2026-02-24
+
+### Added
+
+- docs: update README files with build and version badges
+
+## [0.4.0](https://github.com/astro-xao/sofars/compare/v0.3.3...v0.4.0) - 2026-02-24
+
+### Added
+
+- feat: add atoc13, atoi13, and pmsafe functions with tests
+- feat: implement pmsafe and starpm functions for star motion
+- feat: add atoc13, atoi13, and atoiq functions for astrometry
+- feat: add pvu, sepp, and seps functions for vector operations
+- feat: add validation functions for double and integer results
+- feat: implement jdcalf function for Julian Date conversion
+- feat: add epj2jd function for Julian Epoch to Julian Date conversion
+- feat: implement epj function for Julian Epoch conversion
+- feat: add epb2jd function for Besselian Epoch conversion
+
+### Fixed
+
+- fix: rename variable x to X for consistency
+- fix: correct copyright holder in LICENSE file
+
+### Other
+
+- test: add unit tests for calendar conversion functions
+- style: rename unused variable w to _w for clarity
+- refactor: remove unused epoch conversion functions
+- docs: update code comments for better clarity
+
+## [0.3.3](https://github.com/astro-xao/sofars/compare/v0.3.2...v0.3.3) - 2025-03-27
+
+### Added
+
+- feat: fmt code
+
+## [0.3.2]
+(https://github.com/astro-xao/sofars/compare/v0.3.1...v0.3.2) - 2025-03-27
 
 ### Added
 
