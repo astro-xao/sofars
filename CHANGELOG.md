@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 ## [unreleased]
 
+## [0.4.5](https://github.com/astro-xao/sofars/compare/v0.4.4...v0.4.5) - 2026-02-25
+
+### Added
+
+- implement moon98 and plan94 function
+- add time scale transformations for TAI, UTC, TDB, TCG, and TT
+
+### Other
+
+- reorder import statements for consistency
+- simplify match statements for time conversions
+
 ## [0.4.4](https://github.com/astro-xao/sofars/compare/v0.4.3...v0.4.4) - 2026-02-25
 
 ### Other
