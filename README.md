@@ -1,6 +1,6 @@
 # Sofa
 
-[![Build Status](https://github.com/astro-xao/sofars/actions/workflows/publish.yaml/badge.svg)](https://github.com/astro-xao/sofars/actions)
+[![Build Status](https://github.com/astro-xao/sofars/actions/workflows/release-plz.yml/badge.svg)](https://github.com/astro-xao/sofars/actions)
 [![Crates.io](https://img.shields.io/crates/v/sofars.svg)](https://crates.io/crates/sofars)
 [![Documentation](https://docs.rs/sofars/badge.svg)](https://docs.rs/sofars)
 [![Rust](https://img.shields.io/badge/rust-1.85.0%2B-blue.svg?maxAge=3600)](https://github.com/astro-xao/sofars)
