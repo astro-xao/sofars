@@ -201,17 +201,17 @@ pub fn apco13(
 
     /* UTC to other time scales. */
     let (tai1, tai2) = match utctai(utc1, utc2) {
-        Ok((tai1, tai2)) => (tai1, tai2),
+        Ok(v) => v,
         Err(j) => return Err(j),
     };
 
     let (tt1, tt2) = match taitt(tai1, tai2) {
-        Ok((tt1, tt2)) => (tt1, tt2),
+        Ok(v) => v,
         Err(j) => return Err(j),
     };
 
     let (ut11, ut12) = match utcut1(utc1, utc2, dut1) {
-        Ok((ut11, ut12)) => (ut11, ut12),
+        Ok(v) => v,
         Err(j) => return Err(j),
     };
 
