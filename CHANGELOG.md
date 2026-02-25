@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [unreleased]
 
+## [0.4.3](https://github.com/astro-xao/sofars/compare/v0.4.2...v0.4.3) - 2026-02-25
+
+### Added
+
+- add release-plz workflow for automated releases
+
 ## [0.4.2](https://github.com/astro-xao/sofars/compare/v0.4.1...v0.4.2) - 2026-02-25
 
 ### Added
