@@ -129,23 +129,23 @@ use crate::consts::{D2PI, DD2R, DJ00, DJM};
 ///
 pub fn dtdb(date1: f64, date2: f64, ut: f64, elong: f64, u: f64, v: f64) -> f64 {
     /*
-    ** =====================
-    ** Fairhead et al. model
-    ** =====================
-    **
-    ** 787 sets of three coefficients.
-    **
-    ** Each set is
-    **    amplitude (microseconds)
-    **      frequency (radians per Julian millennium since J2000.0)
-    **      phase (radians)
-    **
-    ** Sets   1-474 are the T**0 terms
-    **  "   475-679  "   "  T**1
-    **  "   680-764  "   "  T**2
-    **  "   765-784  "   "  T**3
-    **  "   785-787  "   "  T**4
-    */
+     ** =====================
+     ** Fairhead et al. model
+     ** =====================
+     **
+     ** 787 sets of three coefficients.
+     **
+     ** Each set is
+     **    amplitude (microseconds)
+     **      frequency (radians per Julian millennium since J2000.0)
+     **      phase (radians)
+     **
+     ** Sets   1-474 are the T**0 terms
+     **  "   475-679  "   "  T**1
+     **  "   680-764  "   "  T**2
+     **  "   765-784  "   "  T**3
+     **  "   785-787  "   "  T**4
+     */
 
     const FAIRHD: [[f64; 3]; 787] = [
         /* 1, 10 */
