@@ -130,5 +130,5 @@ pub fn apci(
     apcg(date1, date2, ebpv, ehp, astrom);
 
     /* CIO based BPN matrix. */
-    c2ixys(x, y, s, &mut astrom.bpn);
+    astrom.bpn = c2ixys(x, y, s);
 }
