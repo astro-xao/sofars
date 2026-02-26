@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 
 ## [unreleased]
 
+## [0.5.0](https://github.com/astro-xao/sofars/compare/v0.4.3...v0.5.0) - 2026-02-25
+
+### Added
+
+- Implement comprehensive IAU SOFA pnp routines (64 total)
+- Add complete unit tests for all pnp routines against SOFA C canonical results
+- Register and export CIP/CEO series routines (xys00a, xys00b, xys06a)
+
+### Changed
+
+- refactor(pnp): change pnp API to return arrays instead of using mutable reference parameters
+- refactor(astro): update apci, apco, and pvtob to adapt to new pnp API
+- test(erst/vm): refactor unit tests to use standardized accuracy verification helpers
+
+### Fixed
+
+- fix(fundargs): implement mean longitude of Neptune calculation in fane03
+
 ## [0.4.5](https://github.com/astro-xao/sofars/compare/v0.4.4...v0.4.5) - 2026-02-25
 
 ### Added
