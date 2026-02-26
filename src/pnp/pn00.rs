@@ -1,5 +1,4 @@
-#![allow(unused_variables)]
-use crate::vm::{cr, rxr};
+use crate::vm::rxr;
 
 use super::{bp00, numat, obl80, pr00};
 
@@ -18,13 +17,15 @@ use super::{bp00, numat, obl80, pr00};
 ///     date1,date2  double          TT as a 2-part Julian Date (Note 1)
 ///     dpsi,deps    double          nutation (Note 2)
 ///
-///  Returned:
-///     epsa         double          mean obliquity (Note 3)
-///     rb           double[3][3]    frame bias matrix (Note 4)
-///     rp           double[3][3]    precession matrix (Note 5)
-///     rbp          double[3][3]    bias-precession matrix (Note 6)
-///     rn           double[3][3]    nutation matrix (Note 7)
-///     rbpn         double[3][3]    GCRS-to-true matrix (Note 8)
+///  Returned (function value):
+///     (epsa, rb, rp, rbp, rn, rbpn) (f64, [[f64; 3]; 3], [[f64; 3]; 3], [[f64; 3]; 3], [[f64; 3]; 3], [[f64; 3]; 3])
+///
+///     epsa         mean obliquity (Note 3)
+///     rb           frame bias matrix (Note 4)
+///     rp           precession matrix (Note 5)
+///     rbp          bias-precession matrix (Note 6)
+///     rn           nutation matrix (Note 7)
+///     rbpn         GCRS-to-true matrix (Note 8)
 ///
 ///  Notes:
 ///
@@ -33,12 +34,14 @@ use super::{bp00, numat, obl80, pr00};
 ///     JD(TT)=2450123.7 could be expressed in any of these ways,
 ///     among others:
 ///
+///  ```
 ///            date1          date2
 ///
 ///         2450123.7           0.0       (JD method)
 ///         2451545.0       -1421.3       (J2000 method)
 ///         2400000.5       50123.2       (MJD method)
 ///         2450123.5           0.2       (date & time method)
+///  ```
 ///
 ///     The JD method is the most natural and convenient to use in
 ///     cases where the loss of several decimal digits of resolution
@@ -75,9 +78,6 @@ use super::{bp00, numat, obl80, pr00};
 ///     equinox of date.  It is the product rn x rbp, applying frame
 ///     bias, precession and nutation in that order.
 ///
-///  9) It is permissible to re-use the same array in the returned
-///     arguments.  The arrays are filled in the order given.
-///
 ///  Called:
 ///     iauPr00      IAU 2000 precession adjustments
 ///     iauObl80     mean obliquity, IAU 1980
@@ -100,31 +100,30 @@ pub fn pn00(
     date2: f64,
     dpsi: f64,
     deps: f64,
-    epsa: &mut f64,
-    rb: &mut [[f64; 3]; 3],
-    rp: &mut [[f64; 3]; 3],
-    rbp: &mut [[f64; 3]; 3],
-    rn: &mut [[f64; 3]; 3],
-    rbpn: &mut [[f64; 3]; 3],
+) -> (
+    f64,
+    [[f64; 3]; 3],
+    [[f64; 3]; 3],
+    [[f64; 3]; 3],
+    [[f64; 3]; 3],
+    [[f64; 3]; 3],
 ) {
-    let rbpw = &mut [[0.0; 3]; 3];
-    let rnw = &mut [[0.0; 3]; 3];
+    let mut rbpn = [[0.0; 3]; 3];
 
     /* IAU 2000 precession-rate adjustments. */
-    let (dpsipr, depspr) = &mut pr00(date1, date2);
+    let (_, depspr) = pr00(date1, date2);
 
     /* Mean obliquity, consistent with IAU 2000 precession-nutation. */
-    *epsa = obl80(date1, date2) + *depspr;
+    let epsa = obl80(date1, date2) + depspr;
 
     /* Frame bias and precession matrices and their product. */
-    bp00(date1, date2, rb, rp, rbpw);
-
-    cr(rbpw, rbp);
+    let (rb, rp, rbp) = bp00(date1, date2);
 
     /* Nutation matrix. */
-    numat(*epsa, dpsi, deps, rnw);
-    cr(rnw, rn);
+    let rn = numat(epsa, dpsi, deps);
 
     /* Bias-precession-nutation matrix (classical). */
-    rxr(rnw, rbpw, rbpn);
+    rxr(&rn, &rbp, &mut rbpn);
+
+    (epsa, rb, rp, rbp, rn, rbpn)
 }
