@@ -1,6 +1,6 @@
 use crate::consts::{DAS2R, DJ00, DJC};
 use crate::pnp::{bi00, pr00};
-use crate::vm::{cr, ir, rx, rxr, ry, rz};
+use crate::vm::{ir, rx, rxr, ry, rz};
 
 ///  Frame bias and precession matrices, IAU 2000.
 ///
@@ -14,10 +14,12 @@ use crate::vm::{cr, ir, rx, rxr, ry, rz};
 ///  Given:
 ///     date1,date2  double         TT as a 2-part Julian Date (Note 1)
 ///
-///  Returned:
-///     rb           double[3][3]   frame bias matrix (Note 2)
-///     rp           double[3][3]   precession matrix (Note 3)
-///     rbp          double[3][3]   bias-precession matrix (Note 4)
+///  Returned (function value):
+///     (rb, rp, rbp) ([[f64; 3]; 3], [[f64; 3]; 3], [[f64; 3]; 3])
+///
+///     rb           frame bias matrix (Note 2)
+///     rp           precession matrix (Note 3)
+///     rbp          bias-precession matrix (Note 4)
 ///
 ///  Notes:
 ///
@@ -51,9 +53,6 @@ use crate::vm::{cr, ir, rx, rxr, ry, rz};
 ///     equinox of date by applying frame bias then precession.  It is
 ///     the product rp x rb.
 ///
-///  5) It is permissible to re-use the same array in the returned
-///     arguments.  The arrays are filled in the order given.
-///
 ///  Called:
 ///     iauBi00      frame bias components, IAU 2000
 ///     iauPr00      IAU 2000 precession adjustments
@@ -78,13 +77,7 @@ use crate::vm::{cr, ir, rx, rxr, ry, rz};
 ///
 ///  Copyright (C) 2023 IAU SOFA Board.  See notes at end.
 ///
-pub fn bp00(
-    date1: f64,
-    date2: f64,
-    rb: &mut [[f64; 3]; 3],
-    rp: &mut [[f64; 3]; 3],
-    rbp: &mut [[f64; 3]; 3],
-) {
+pub fn bp00(date1: f64, date2: f64) -> ([[f64; 3]; 3], [[f64; 3]; 3], [[f64; 3]; 3]) {
     /* J2000.0 obliquity (Lieske et al. 1977) */
     const EPS0: f64 = 84381.448 * DAS2R;
 
@@ -105,20 +98,23 @@ pub fn bp00(
     let oma = oma77 + depspr;
 
     /* Frame bias matrix: GCRS to J2000.0. */
-    let rbw = &mut [[0.0; 3]; 3];
-    ir(rbw);
-    rz(dra0, rbw);
-    ry(dpsibi * EPS0.sin(), rbw);
-    rx(-depsbi, rbw);
-    cr(rbw, rb);
+    let mut rb = [[0.0; 3]; 3];
+    ir(&mut rb);
+    rz(dra0, &mut rb);
+    ry(dpsibi * EPS0.sin(), &mut rb);
+    rx(-depsbi, &mut rb);
 
     /* Precession matrix: J2000.0 to mean of date. */
-    ir(rp);
-    rx(EPS0, rp);
-    rz(-psia, rp);
-    rx(-oma, rp);
-    rz(chia, rp);
+    let mut rp = [[0.0; 3]; 3];
+    ir(&mut rp);
+    rx(EPS0, &mut rp);
+    rz(-psia, &mut rp);
+    rx(-oma, &mut rp);
+    rz(chia, &mut rp);
 
     /* Bias-precession matrix: GCRS to mean of date. */
-    rxr(rp, rbw, rbp);
+    let mut rbp = [[0.0; 3]; 3];
+    rxr(&rp, &rb, &mut rbp);
+
+    (rb, rp, rbp)
 }
