@@ -1,6 +1,6 @@
 use super::{IauAstrom, apcs, pvtob};
 use crate::pnp::c2ixys;
-use crate::vm::{anpm, cr, ir, rx, ry, rz, trxpv};
+use crate::vm::{anpm, ir, rx, ry, rz, trxpv};
 
 ///  Prepare for ICRS <−> observed, terrestrial, special
 ///
@@ -225,7 +225,7 @@ pub fn apco(
     astrom.diurab = 0.0;
 
     /* CIO based BPN matrix. */
-    c2ixys(x, y, s, r);
+    *r = c2ixys(x, y, s);
 
     /* Observer's geocentric position and velocity (m, m/s, CIRS). */
     let pvc = &mut [[0.0; 3]; 2];
@@ -239,5 +239,5 @@ pub fn apco(
     apcs(date1, date2, pv, &ebpv, &ehp, astrom);
 
     /* Store the CIO based BPN matrix. */
-    cr(r, &mut astrom.bpn);
+    astrom.bpn = *r;
 }
