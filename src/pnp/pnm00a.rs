@@ -1,4 +1,4 @@
-use super::pn00a;
+use super::pn00a::pn00a;
 
 ///  Classical NPB matrix, IAU 2000A
 ///
@@ -14,8 +14,8 @@ use super::pn00a;
 ///  Given:
 ///     date1,date2 double       TT as a 2-part Julian Date (Note 1)
 ///
-///  Returned:
-///     rbpn        double[3][3] bias-precession-nutation matrix (Note 2)
+///  Returned (function value):
+///                 [[f64; 3]; 3] bias-precession-nutation matrix (Note 2)
 ///
 ///  Notes:
 ///
@@ -44,18 +44,16 @@ use super::pn00a;
 ///     the Geocentric Celestial Reference System (IAU, 2000).
 ///
 ///  Called:
-///     iauPfw06     bias-precession F-W angles, IAU 2006
-///     iauNut06a    nutation, IAU 2006/2000A
-///     iauFw2m      F-W angles to r-matrix
+///     iauPn00a     bias/precession/nutation, IAU 2000A
 ///
 ///  Reference:
 ///
-///     Capitaine, N. & Wallace, P.T., 2006, Astron.Astrophys. 450, 855.
-pub fn pnm00a(date1: f64, date2: f64, rbpn: &mut [[f64; 3]; 3]) {
-    let (dpsi, deps) = &mut (0.0, 0.0);
-    let epsa = &mut 0.0;
-    let (rb, rp, rbp, rn) = &mut ([[0.0; 3]; 3], [[0.0; 3]; 3], [[0.0; 3]; 3], [[0.0; 3]; 3]);
-
+///     Capitaine, N., Chapront, J., Lambert, S. and Wallace, P.,
+///     "Expressions for the Celestial Intermediate Pole and Celestial
+///     Ephemeris Origin consistent with the IAU 2000A precession-
+///     nutation model", Astron.Astrophys. 400, 1145-1154 (2003)
+pub fn pnm00a(date1: f64, date2: f64) -> [[f64; 3]; 3] {
     /* Obtain the required matrix (discarding other results). */
-    pn00a(date1, date2, dpsi, deps, epsa, rb, rp, rbp, rn, rbpn);
+    let (_, _, _, _, _, _, _, rbpn) = pn00a(date1, date2);
+    rbpn
 }
