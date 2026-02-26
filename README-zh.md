@@ -1,4 +1,4 @@
-# Sofa
+# Sofars
 
 [![Build Status](https://github.com/astro-xao/sofars/actions/workflows/release-plz.yml/badge.svg)](https://github.com/astro-xao/sofars/actions)
 [![Crates.io](https://img.shields.io/crates/v/sofars.svg)](https://crates.io/crates/sofars)
