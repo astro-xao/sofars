@@ -11,8 +11,8 @@ use crate::vm::{ir, rx, rz};
 ///     epsa        double         mean obliquity of date (Note 1)
 ///     dpsi,deps   double         nutation (Note 2)
 ///
-///  Returned:
-///     rmatn       double[3][3]   nutation matrix (Note 3)
+///  Returned (function value):
+///                 [[f64; 3]; 3]   nutation matrix (Note 3)
 ///
 ///  Notes:
 ///
@@ -46,9 +46,11 @@ use crate::vm::{ir, rx, rz};
 ///
 ///  Copyright (C) 2023 IAU SOFA Board.  See notes at end.
 ///
-pub fn numat(epsa: f64, dpsi: f64, deps: f64, rmatn: &mut [[f64; 3]; 3]) {
-    ir(rmatn);
-    rx(epsa, rmatn);
-    rz(-dpsi, rmatn);
-    rx(-(epsa + deps), rmatn);
+pub fn numat(epsa: f64, dpsi: f64, deps: f64) -> [[f64; 3]; 3] {
+    let mut rmatn = [[0.0; 3]; 3];
+    ir(&mut rmatn);
+    rx(epsa, &mut rmatn);
+    rz(-dpsi, &mut rmatn);
+    rx(-(epsa + deps), &mut rmatn);
+    rmatn
 }
