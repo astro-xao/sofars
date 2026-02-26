@@ -54,7 +54,6 @@ use super::{fw2m, nut06a, pfw06};
 ///
 ///     Capitaine, N. & Wallace, P.T., 2006, Astron.Astrophys. 450, 855.
 pub fn pnm06a(date1: f64, date2: f64) -> [[f64; 3]; 3] {
-    let mut rbpn = [[0.0; 3]; 3];
     /* Fukushima-Williams angles for frame bias and precession. */
     let (gamb, phib, psib, epsa) = pfw06(date1, date2);
 
@@ -62,7 +61,5 @@ pub fn pnm06a(date1: f64, date2: f64) -> [[f64; 3]; 3] {
     let (dp, de) = nut06a(date1, date2);
 
     /* Equinox based nutation x precession x bias matrix. */
-    fw2m(gamb, phib, psib + dp, epsa + de, &mut rbpn);
-
-    rbpn
+    fw2m(gamb, phib, psib + dp, epsa + de)
 }
