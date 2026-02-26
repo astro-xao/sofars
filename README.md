@@ -5,6 +5,8 @@
 [![Documentation](https://docs.rs/sofars/badge.svg)](https://docs.rs/sofars)
 [![Rust](https://img.shields.io/badge/rust-1.85.0%2B-blue.svg?maxAge=3600)](https://github.com/astro-xao/sofars)
 
+[中文](README-zh.md)
+
 This project is a basic astronomy calculation library implemented purely in Rust, based on the official [Standards of Fundamental Astronomy (SOFA)](http://iausofa.org) by the International Astronomical Union.
 
 Refer to the [documentation](https://docs.rs/sofars/) for detail.
