@@ -56,7 +56,10 @@ pub fn fame03(t: f64) -> f64 {
 }
 
 /// mean longitude of Neptune
-pub fn fane03() {}
+pub fn fane03(t: f64) -> f64 {
+    /* Mean longitude of Neptune (IERS Conventions 2003). */
+    (5.311886287 + 3.8133035638 * t).rem(D2PI)
+}
 
 /// mean longitude of the Moon’s ascending node
 pub fn faom03(t: f64) -> f64 {
