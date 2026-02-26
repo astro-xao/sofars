@@ -81,7 +81,6 @@ pub fn pvtob(
     let OM = 1.00273781191135448 * D2PI / DAYSEC;
 
     let xyzm = &mut [0.0; 3];
-    let rpm = &mut [[0.0; 3]; 3];
     let xyz = &mut [0.0; 3];
     let (x, y, z, s, c): (f64, f64, f64, f64, f64);
 
@@ -90,8 +89,8 @@ pub fn pvtob(
     gd2gc(1, elong, phi, hm, xyzm);
 
     /* Polar motion and TIO position. */
-    pom00(xp, yp, sp, rpm);
-    trxp(rpm, xyzm, xyz);
+    let rpm = pom00(xp, yp, sp);
+    trxp(&rpm, xyzm, xyz);
     x = xyz[0];
     y = xyz[1];
     z = xyz[2];
