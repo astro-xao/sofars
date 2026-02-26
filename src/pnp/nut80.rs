@@ -3,7 +3,7 @@ use std::ops::Rem;
 use crate::consts::{D2PI, DAS2R, DJ00, DJC};
 use crate::vm::anpm;
 
-pub struct Coeff {
+struct Coeff {
     nl: i32,
     nlp: i32,
     nf: i32,
@@ -16,7 +16,7 @@ pub struct Coeff {
 }
 
 impl Coeff {
-    pub const fn new(
+    const fn new(
         nl: i32,
         nlp: i32,
         nf: i32,
