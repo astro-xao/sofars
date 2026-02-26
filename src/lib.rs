@@ -136,9 +136,8 @@
 //!     pvb[1][2] = -0.0066892203821059;
 //!
 //!     /* IAU 2000 CIP */
-//!     let r = &mut [[0.0; 3]; 3];
-//!     pnm00a(tt1, tt2, r);
-//!     let (mut x, mut y) = bpn2xy(r);
+//!     let r = pnm00a(tt1, tt2);
+//!     let (mut x, mut y) = bpn2xy(&r);
 //!
 //!     /* Apply IERS corrections */
 //!     x += dx;
