@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [unreleased]
 
+## [0.5.1](https://github.com/astro-xao/sofars/compare/v0.5.0...v0.5.1) - 2026-02-26
+
+### Other
+
+- enhance documentation for various functions in pnp module
+
 ## [0.5.0](https://github.com/astro-xao/sofars/compare/v0.4.3...v0.5.0) - 2026-02-25
 
 ### Added
