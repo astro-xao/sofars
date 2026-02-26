@@ -14,14 +14,16 @@ use super::{nut00a, pn00};
 ///  Given:
 ///     date1,date2  double          TT as a 2-part Julian Date (Note 1)
 ///
-///  Returned:
-///     dpsi,deps    double          nutation (Note 2)
-///     epsa         double          mean obliquity (Note 3)
-///     rb           double[3][3]    frame bias matrix (Note 4)
-///     rp           double[3][3]    precession matrix (Note 5)
-///     rbp          double[3][3]    bias-precession matrix (Note 6)
-///     rn           double[3][3]    nutation matrix (Note 7)
-///     rbpn         double[3][3]    GCRS-to-true matrix (Notes 8,9)
+///  Returned (function value):
+///     (dpsi, deps, epsa, rb, rp, rbp, rn, rbpn) (f64, f64, f64, [[f64; 3]; 3], [[f64; 3]; 3], [[f64; 3]; 3], [[f64; 3]; 3], [[f64; 3]; 3])
+///
+///     dpsi,deps    nutation (Note 2)
+///     epsa         mean obliquity (Note 3)
+///     rb           frame bias matrix (Note 4)
+///     rp           precession matrix (Note 5)
+///     rbp          bias-precession matrix (Note 6)
+///     rn           nutation matrix (Note 7)
+///     rbpn         GCRS-to-true matrix (Notes 8,9)
 ///
 ///  Notes:
 ///
@@ -76,9 +78,6 @@ use super::{nut00a, pn00};
 ///      Pole are elements (3,1-3) of the GCRS-to-true matrix,
 ///      i.e. rbpn[2][0-2].
 ///
-///  10) It is permissible to re-use the same array in the returned
-///      arguments.  The arrays are filled in the stated order.
-///
 ///  Called:
 ///     iauNut00a    nutation, IAU 2000A
 ///     iauPn00      bias/precession/nutation results, IAU 2000
@@ -92,28 +91,24 @@ use super::{nut00a, pn00};
 ///
 ///     n.b. The celestial ephemeris origin (CEO) was renamed "celestial
 ///          intermediate origin" (CIO) by IAU 2006 Resolution 2.
-///
-///  This revision:  2021 May 11
-///
-///  SOFA release 2023-10-11
-///
-///  Copyright (C) 2023 IAU SOFA Board.  See notes at end.
-///
 pub fn pn00a(
     date1: f64,
     date2: f64,
-    dpsi: &mut f64,
-    deps: &mut f64,
-    epsa: &mut f64,
-    rb: &mut [[f64; 3]; 3],
-    rp: &mut [[f64; 3]; 3],
-    rbp: &mut [[f64; 3]; 3],
-    rn: &mut [[f64; 3]; 3],
-    rbpn: &mut [[f64; 3]; 3],
+) -> (
+    f64,
+    f64,
+    f64,
+    [[f64; 3]; 3],
+    [[f64; 3]; 3],
+    [[f64; 3]; 3],
+    [[f64; 3]; 3],
+    [[f64; 3]; 3],
 ) {
     /* Nutation. */
-    (*dpsi, *deps) = nut00a(date1, date2);
+    let (dpsi, deps) = nut00a(date1, date2);
 
     /* Remaining results. */
-    pn00(date1, date2, *dpsi, *deps, epsa, rb, rp, rbp, rn, rbpn);
+    let (epsa, rb, rp, rbp, rn, rbpn) = pn00(date1, date2, dpsi, deps);
+
+    (dpsi, deps, epsa, rb, rp, rbp, rn, rbpn)
 }
