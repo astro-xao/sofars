@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ## [unreleased]
 
+## [0.5.2](https://github.com/astro-xao/sofars/compare/v0.5.1...v0.5.2) - 2026-02-27
+
+### Other
+
+- standardize and professionalize README files in English and Chinese
+- add missing documentation for pnp routines and cross-language links in READMEs
+- correct project name in README files
+
 ## [0.5.1](https://github.com/astro-xao/sofars/compare/v0.5.0...v0.5.1) - 2026-02-26
 
 ### Other
