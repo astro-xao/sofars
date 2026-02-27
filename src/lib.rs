@@ -213,7 +213,7 @@ pub mod coords;
 pub mod eph;
 pub mod erst;
 pub mod fundargs;
-pub mod gnomic;
+pub mod projection;
 pub mod pnp;
 pub mod star;
 pub mod ts;
