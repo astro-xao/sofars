@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 ## [unreleased]
 
+## [0.6.0](https://github.com/astro-xao/sofars/compare/v0.5.1...v0.6.0) - 2026-02-27
+
+### Added
+
+- *(projection)* implement gnomonic projection functions
+- *(coords)* implement ecliptic, galactic, and geodetic transformations
+- *(vm)* add pv-vector and rotation matrix utilities
+
+### Other
+
+- *(erst)* add era00 verification
+- *(star)* migrate catalog conversions to modular structure
+- *(fundargs)* migrate to modular directory structure
+- standardize and professionalize README files in English and Chinese
+- add missing documentation for pnp routines and cross-language links in READMEs
+- correct project name in README files
+
 ## [0.5.1](https://github.com/astro-xao/sofars/compare/v0.5.0...v0.5.1) - 2026-02-26
 
 ### Other
