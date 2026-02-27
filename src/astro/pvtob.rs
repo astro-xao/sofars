@@ -80,24 +80,20 @@ pub fn pvtob(
     /* Earth rotation rate in radians per UT1 second */
     let OM = 1.00273781191135448 * D2PI / DAYSEC;
 
-    let xyzm = &mut [0.0; 3];
-    let xyz = &mut [0.0; 3];
-    let (x, y, z, s, c): (f64, f64, f64, f64, f64);
-
     /* Geodetic to geocentric transformation (WGS84). */
-    #[allow(unused_must_use)]
-    gd2gc(1, elong, phi, hm, xyzm);
+    let xyzm = gd2gc(1, elong, phi, hm).unwrap_or([0.0; 3]);
 
     /* Polar motion and TIO position. */
+    let mut xyz = [0.0; 3];
     let rpm = pom00(xp, yp, sp);
-    trxp(&rpm, xyzm, xyz);
-    x = xyz[0];
-    y = xyz[1];
-    z = xyz[2];
+    trxp(&rpm, &xyzm, &mut xyz);
+    let x = xyz[0];
+    let y = xyz[1];
+    let z = xyz[2];
 
     /* Functions of ERA. */
-    s = theta.sin();
-    c = theta.cos();
+    let s = theta.sin();
+    let c = theta.cos();
 
     /* Position. */
     pv[0][0] = c * x - s * y;
