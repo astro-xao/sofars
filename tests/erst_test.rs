@@ -51,6 +51,13 @@ mod tests {
     }
 
     #[test]
+    fn test_era00() {
+        let era = erst::era00(2400000.5, 54388.0);
+
+        vvd(era, 0.4022837240028158102, 1e-12, "era00", "status");
+    }
+
+    #[test]
     fn test_gmst00() {
         let theta = erst::gmst00(2400000.5, 53736.0, 2400000.5, 53736.0);
 
