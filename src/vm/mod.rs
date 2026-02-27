@@ -51,11 +51,20 @@ pub use ppsp::*;
 mod pv2s;
 pub use pv2s::*;
 
+mod pvmpv;
+pub use pvmpv::*;
+
+mod pvppv;
+pub use pvppv::*;
+
 mod pvu;
 pub use pvu::*;
 
 mod pxp;
 pub use pxp::*;
+
+mod rv2m;
+pub use rv2m::*;
 
 mod rx;
 pub use rx::*;
