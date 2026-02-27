@@ -9,3 +9,46 @@ authors = ["Huxulm <huxulm@gmail.com>"]
 documentation = "https://docs.rs/sofars"
 keywords = ["astronomy", "iau", "sofa"]
 readme = "README.md"
+
+[dev-dependencies]
+criterion = { version = "0.8", features = ["html_reports"] }
+
+[[bench]]
+name = "astro"
+harness = false
+
+[[bench]]
+name = "calendars"
+harness = false
+
+[[bench]]
+name = "coord"
+harness = false
+
+[[bench]]
+name = "eph"
+harness = false
+
+[[bench]]
+name = "erst"
+harness = false
+
+[[bench]]
+name = "fundargs"
+harness = false
+
+[[bench]]
+name = "pnp"
+harness = false
+
+[[bench]]
+name = "projection"
+harness = false
+
+[[bench]]
+name = "star"
+harness = false
+
+[[bench]]
+name = "ts"
+harness = false
