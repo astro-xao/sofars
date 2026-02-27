@@ -28,7 +28,7 @@ Add the following to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-sofars = "0.5.0"
+sofars = "0.6.0"
 ```
 
 ## Quick Start
@@ -42,8 +42,8 @@ use sofars::ts::era00;
 fn main() {
     // 2000 January 1, 12:00 (TT)
     let tt1 = DJ00;
-    let tt2 = 0.5; 
-    
+    let tt2 = 0.5;
+
     let era = era00(tt1, tt2);
     println!("Earth Rotation Angle: {} radians", era);
 }
