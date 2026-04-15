@@ -1,4 +1,5 @@
 /// Convert a p-vector into modulus and unit vector.
+#[inline]
 pub fn pn(p: &[f64; 3]) -> (f64, [f64; 3]) {
     let r = (p[0] * p[0] + p[1] * p[1] + p[2] * p[2]).sqrt();
     let u = if r != 0.0 {

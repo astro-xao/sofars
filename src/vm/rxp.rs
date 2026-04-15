@@ -1,6 +1,7 @@
 use super::cp;
 
 /// Multiply a p-vector by an r-matrix.
+#[inline]
 pub fn rxp(r: &[[f64; 3]; 3], p: &[f64; 3], rp: &mut [f64; 3]) {
     let wrp = &mut [0.0; 3];
 

@@ -19,6 +19,7 @@
 ///
 /// 3) The reference frame rotates clockwise as seen looking along the
 ///    rotation vector from the origin.
+#[inline]
 pub fn rv2m(w: &[f64; 3], r: &mut [[f64; 3]; 3]) {
     let x = w[0];
     let y = w[1];

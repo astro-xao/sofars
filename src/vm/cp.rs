@@ -1,4 +1,5 @@
 /// Copy a p-vector.
+#[inline]
 pub fn cp(p: &[f64; 3], c: &mut [f64; 3]) {
     c[0] = p[0];
     c[1] = p[1];

@@ -1,4 +1,5 @@
 /// Convert position/velocity from Cartesian to spherical coordinates.
+#[inline]
 pub fn pv2s(pv: &[[f64; 3]; 2]) -> (f64, f64, f64, f64, f64, f64) {
     let (theta, phi, r, td, pd, rd): (f64, f64, f64, f64, f64, f64);
 

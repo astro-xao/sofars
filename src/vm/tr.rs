@@ -1,6 +1,7 @@
 use super::cr;
 
 /// Transpose an r-matrix.
+#[inline]
 pub fn tr(r: &[[f64; 3]; 3], rt: &mut [[f64; 3]; 3]) {
     let wm = &mut [[0.0; 3]; 3];
     for i in 0..3 {

@@ -21,6 +21,7 @@ use crate::vm::ppsp;
 ///
 ///  2) The time units of dt must match those of the velocity.
 ///
+#[inline]
 pub fn pvu(dt: f64, pv: &[[f64; 3]; 2]) -> [[f64; 3]; 2] {
     let mut upv = [[0.0; 3]; 2];
     upv[0] = ppsp(&pv[0], dt, &pv[1]);

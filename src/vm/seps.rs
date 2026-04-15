@@ -20,6 +20,7 @@ use crate::vm::{s2c, sepp};
 ///     iauS2c       spherical coordinates to unit vector
 ///     iauSepp      angular separation between two p-vectors
 ///
+#[inline]
 pub fn seps(al: f64, ap: f64, bl: f64, bp: f64) -> f64 {
     /* Spherical to Cartesian. */
     let ac = s2c(al, ap);

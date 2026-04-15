@@ -10,6 +10,7 @@ use crate::vm::pmp;
 ///
 /// Returned:
 ///    amb     [[f64; 3]; 2]      a - b
+#[inline]
 pub fn pvmpv(a: &[[f64; 3]; 2], b: &[[f64; 3]; 2]) -> [[f64; 3]; 2] {
     let mut amb = [[0.0; 3]; 2];
     amb[0] = pmp(&a[0], &b[0]);

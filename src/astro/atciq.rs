@@ -75,9 +75,9 @@ pub fn atciq(
 ) -> (f64, f64) {
     let pco = pmpx(rc, dc, pr, pd, px, rv, astrom.pmt, astrom.eb);
     let pnat = ldsun(pco, astrom.eh, astrom.em);
-    let mut ppr = ab(&pnat, &astrom.v, astrom.em, astrom.bm1);
+    let ppr = ab(&pnat, &astrom.v, astrom.em, astrom.bm1);
     let pi = &mut [0.0; 3];
-    rxp(&astrom.bpn, &mut ppr, pi);
+    rxp(&astrom.bpn, &ppr, pi);
     let (w, di) = c2s(pi);
     let ri = anp(w);
     (ri, di)

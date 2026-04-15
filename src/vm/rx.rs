@@ -1,4 +1,5 @@
 /// Rotate an r-matrix about the x-axis.
+#[inline]
 pub fn rx(phi: f64, r: &mut [[f64; 3]; 3]) {
     let s = phi.sin();
     let c = phi.cos();

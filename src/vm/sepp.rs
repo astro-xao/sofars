@@ -29,6 +29,7 @@ use crate::vm::{pdp, pm, pxp};
 ///     iauPm        modulus of p-vector
 ///     iauPdp       scalar product of two p-vectors
 ///
+#[inline]
 pub fn sepp(a: &[f64; 3], b: &[f64; 3]) -> f64 {
     /* Sine of angle between the vectors, multiplied by the two moduli. */
     let axb = pxp(a, b);
