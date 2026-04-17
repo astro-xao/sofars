@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 ## [unreleased]
 
+## [0.6.1](https://github.com/astro-xao/sofars/compare/v0.6.0...v0.6.1) - 2026-04-17
+
+### Added
+
+- *(example)* add comprehensive astrometry transformation guide
+
+### Other
+
+- add inline annotations to vector and matrix functions
+- *(docs)* update READMEs with version metadata and formatting
+- *(bench)* implement automated benchmarks for core astronomical modules
+
 ## [0.6.0](https://github.com/astro-xao/sofars/compare/v0.5.1...v0.6.0) - 2026-02-27
 
 ### Added
