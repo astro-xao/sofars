@@ -28,7 +28,7 @@ Add the following to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-sofars = "0.6.0"
+sofars = "0.6"
 ```
 
 ## Quick Start
