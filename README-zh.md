@@ -28,7 +28,7 @@
 
 ```toml
 [dependencies]
-sofars = "0.6.0"
+sofars = "0.6"
 ```
 
 ## 快速上手
