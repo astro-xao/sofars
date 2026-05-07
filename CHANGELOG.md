@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ## [unreleased]
 
+## [0.6.2](https://github.com/astro-xao/sofars/compare/v0.6.1...v0.6.2) - 2026-05-07
+
+### Other
+
+- Update sofars dependency version in README-zh.md
+- Update sofars dependency version in README
+
 ## [0.6.1](https://github.com/astro-xao/sofars/compare/v0.6.0...v0.6.1) - 2026-04-17
 
 ### Added
