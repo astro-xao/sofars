@@ -151,10 +151,7 @@
 #[allow(clippy::manual_clamp)]
 pub fn refco(phpa: f64, tc: f64, rh: f64, wl: f64) -> (f64, f64) {
     let ps: f64;
-    let pw: f64;
-
     let wlsq: f64;
-    let gamma: f64;
     let mut beta: f64;
 
     // Decide whether optical/IR or radio case: switch at 100 microns.
@@ -168,22 +165,22 @@ pub fn refco(phpa: f64, tc: f64, rh: f64, wl: f64) -> (f64, f64) {
     let w: f64 = wl.max(0.1).min(1e6);
 
     // Water vapour pressure at the observer.
-    if p > 0.0 {
+    let pw: f64 = if p > 0.0 {
         ps = 10.0_f64.powf((0.7859 + 0.03477 * t) / (1.0 + 0.00412 * t))
             * (1.0 + p * (4.5e-6 + 6e-10 * t * t));
-        pw = r * ps / (1.0 - (1.0 - r) * ps / p);
+        r * ps / (1.0 - (1.0 - r) * ps / p)
     } else {
-        pw = 0.0;
-    }
+        0.0
+    };
 
     // Refractive index minus 1 at the observer.
     let tk: f64 = t + 273.15;
-    if optic {
+    let gamma: f64 = if optic {
         wlsq = w * w;
-        gamma = ((77.53484e-6 + (4.39108e-7 + 3.666e-9 / wlsq) / wlsq) * p - 11.2684e-6 * pw) / tk;
+        ((77.53484e-6 + (4.39108e-7 + 3.666e-9 / wlsq) / wlsq) * p - 11.2684e-6 * pw) / tk
     } else {
-        gamma = (77.6890e-6 * p - (6.3938e-6 - 0.375463 / tk) * pw) / tk;
-    }
+        (77.6890e-6 * p - (6.3938e-6 - 0.375463 / tk) * pw) / tk
+    };
 
     // Formula for beta from Stone, with empirical adjustments.
     beta = 4.4474e-6 * tk;

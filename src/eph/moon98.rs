@@ -1087,22 +1087,12 @@ pub fn moon98(date1: f64, date2: f64) -> [[f64; 3]; 2] {
         let emn = i_val as f64;
         let empn = TLR[n].nemp as f64;
         let fn_val = TLR[n].nf as f64;
-        let en;
-        let den;
-        match i_val.abs() {
-            1 => {
-                en = e;
-                den = de;
-            }
-            2 => {
-                en = esq;
-                den = desq;
-            }
-            _ => {
-                en = 1.0;
-                den = 0.0;
-            }
-        }
+
+        let (en, den) = match i_val.abs() {
+            1 => (e, de),
+            2 => (esq, desq),
+            _ => (1.0, 0.0),
+        };
         let arg = dn * d + emn * em + empn * emp + fn_val * f;
         let darg = dn * dd + emn * dem + empn * demp + fn_val * df;
         let mut farg = arg.sin();
@@ -1130,22 +1120,12 @@ pub fn moon98(date1: f64, date2: f64) -> [[f64; 3]; 2] {
         let emn = i_val as f64;
         let empn = TB[n].nemp as f64;
         let fn_val = TB[n].nf as f64;
-        let en;
-        let den;
-        match i_val.abs() {
-            1 => {
-                en = e;
-                den = de;
-            }
-            2 => {
-                en = esq;
-                den = desq;
-            }
-            _ => {
-                en = 1.0;
-                den = 0.0;
-            }
-        }
+
+        let (en, den) = match i_val.abs() {
+            1 => (e, de),
+            2 => (esq, desq),
+            _ => (1.0, 0.0),
+        };
         let arg = dn * d + emn * em + empn * emp + fn_val * f;
         let darg = dn * dd + emn * dem + empn * demp + fn_val * df;
         let farg = arg.sin();
