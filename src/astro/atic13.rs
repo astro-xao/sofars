@@ -8,14 +8,14 @@ use super::{IauAstrom, apci13, aticq};
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     ri,di  double  CIRS geocentric RA,Dec (radians)
 ///     date1  double  TDB as a 2-part...
 ///     date2  double  ...Julian Date (Note 1)
 ///  ```
 ///
 ///  Returned:
-///  ```
+///  ```text
 ///     rc,dc  double  ICRS astrometric RA,Dec (radians)
 ///     eo     double  equation of the origins (ERA-GST, radians, Note 4)
 ///  ```
@@ -25,7 +25,7 @@ use super::{IauAstrom, apci13, aticq};
 ///     convenient way between the two arguments.  For example,
 ///     JD(TDB)=2450123.7 could be expressed in any of these ways, among
 ///     others:
-///  ```
+///  ```text
 ///
 ///            date1          date2
 ///
@@ -70,7 +70,7 @@ use super::{IauAstrom, apci13, aticq};
 ///     required, to keep the result in the conventional 0-2pi range.)
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauApci13    astrometry parameters, ICRS-CIRS, 2013
 ///     iauAticq     quick CIRS to ICRS astrometric
 ///  ```

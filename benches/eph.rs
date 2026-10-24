@@ -1,6 +1,6 @@
-use std::hint::black_box;
-use criterion::{criterion_group, criterion_main, Criterion};
+use criterion::{Criterion, criterion_group, criterion_main};
 use sofars::eph;
+use std::hint::black_box;
 
 fn bench_eph(c: &mut Criterion) {
     let mut group = c.benchmark_group("eph");

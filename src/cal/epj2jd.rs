@@ -1,4 +1,4 @@
-use crate::consts::{DJM0, DJM00};
+use crate::consts::{DJM00, DJM0};
 
 /// Julian Epoch to Julian Date.
 ///

@@ -5971,12 +5971,14 @@ const s2z: [f64; 6] = [
 ///     JD(TDB)=2450123.7 could be expressed in any of these ways, among
 ///     others:
 ///
+///     ```text
 ///            date1          date2
 ///
 ///         2450123.7           0.0       (JD method)
 ///         2451545.0       -1421.3       (J2000 method)
 ///         2400000.5       50123.2       (MJD method)
 ///         2450123.5           0.2       (date & time method)
+///     ```
 ///
 ///     The JD method is the most natural and convenient to use in cases
 ///     where the loss of several decimal digits of resolution is
@@ -5990,7 +5992,7 @@ const s2z: [f64; 6] = [
 ///     n.b. TT can be used instead of TDB in most applications.
 ///
 ///  2) On return, the arrays pvh and pvb contain the following:
-///  ```
+///  ```text
 ///        pvh[0][0]  x       }
 ///        pvh[0][1]  y       } heliocentric position, au
 ///        pvh[0][2]  z       }
@@ -6019,6 +6021,7 @@ const s2z: [f64; 6] = [
 ///  4) Comparisons over the time span 1900-2100 with this simplified
 ///     solution and the JPL DE405 ephemeris give the following results:
 ///
+///     ```text
 ///                                RMS    max
 ///           Heliocentric:
 ///              position error    3.7   11.2   km
@@ -6027,6 +6030,7 @@ const s2z: [f64; 6] = [
 ///           Barycentric:
 ///              position error    4.6   13.4   km
 ///              velocity error    1.4    4.9   mm/s
+///     ```
 ///
 ///     Comparisons with the JPL DE406 ephemeris show that by 1800 and
 ///     2200 the position errors are approximately double their 1900-2100
@@ -6054,7 +6058,7 @@ pub fn epv00(date1: f64, date2: f64) -> Option<([[f64; 3]; 2], [[f64; 3]; 2])> {
     let ns2: [usize; 3] = [s2x.len() / 3, s2y.len() / 3, s2z.len() / 3];
 
     /* Miscellaneous */
-    let jstat: i32;
+
     let (mut xyz, mut xyzd, mut a, mut b, mut c, mut ct, mut p, mut cp): (
         f64,
         f64,
@@ -6078,7 +6082,7 @@ pub fn epv00(date1: f64, date2: f64) -> Option<([[f64; 3]; 2], [[f64; 3]; 2])> {
     let t2: f64 = t * t;
 
     /* Set status. */
-    jstat = if t.abs() <= 100.0 { 0 } else { 1 };
+    let jstat: i32 = if t.abs() <= 100.0 { 0 } else { 1 };
 
     /* X then Y then Z. */
     for i in 0..3 {

@@ -13,11 +13,11 @@ use super::{eqeq94, gmst82};
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     uta,utb    double    UT1 as a 2-part Julian Date (Notes 1,2)
 ///  ```
 ///  Returned (function value):
-///  ```
+///  ```text
 ///                double    Greenwich apparent sidereal time (radians)
 ///  ```
 ///  Notes:
@@ -26,7 +26,7 @@ use super::{eqeq94, gmst82};
 ///     convenient way between the argument pair.  For example,
 ///     JD(UT1)=2450123.7 could be expressed in any of these ways, among
 ///     others:
-///  ```
+///  ```text
 ///             uta            utb
 ///
 ///         2450123.7           0.0       (JD method)
@@ -56,7 +56,7 @@ use super::{eqeq94, gmst82};
 ///  4) The result is returned in the range 0 to 2pi.
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauGmst82    Greenwich mean sidereal time, IAU 1982
 ///     iauEqeq94    equation of the equinoxes, IAU 1994
 ///     iauAnp       normalize angle into range 0 to 2pi
@@ -71,7 +71,6 @@ use super::{eqeq94, gmst82};
 pub fn gst94(uta: f64, utb: f64) -> f64 {
     let gmst82 = gmst82(uta, utb);
     let eqeq94 = eqeq94(uta, utb);
-    let gst = anp(gmst82 + eqeq94);
 
-    gst
+    anp(gmst82 + eqeq94)
 }

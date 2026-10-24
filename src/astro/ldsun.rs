@@ -10,13 +10,13 @@ use super::ld;
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     p      double[3]  direction from observer to star (unit vector)
 ///     e      double[3]  direction from Sun to observer (unit vector)
 ///     em     double     distance from Sun to observer (au)
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     p1     double[3]  observer to deflected star (unit vector)
 ///  ```
 ///
@@ -35,7 +35,7 @@ use super::ld;
 ///  3) The arguments p and p1 can be the same array.
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauLd        light deflection by a solar-system body
 ///  ```
 pub fn ldsun(p: [f64; 3], e: [f64; 3], em: f64) -> [f64; 3] {

@@ -6,7 +6,7 @@
 ///  Status:  vector/matrix support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     theta    double          longitude angle (radians)
 ///     phi      double          latitude angle (radians)
 ///     r        double          radial distance
@@ -15,7 +15,7 @@
 ///     rd       double          rate of change of r
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     pv       double[2][3]    pv-vector
 ///  ```
 #[inline]

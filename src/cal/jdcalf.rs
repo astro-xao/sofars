@@ -28,12 +28,14 @@ use crate::cal::jd2cal;
 ///    the arguments dj1 and dj2. For example, JD=2450123.7 could
 ///    be expressed in any of these ways, among others:
 ///
+///    ```text
 ///            dj1            dj2
 ///
 ///        2450123.7           0.0       (JD method)
 ///        2451545.0       -1421.3       (J2000 method)
 ///        2400000.5       50123.2       (MJD method)
 ///        2450123.5           0.2       (date & time method)
+///    ```
 ///
 /// 2) In early eras the conversion is from the "Proleptic Gregorian
 ///    Calendar"; no account is taken of the date(s) of adoption of

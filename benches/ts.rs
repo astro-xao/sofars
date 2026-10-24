@@ -1,6 +1,6 @@
-use std::hint::black_box;
-use criterion::{criterion_group, criterion_main, Criterion};
+use criterion::{Criterion, criterion_group, criterion_main};
 use sofars::ts;
+use std::hint::black_box;
 
 fn bench_ts(c: &mut Criterion) {
     let mut group = c.benchmark_group("ts");
@@ -13,7 +13,14 @@ fn bench_ts(c: &mut Criterion) {
     let dtr = -0.000201;
 
     group.bench_function("d2dtf", |b| {
-        b.iter(|| ts::d2dtf(black_box("UTC"), black_box(5), black_box(2400000.5), black_box(49533.99999)))
+        b.iter(|| {
+            ts::d2dtf(
+                black_box("UTC"),
+                black_box(5),
+                black_box(2400000.5),
+                black_box(49533.99999),
+            )
+        })
     });
 
     group.bench_function("dat", |b| {
@@ -25,11 +32,30 @@ fn bench_ts(c: &mut Criterion) {
     });
 
     group.bench_function("dtdb", |b| {
-        b.iter(|| ts::dtdb(black_box(2448939.5), black_box(0.123), black_box(0.76543), black_box(5.0123), black_box(5525.242), black_box(3190.0)))
+        b.iter(|| {
+            ts::dtdb(
+                black_box(2448939.5),
+                black_box(0.123),
+                black_box(0.76543),
+                black_box(5.0123),
+                black_box(5525.242),
+                black_box(3190.0),
+            )
+        })
     });
 
     group.bench_function("dtf2d", |b| {
-        b.iter(|| ts::dtf2d(black_box("UTC"), black_box(1994), black_box(6), black_box(30), black_box(23), black_box(59), black_box(60.13599)))
+        b.iter(|| {
+            ts::dtf2d(
+                black_box("UTC"),
+                black_box(1994),
+                black_box(6),
+                black_box(30),
+                black_box(23),
+                black_box(59),
+                black_box(60.13599),
+            )
+        })
     });
 
     group.bench_function("taitt", |b| {

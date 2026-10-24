@@ -20,12 +20,14 @@ use crate::pnp::{c2ixy, c2tcio, pom00, sp00};
 ///     utb.  For example, JD(UT1)=2450123.7 could be expressed in any o
 ///     these ways, among others:
 ///
+///     ```text
 ///             uta            utb
 ///
 ///         2450123.7           0.0       (JD method)
 ///         2451545.0       -1421.3       (J2000 method)
 ///         2400000.5       50123.2       (MJD method)
 ///         2450123.5           0.2       (date & time method)
+///     ```
 ///
 ///     The JD method is the most natural and convenient to use in
 ///     cases where the loss of several decimal digits of resolution is
@@ -50,7 +52,9 @@ use crate::pnp::{c2ixy, c2tcio, pom00, sp00};
 ///
 ///        [TRS] = RPOM * R_3(ERA) * RC2I * [CRS]
 ///
+///        ```text
 ///              = rc2t * [CRS]
+///        ```
 ///
 ///     where [CRS] is a vector in the Geocentric Celestial Reference
 ///     System and [TRS] is a vector in the International Terrestrial
@@ -69,8 +73,10 @@ use crate::pnp::{c2ixy, c2tcio, pom00, sp00};
 ///
 /// Reference:
 ///
+/// ```text
 ///     McCarthy, D. D., Petit, G. (eds.), IERS Conventions (2003),
 ///     IERS Technical Note No. 32, BKG (2004)
+/// ```
 pub fn c2txy(
     tta: f64,
     ttb: f64,

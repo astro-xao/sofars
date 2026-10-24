@@ -19,7 +19,7 @@ use super::{IauAstrom, apcg};
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     date1  double       TDB as a 2-part...
 ///     date2  double       ...Julian Date (Note 1)
 ///     ebpv   double[2][3] Earth barycentric position/velocity (au, au/day)
@@ -28,7 +28,7 @@ use super::{IauAstrom, apcg};
 ///     s      double       the CIO locator s (radians)
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     astrom iauASTROM*   star-independent astrometry parameters:
 ///      pmt    double       PM time interval (SSB, Julian years)
 ///      eb     double[3]    SSB to observer (vector, au)
@@ -53,7 +53,7 @@ use super::{IauAstrom, apcg};
 ///     convenient way between the two arguments.  For example,
 ///     JD(TDB)=2450123.7 could be expressed in any of these ways, among
 ///     others:
-///  ```
+///  ```text
 ///            date1          date2
 ///
 ///         2450123.7           0.0       (JD method)
@@ -86,7 +86,7 @@ use super::{IauAstrom, apcg};
 ///
 ///     The various functions support different classes of observer and
 ///     portions of the transformation chain:
-///  ```
+///  ```text
 ///          functions         observer        transformation
 ///
 ///       iauApcg iauApcg13    geocentric      ICRS <-> GCRS
@@ -111,7 +111,7 @@ use super::{IauAstrom, apcg};
 ///     iauAtciq* and iauAticq*.
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauApcg      astrometry parameters, ICRS-GCRS, geocenter
 ///     iauC2ixys    celestial-to-intermediate matrix, given X,Y and s
 ///  ```

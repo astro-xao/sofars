@@ -12,11 +12,11 @@ use super::{fw2m, nut06a, pfw06};
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     date1,date2 double       TT as a 2-part Julian Date (Note 1)
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     rbpn        double[3][3] bias-precession-nutation matrix (Note 2)
 ///  ```
 ///  Notes:
@@ -25,7 +25,7 @@ use super::{fw2m, nut06a, pfw06};
 ///     convenient way between the two arguments.  For example,
 ///     JD(TT)=2450123.7 could be expressed in any of these ways, among
 ///     others:
-///  ```
+///  ```text
 ///            date1          date2
 ///
 ///         2450123.7           0.0       (JD method)

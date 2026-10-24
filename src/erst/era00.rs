@@ -11,11 +11,11 @@ use crate::vm::anp;
 ///  Status:  canonical model.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     dj1,dj2   double    UT1 as a 2-part Julian Date (see note)
 ///  ```
 ///  Returned (function value):
-///  ```
+///  ```text
 ///               double    Earth rotation angle (radians), range 0-2pi
 ///  ```
 ///  Notes:
@@ -24,7 +24,7 @@ use crate::vm::anp;
 ///     convenient way between the arguments dj1 and dj2.  For example,
 ///     JD(UT1)=2450123.7 could be expressed in any of these ways,
 ///     among others:
-///  ```
+///  ```text
 ///             dj1            dj2
 ///
 ///         2450123.7           0.0       (JD method)
@@ -48,7 +48,7 @@ use crate::vm::anp;
 ///     (2003), Chap. 5, Eq. 14.
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauAnp       normalize angle into range 0 to 2pi
 ///  ```
 ///  References:
@@ -77,7 +77,6 @@ pub fn era00(dj1: f64, dj2: f64) -> f64 {
     let f = d1.rem(1.0) + d2.rem(1.0);
 
     // Earth rotation angle at this UT1.
-    let theta = anp(D2PI * (f + 0.7790572732640 + 0.00273781191135448 * t));
 
-    theta
+    anp(D2PI * (f + 0.7790572732640 + 0.00273781191135448 * t))
 }

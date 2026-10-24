@@ -12,13 +12,13 @@ use crate::vm::anp;
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     uta,utb  double        UT1 as a 2-part Julian Date (Notes 1,2)
 ///     tta,ttb  double        TT as a 2-part Julian Date (Notes 1,2)
 ///     rnpb     double[3][3]  nutation x precession x bias matrix
 ///  ```
 ///  Returned (function value):
-///  ```
+///  ```text
 ///              double        Greenwich apparent sidereal time (radians)
 ///  ```
 ///  Notes:
@@ -27,7 +27,7 @@ use crate::vm::anp;
 ///     Julian Dates, apportioned in any convenient way between the
 ///     argument pairs.  For example, JD(UT1)=2450123.7 could be
 ///     expressed in any of these ways, among others:
-///  ```
+///  ```text
 ///             uta            utb
 ///
 ///         2450123.7           0.0       (JD method)
@@ -58,7 +58,7 @@ use crate::vm::anp;
 ///  4) The result is returned in the range 0 to 2pi.
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauBpn2xy    extract CIP X,Y coordinates from NPB matrix
 ///     iauS06       the CIO locator s, given X,Y, IAU 2006
 ///     iauAnp       normalize angle into range 0 to 2pi
@@ -78,7 +78,6 @@ pub fn gst06(uta: f64, utb: f64, tta: f64, ttb: f64, rnpb: &[[f64; 3]; 3]) -> f6
     // Greenwich apparent sidereal time.
     let era = era00(uta, utb);
     let eors = eors(rnpb, s);
-    let gst = anp(era - eors);
 
-    gst
+    anp(era - eors)
 }

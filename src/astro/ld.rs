@@ -14,7 +14,7 @@ use crate::{
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     bm     double     mass of the gravitating body (solar masses)
 ///     p      double[3]  direction from observer to source (unit vector)
 ///     q      double[3]  direction from body to source (unit vector)
@@ -23,7 +23,7 @@ use crate::{
 ///     dlim   double     deflection limiter (Note 4)
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     p1     double[3]  observer to deflected source (unit vector)
 ///  ```
 ///  Notes:
@@ -70,7 +70,7 @@ use crate::{
 ///     arcsecond astrometry in space", Astr. J. 125, 1580-1597 (2003).
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauPdp       scalar product of two p-vectors
 ///     iauPxp       vector product of two p-vectors
 ///  ```

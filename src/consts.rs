@@ -1,10 +1,10 @@
 //! Constants
 #![allow(dead_code)]
 /// Pi
-pub const DPI: f64 = 3.141592653589793238462643;
+pub const DPI: f64 = std::f64::consts::PI;
 
 /// 2Pi
-pub const D2PI: f64 = 6.283185307179586476925287;
+pub const D2PI: f64 = std::f64::consts::TAU;
 
 /// Radians to degrees
 pub const DR2D: f64 = 57.29577951308232087679815;

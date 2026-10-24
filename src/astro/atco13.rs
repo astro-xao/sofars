@@ -14,7 +14,7 @@ use super::{IauAstrom, apco13, atciq, atioq};
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     rc,dc  double   ICRS right ascension at J2000.0 (radians, Note 1)
 ///     pr     double   RA proper motion (radians/year, Note 2)
 ///     pd     double   Dec proper motion (radians/year)
@@ -33,7 +33,7 @@ use super::{IauAstrom, apco13, atciq, atioq};
 ///     wl     double   wavelength (micrometers, Note 9)
 ///  ```
 ///  Returned
-///  ```
+///  ```text
 ///     aob    double*  observed azimuth (radians: N=0,E=90)
 ///     zob    double*  observed zenith distance (radians)
 ///     hob    double*  observed hour angle (radians)
@@ -42,7 +42,7 @@ use super::{IauAstrom, apco13, atciq, atioq};
 ///     eo     double*  equation of the origins (ERA-GST, radians)
 ///  ```
 ///  Returned (function value):
-///  ```
+///  ```text
 ///            int      status: +1 = dubious year (Note 4)
 ///                              0 = OK
 ///                             -1 = unacceptable date
@@ -97,7 +97,9 @@ use super::{IauAstrom, apco13, atciq, atioq};
 ///      is available, an adequate estimate of hm can be obtained from
 ///      the expression
 ///
+///      ```text
 ///            hm = -29.3 * tsl * log ( phpa / 1013.25 );
+///      ```
 ///
 ///      where tsl is the approximate sea-level air temperature in K
 ///      (See Astrophysical Quantities, C.W.Allen, 3rd edition, section
@@ -105,7 +107,9 @@ use super::{IauAstrom, apco13, atciq, atioq};
 ///      estimated from the height of the observing station, hm, as
 ///      follows:
 ///
+///      ```text
 ///            phpa = 1013.25 * exp ( -hm / ( 29.3 * tsl ) );
+///      ```
 ///
 ///      Note, however, that the refraction is nearly proportional to
 ///      the pressure and that an accurate phpa value is important for
@@ -146,7 +150,7 @@ use super::{IauAstrom, apco13, atciq, atioq};
 ///      accordance with the models used.
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauApco13    astrometry parameters, ICRS-observed, 2013
 ///     iauAtciq     quick ICRS to CIRS
 ///     iauAtioq     quick CIRS to observed
@@ -175,14 +179,10 @@ pub fn atco13(
     let eo = &mut 0.0;
 
     /* Star-independent astrometry parameters. */
-    let j = apco13(
-        utc1, utc2, dut1, elong, phi, hm, xp, yp, phpa, tc, rh, wl, astrom, eo,
-    );
-
     /* Abort if bad UTC. */
-    if j.is_err() {
-        return Err(j.unwrap_err());
-    };
+    apco13(
+        utc1, utc2, dut1, elong, phi, hm, xp, yp, phpa, tc, rh, wl, astrom, eo,
+    )?;
 
     /* Transform ICRS to CIRS. */
     let (ri, di) = atciq(rc, dc, pr, pd, px, rv, astrom);

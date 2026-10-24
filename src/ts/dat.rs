@@ -1,5 +1,5 @@
 ///  For a given UTC date, calculate Delta(AT) = TAI-UTC.
-///  ```
+///  ```text
 ///     :------------------------------------------:
 ///     :                                          :
 ///     :                 IMPORTANT                :
@@ -38,18 +38,18 @@
 ///  Status:  user-replaceable support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     iy     int      UTC:  year (Notes 1 and 2)
 ///     im     int            month (Note 2)
 ///     id     int            day (Notes 2 and 3)
 ///     fd     double         fraction of day (Note 4)
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     deltat double   TAI minus UTC, seconds
 ///  ```
 ///  Returned (function value):
-///  ```
+///  ```text
 ///            int      status (Note 5):
 ///                       1 = dubious year (Note 1)
 ///                       0 = OK
@@ -187,7 +187,7 @@ pub fn dat(iy: i32, im: i32, id: i32, fd: f64) -> Result<f64, i32> {
 
     // Miscellaneous local variables
     let mut i: usize;
-    let m: i32;
+
     let mut da: f64;
 
     // If invalid fraction of a day, set error status and give up.
@@ -200,9 +200,7 @@ pub fn dat(iy: i32, im: i32, id: i32, fd: f64) -> Result<f64, i32> {
     let j = cal2jd(iy, im, id);
 
     // If invalid year, month, or day, give up.
-    if let Err(e) = j {
-        return Err(e);
-    }
+    j?;
 
     let (_, djm) = j.unwrap();
 
@@ -212,7 +210,7 @@ pub fn dat(iy: i32, im: i32, id: i32, fd: f64) -> Result<f64, i32> {
     }
 
     // Combine year and month to form a date-ordered integer...
-    m = 12 * iy + im;
+    let m: i32 = 12 * iy + im;
 
     // ...and use it to find the preceding table entry.
     i = NDAT - 1;

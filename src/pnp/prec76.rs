@@ -61,20 +61,15 @@ use crate::consts::{DAS2R, DJ00, DJC};
 ///    Lieske, J.H., 1979, Astron.Astrophys. 73, 282, equations
 ///    (6) & (7), p283.
 pub fn prec76(date01: f64, date02: f64, date11: f64, date12: f64) -> (f64, f64, f64) {
-    let t0;
-    let t;
-    let tas2r;
-    let w;
-
     /* Interval between fundamental epoch J2000.0 and start date (JC). */
-    t0 = ((date01 - DJ00) + date02) / DJC;
+    let t0 = ((date01 - DJ00) + date02) / DJC;
 
     /* Interval over which precession required (JC). */
-    t = ((date11 - date01) + (date12 - date02)) / DJC;
+    let t = ((date11 - date01) + (date12 - date02)) / DJC;
 
     /* Euler angles. */
-    tas2r = t * DAS2R;
-    w = 2306.2181 + (1.39656 - 0.000139 * t0) * t0;
+    let tas2r = t * DAS2R;
+    let w = 2306.2181 + (1.39656 - 0.000139 * t0) * t0;
 
     let zeta = (w + ((0.30188 - 0.000344 * t0) + 0.017998 * t) * t) * tas2r;
 

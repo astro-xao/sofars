@@ -55,11 +55,13 @@
 ///
 /// 7) This function is a member of the following set:
 ///
+/// ```text
 ///        spherical      vector         solve for
 ///
 ///        tpxes         tpxev          xi,eta
 ///        tpsts         tpstv           star
 ///        tpors       > tporv <        origin
+/// ```
 ///
 /// References:
 ///

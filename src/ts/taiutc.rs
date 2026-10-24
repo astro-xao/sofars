@@ -49,7 +49,7 @@ use super::utctai;
 ///
 pub fn taiutc(tai1: f64, tai2: f64) -> Result<(f64, f64), i32> {
     let (a1, a2);
-    let u1;
+
     let mut u2;
     let (mut g1, mut g2);
 
@@ -64,7 +64,7 @@ pub fn taiutc(tai1: f64, tai2: f64) -> Result<(f64, f64), i32> {
     }
 
     /* Initial guess for UTC. */
-    u1 = a1;
+    let u1 = a1;
     u2 = a2;
 
     /* Iterate (though in most cases just once is enough). */
@@ -86,9 +86,5 @@ pub fn taiutc(tai1: f64, tai2: f64) -> Result<(f64, f64), i32> {
     }
 
     /* Return the UTC result, preserving the TAI order. */
-    if big1 {
-        Ok((u1, u2))
-    } else {
-        Ok((u2, u1))
-    }
+    if big1 { Ok((u1, u2)) } else { Ok((u2, u1)) }
 }

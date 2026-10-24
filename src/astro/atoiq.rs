@@ -18,7 +18,7 @@ use super::IauAstrom;
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     type   char[]     type of coordinates: "R", "H" or "A" (Note 1)
 ///     ob1    double     observed Az, HA or RA (radians; Az is N=0,E=90)
 ///     ob2    double     observed ZD or Dec (radians)
@@ -41,7 +41,7 @@ use super::IauAstrom;
 ///      refb   double       refraction constant B (radians)
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     ri     double*    CIRS right ascension (CIO-based, radians)
 ///     di     double*    CIRS declination (radians)
 ///  ```
@@ -93,8 +93,6 @@ pub fn atoiq(type_: &str, ob1: f64, ob2: f64, astrom: &IauAstrom) -> (f64, f64) 
     /* Minimum sin(alt) for refraction purposes */
     const SELMIN: f64 = 0.05;
 
-    let c1: f64;
-    let c2: f64;
     let mut ce: f64;
     let xaeo: f64;
     let yaeo: f64;
@@ -105,8 +103,8 @@ pub fn atoiq(type_: &str, ob1: f64, ob2: f64, astrom: &IauAstrom) -> (f64, f64) 
     let c_char = type_.chars().next().unwrap_or('A');
 
     /* Coordinates. */
-    c1 = ob1;
-    c2 = ob2;
+    let c1: f64 = ob1;
+    let c2: f64 = ob2;
 
     /* Sin, cos of latitude. */
     let sphi = astrom.sphi;

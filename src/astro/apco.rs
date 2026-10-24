@@ -16,7 +16,7 @@ use crate::vm::{anpm, ir, rx, ry, rz, trxpv};
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     date1  double       TDB as a 2-part...
 ///     date2  double       ...Julian Date (Note 1)
 ///     ebpv   double[2][3] Earth barycentric PV (au, au/day, Note 2)
@@ -33,7 +33,7 @@ use crate::vm::{anpm, ir, rx, ry, rz, trxpv};
 ///     refb   double       refraction constant B (radians, Note 5)
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     astrom iauASTROM*   star-independent astrometry parameters:
 ///      pmt    double       PM time interval (SSB, Julian years)
 ///      eb     double[3]    SSB to observer (vector, au)
@@ -58,7 +58,7 @@ use crate::vm::{anpm, ir, rx, ry, rz, trxpv};
 ///     convenient way between the two arguments.  For example,
 ///     JD(TDB)=2450123.7 could be expressed in any of these ways, among
 ///     others:
-///  ```
+///  ```text
 ///            date1          date2
 ///
 ///         2450123.7           0.0       (JD method)
@@ -122,7 +122,7 @@ use crate::vm::{anpm, ir, rx, ry, rz, trxpv};
 ///
 ///     The various functions support different classes of observer and
 ///     portions of the transformation chain:
-///     ```
+///     ```text
 ///          functions         observer        transformation
 ///
 ///       iauApcg iauApcg13    geocentric      ICRS <-> GCRS
@@ -147,7 +147,7 @@ use crate::vm::{anpm, ir, rx, ry, rz, trxpv};
 ///     iauAtioq, iauAtoiq, iauAtciq* and iauAticq*.
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauIr        initialize r-matrix to identity
 ///     iauRz        rotate around Z-axis
 ///     iauRy        rotate around Y-axis
@@ -236,7 +236,7 @@ pub fn apco(
     trxpv(r, pvc, pv);
 
     /* ICRS <-> GCRS parameters. */
-    apcs(date1, date2, pv, &ebpv, &ehp, astrom);
+    apcs(date1, date2, pv, ebpv, ehp, astrom);
 
     /* Store the CIO based BPN matrix. */
     astrom.bpn = *r;

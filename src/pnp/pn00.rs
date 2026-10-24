@@ -34,7 +34,7 @@ use super::{bp00, numat, obl80, pr00};
 ///     JD(TT)=2450123.7 could be expressed in any of these ways,
 ///     among others:
 ///
-///  ```
+///  ```text
 ///            date1          date2
 ///
 ///         2450123.7           0.0       (JD method)

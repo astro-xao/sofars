@@ -17,7 +17,9 @@ use crate::vm::rv2m;
 ///
 /// 2) The r-matrix r5h operates in the sense:
 ///
+/// ```text
 ///          P_Hipparcos = r5h x P_FK5
+/// ```
 ///
 ///    where P_FK5 is a p-vector in the FK5 frame, and P_Hipparcos is
 ///    the equivalent Hipparcos p-vector.

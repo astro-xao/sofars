@@ -2,9 +2,9 @@ mod common;
 
 #[cfg(test)]
 mod tests {
+    use super::common::{viv, vvd};
     use sofars::projection::*;
     use sofars::vm::s2c;
-    use super::common::{vvd, viv};
 
     #[test]
     fn test_tpors() {

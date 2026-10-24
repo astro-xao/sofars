@@ -15,17 +15,21 @@ use crate::vm::{ir, rx, rz};
 ///
 ///  1) Naming the following points:
 ///
+///     ```text
 ///           e = J2000.0 ecliptic pole,
 ///           p = GCRS pole,
 ///           E = ecliptic pole of date,
 ///     and   P = CIP,
+///     ```
 ///
 ///     the four Fukushima-Williams angles are as follows:
 ///
+///     ```text
 ///        gamb = gamma = epE
 ///        phib = phi = pE
 ///        psi = psi = pEP
 ///        eps = epsilon = EP
+///     ```
 ///
 ///  2) The matrix representing the combined effects of frame bias,
 ///     precession and nutation is:

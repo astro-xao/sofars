@@ -11,11 +11,11 @@ use crate::pnp::{nut00a, obl80, pr00};
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     date1,date2  double    TT as a 2-part Julian Date (Note 1)
 ///  ```
 ///  Returned (function value):
-///  ```
+///  ```text
 ///                  double    equation of the equinoxes (Note 2)
 ///  ```
 ///  Notes:
@@ -24,7 +24,7 @@ use crate::pnp::{nut00a, obl80, pr00};
 ///     convenient way between the two arguments.  For example,
 ///     JD(TT)=2450123.7 could be expressed in any of these ways,
 ///     among others:
-///  ```
+///  ```text
 ///            date1          date2
 ///
 ///         2450123.7           0.0       (JD method)
@@ -48,7 +48,7 @@ use crate::pnp::{nut00a, obl80, pr00};
 ///     (2002).
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauPr00      IAU 2000 precession adjustments
 ///     iauObl80     mean obliquity, IAU 1980
 ///     iauNut00a    nutation, IAU 2000A
@@ -72,7 +72,6 @@ pub fn ee00a(date1: f64, date2: f64) -> f64 {
     let (dpsi, _) = nut00a(date1, date2);
 
     // Equation of the equinoxes.
-    let ee = ee00(date1, date2, epsa, dpsi);
 
-    ee
+    ee00(date1, date2, epsa, dpsi)
 }

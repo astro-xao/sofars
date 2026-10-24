@@ -11,7 +11,7 @@ use super::IauAstrom;
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     theta   double      Earth rotation angle (radians, Note 2)
 ///     astrom  iauASTROM*  star-independent astrometry parameters:
 ///      pmt    double       not used
@@ -32,7 +32,7 @@ use super::IauAstrom;
 ///      refb   double       not used
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     astrom  iauASTROM*  star-independent astrometry parameters:
 ///      pmt    double       unchanged
 ///      eb     double[3]    unchanged
@@ -71,7 +71,7 @@ use super::IauAstrom;
 ///
 ///     The various functions support different classes of observer and
 ///     portions of the transformation chain:
-///  ```
+///  ```text
 ///          functions         observer        transformation
 ///
 ///       iauApcg iauApcg13    geocentric      ICRS <-> GCRS

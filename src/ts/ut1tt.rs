@@ -9,16 +9,16 @@ use crate::consts::DAYSEC;
 ///  Status:  canonical.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     ut11,ut12  double    UT1 as a 2-part Julian Date
 ///     dt         double    TT-UT1 in seconds
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     tt1,tt2    double    TT as a 2-part Julian Date
 ///  ```
 ///  Returned (function value):
-///  ```
+///  ```text
 ///                int       status:  0 = OK
 ///  ```
 ///  Notes:

@@ -1,6 +1,6 @@
-use std::hint::black_box;
-use criterion::{criterion_group, criterion_main, Criterion};
+use criterion::{Criterion, criterion_group, criterion_main};
 use sofars::coords::*;
+use std::hint::black_box;
 
 fn bench_coord(c: &mut Criterion) {
     let mut group = c.benchmark_group("coord");
@@ -22,7 +22,14 @@ fn bench_coord(c: &mut Criterion) {
     });
 
     group.bench_function("eceq06", |b| {
-        b.iter(|| eceq06(black_box(dj1), black_box(dj2), black_box(5.1), black_box(-0.9)))
+        b.iter(|| {
+            eceq06(
+                black_box(dj1),
+                black_box(dj2),
+                black_box(5.1),
+                black_box(-0.9),
+            )
+        })
     });
 
     group.bench_function("ecm06", |b| {
@@ -30,16 +37,21 @@ fn bench_coord(c: &mut Criterion) {
     });
 
     group.bench_function("eqec06", |b| {
-        b.iter(|| eqec06(black_box(1234.5), black_box(2440000.5), black_box(1.234), black_box(0.987)))
+        b.iter(|| {
+            eqec06(
+                black_box(1234.5),
+                black_box(2440000.5),
+                black_box(1.234),
+                black_box(0.987),
+            )
+        })
     });
 
     group.bench_function("lteceq", |b| {
         b.iter(|| lteceq(black_box(2500.0), black_box(1.5), black_box(0.6)))
     });
 
-    group.bench_function("ltecm", |b| {
-        b.iter(|| ltecm(black_box(-3000.0)))
-    });
+    group.bench_function("ltecm", |b| b.iter(|| ltecm(black_box(-3000.0))));
 
     group.bench_function("lteqec", |b| {
         b.iter(|| lteqec(black_box(-1500.0), black_box(1.234), black_box(0.987)))
@@ -53,24 +65,35 @@ fn bench_coord(c: &mut Criterion) {
         b.iter(|| icrs2g(black_box(5.933), black_box(-1.178)))
     });
 
-    group.bench_function("eform", |b| {
-        b.iter(|| eform(black_box(1)))
-    });
+    group.bench_function("eform", |b| b.iter(|| eform(black_box(1))));
 
-    group.bench_function("gc2gd", |b| {
-        b.iter(|| gc2gd(black_box(1), black_box(xyz)))
-    });
+    group.bench_function("gc2gd", |b| b.iter(|| gc2gd(black_box(1), black_box(xyz))));
 
     group.bench_function("gc2gde", |b| {
         b.iter(|| gc2gde(black_box(6378136.0), black_box(0.0033528), black_box(xyz)))
     });
 
     group.bench_function("gd2gc", |b| {
-        b.iter(|| gd2gc(black_box(1), black_box(3.1), black_box(-0.5), black_box(2500.0)))
+        b.iter(|| {
+            gd2gc(
+                black_box(1),
+                black_box(3.1),
+                black_box(-0.5),
+                black_box(2500.0),
+            )
+        })
     });
 
     group.bench_function("gd2gce", |b| {
-        b.iter(|| gd2gce(black_box(6378136.0), black_box(0.0033528), black_box(3.1), black_box(-0.5), black_box(2500.0)))
+        b.iter(|| {
+            gd2gce(
+                black_box(6378136.0),
+                black_box(0.0033528),
+                black_box(3.1),
+                black_box(-0.5),
+                black_box(2500.0),
+            )
+        })
     });
 
     group.finish();

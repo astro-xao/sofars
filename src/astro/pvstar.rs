@@ -13,11 +13,11 @@ use crate::{
 ///  Status:  support function.
 ///
 ///  Given (Note 1):
-///  ```
+///  ```text
 ///     pv     double[2][3]   pv-vector (au, au/day)
 ///  ```
 ///  Returned (Note 2):
-///  ```
+///  ```text
 ///     ra     double         right ascension (radians)
 ///     dec    double         declination (radians)
 ///     pmr    double         RA proper motion (radians/year)
@@ -26,7 +26,7 @@ use crate::{
 ///     rv     double         radial velocity (km/s, positive = receding)
 ///  ```
 ///  Returned (function value):
-///  ```
+///  ```text
 ///            int            status:
 ///                              0 = OK
 ///                             -1 = superluminal speed (Note 5)
@@ -86,7 +86,7 @@ use crate::{
 ///  6) The inverse transformation is performed by the function iauStarpv.
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauPn        decompose p-vector into modulus and direction
 ///     iauPdp       scalar product of two p-vectors
 ///     iauSxp       multiply p-vector by scalar
@@ -101,9 +101,6 @@ use crate::{
 ///     Stumpff, P., 1985, Astron.Astrophys. 144, 232-240.
 pub fn pvstar(pv: &[[f64; 3]; 2]) -> Result<[f64; 6], i32> {
     let mut pv = *pv;
-    let d: f64;
-    let w: f64;
-    let del: f64;
 
     // Isolate the radial component of the velocity (au/day, inertial).
     let (_, pu) = pn(&pv[0]);
@@ -119,12 +116,12 @@ pub fn pvstar(pv: &[[f64; 3]; 2]) -> Result<[f64; 6], i32> {
     let betr = vr / DC;
 
     // The observed-to-inertial correction terms.
-    d = 1.0 + betr;
-    w = betr * betr + bett * bett;
+    let d: f64 = 1.0 + betr;
+    let w: f64 = betr * betr + bett * bett;
     if d == 0.0 || w > 1.0 {
         return Err(-1);
     }
-    del = -w / ((1.0 - w).sqrt() + 1.0);
+    let del: f64 = -w / ((1.0 - w).sqrt() + 1.0);
 
     // Scale inertial tangential velocity vector into observed (au/d).
     let ust = sxp(1.0 / d, &ut);

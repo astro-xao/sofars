@@ -94,7 +94,7 @@ pub fn aticq(ri: f64, di: f64, astrom: &mut IauAstrom) -> (f64, f64) {
         for i in 0..3 {
             before[i] /= r;
         }
-        after = ab(&before, &astrom.v, astrom.em, astrom.bm1);
+        after = ab(before, &astrom.v, astrom.em, astrom.bm1);
         r2 = 0.0;
         for i in 0..3 {
             d[i] = after[i] - before[i];

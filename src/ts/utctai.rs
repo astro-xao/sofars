@@ -67,7 +67,6 @@ use crate::consts::DAYSEC;
 ///
 ///  Copyright (C) 2023 IAU SOFA Board.  See notes at end.
 pub fn utctai(utc1: f64, utc2: f64) -> Result<(f64, f64), i32> {
-    let big1: bool;
     let (iy, im, id, iyt, imt, idt): (i32, i32, i32, i32, i32, i32);
     let (u1, u2, mut fd, dat0, dat12, dat24, dlod, dleap, z1, z2): (
         f64,
@@ -83,7 +82,7 @@ pub fn utctai(utc1: f64, utc2: f64) -> Result<(f64, f64), i32> {
     );
 
     // Put the two parts of the UTC into big-first order.
-    big1 = utc1.abs() >= utc2.abs();
+    let big1: bool = utc1.abs() >= utc2.abs();
     if big1 {
         u1 = utc1;
         u2 = utc2;
@@ -102,15 +101,15 @@ pub fn utctai(utc1: f64, utc2: f64) -> Result<(f64, f64), i32> {
         }
         Err(j) => return Err(j),
     }
-    match super::dat(iy, im, id, 0.0) {
-        Ok(d) => dat0 = d,
-        Err(j) => return Err(j),
+    {
+        let d = super::dat(iy, im, id, 0.0)?;
+        dat0 = d
     }
 
     // Get TAI-UTC at 12h today (to detect drift).
-    match super::dat(iy, im, id, 0.5) {
-        Ok(d) => dat12 = d,
-        Err(j) => return Err(j),
+    {
+        let d = super::dat(iy, im, id, 0.5)?;
+        dat12 = d
     }
 
     // Get TAI-UTC at 0h tomorrow (to detect jumps).
@@ -124,9 +123,9 @@ pub fn utctai(utc1: f64, utc2: f64) -> Result<(f64, f64), i32> {
         }
     }
 
-    match super::dat(iyt, imt, idt, 0.0) {
-        Ok(d) => dat24 = d,
-        Err(j) => return Err(j),
+    {
+        let d = super::dat(iyt, imt, idt, 0.0)?;
+        dat24 = d
     }
 
     // Separate TAI-UTC change into per-day (DLOD) and any jump (DLEAP).
@@ -152,9 +151,5 @@ pub fn utctai(utc1: f64, utc2: f64) -> Result<(f64, f64), i32> {
     let mut res2 = z1 - u1;
     res2 += z2;
     res2 += fd + dat0 / DAYSEC;
-    if big1 {
-        Ok((u1, res2))
-    } else {
-        Ok((res2, u1))
-    }
+    if big1 { Ok((u1, res2)) } else { Ok((res2, u1)) }
 }

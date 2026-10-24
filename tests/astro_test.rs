@@ -4,9 +4,9 @@ mod common;
 mod tests {
     use super::common::{viv, vvd};
     use sofars::astro::{
-        ab, apcg, apcg13, apci, apci13, apco, apco13, apcs, apcs13, aper, aper13, atcc13, atci13,
-        atciq, atciqn, atciqz, atco13, atic13, aticq, aticqn, atio13, atoc13, atoi13, ld, ldn,
-        ldsun, pmsafe, pvstar, pvtob, starpv, IauAstrom, IauLdBody,
+        IauAstrom, IauLdBody, ab, apcg, apcg13, apci, apci13, apco, apco13, apcs, apcs13, aper,
+        aper13, atcc13, atci13, atciq, atciqn, atciqz, atco13, atic13, aticq, aticqn, atio13,
+        atoc13, atoi13, ld, ldn, ldsun, pmsafe, pvstar, pvtob, starpv,
     };
 
     #[test]
@@ -168,22 +168,19 @@ mod tests {
             ],
         ];
 
-        match pvstar(&pv) {
-            Ok([ra, dec, pmr, pmd, px, rv]) => {
-                assert!((ra - 0.1686756e-1).abs() < 1e-12, "pvstar: ra");
-                assert!((dec - -1.093989828).abs() < 1e-12, "pvstar: dec");
-                assert!(
-                    (pmr - -0.1783235160000472788e-4).abs() < 1e-16,
-                    "pvstar: pmr"
-                );
-                assert!(
-                    (pmd - 0.2336024047000619347e-5).abs() < 1e-16,
-                    "pvstar: pmd"
-                );
-                assert!((px - 0.74723).abs() < 1e-12, "pvstar: px");
-                assert!((rv - -21.60000010107306010).abs() < 1e-11, "pvstar: rv");
-            }
-            Err(_) => {}
+        if let Ok([ra, dec, pmr, pmd, px, rv]) = pvstar(&pv) {
+            assert!((ra - 0.1686756e-1).abs() < 1e-12, "pvstar: ra");
+            assert!((dec - -1.093989828).abs() < 1e-12, "pvstar: dec");
+            assert!(
+                (pmr - -0.1783235160000472788e-4).abs() < 1e-16,
+                "pvstar: pmr"
+            );
+            assert!(
+                (pmd - 0.2336024047000619347e-5).abs() < 1e-16,
+                "pvstar: pmd"
+            );
+            assert!((px - 0.74723).abs() < 1e-12, "pvstar: px");
+            assert!((rv - -21.60000010107306010).abs() < 1e-11, "pvstar: rv");
         }
     }
 
@@ -688,9 +685,11 @@ mod tests {
 
     #[test]
     fn test_aper() {
-        let mut astrom = IauAstrom::default();
+        let mut astrom = IauAstrom {
+            along: 1.234,
+            ..Default::default()
+        };
 
-        astrom.along = 1.234;
         let theta = 5.678;
 
         aper(theta, &mut astrom);
@@ -703,9 +702,11 @@ mod tests {
 
     #[test]
     fn test_aper13() {
-        let mut astrom = IauAstrom::default();
+        let mut astrom = IauAstrom {
+            along: 1.234,
+            ..Default::default()
+        };
 
-        astrom.along = 1.234;
         let ut11 = 2456165.5;
         let ut12 = 0.401182685;
 

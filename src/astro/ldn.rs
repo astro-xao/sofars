@@ -15,7 +15,7 @@ use super::IauLdBody;
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     n    int           number of bodies (note 1)
 ///     b    iauLDBODY[n]  data for each of the n bodies (Notes 1,2):
 ///      bm   double         mass of the body (solar masses, Note 3)
@@ -25,7 +25,7 @@ use super::IauLdBody;
 ///     sc   double[3]     observer to star coord direction (unit vector)
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     sn    double[3]      observer to deflected star (unit vector)
 ///  ```
 ///  1) The array b contains n entries, one for each body to be
@@ -46,7 +46,7 @@ use super::IauLdBody;
 ///     threshold, the deflection is artificially reduced, reaching zero
 ///     for phi = 0.   Example values suitable for a terrestrial
 ///     observer, together with masses, are as follows:
-///  ```
+///  ```text
 ///        body i     b[i].bm        b[i].dl
 ///
 ///        Sun        1.0            6e-6
@@ -77,7 +77,7 @@ use super::IauLdBody;
 ///     (2013), Section 7.2.4.
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauCp        copy p-vector
 ///     iauPdp       scalar product of two p-vectors
 ///     iauPmp       p-vector minus p-vector
@@ -94,7 +94,7 @@ pub fn ldn(n: i32, b: &[IauLdBody], ob: &[f64; 3], sc: &[f64; 3]) -> [f64; 3] {
     // double  v[3], dt, ev[3], em, e[3];
 
     /* Star direction prior to deflection. */
-    cp(&sc, &mut sn);
+    cp(sc, &mut sn);
 
     /* Body by body. */
     for i in 0..n {
@@ -102,7 +102,7 @@ pub fn ldn(n: i32, b: &[IauLdBody], ob: &[f64; 3], sc: &[f64; 3]) -> [f64; 3] {
         let v = pmp(ob, &b[i as usize].pv[0]);
 
         /* Minus the time since the light passed the body (days). */
-        let dt = pdp(&mut sn, &v) * CR;
+        let dt = pdp(&sn, &v) * CR;
 
         /* Neutralize if the star is "behind" the observer. */
         let dt = dt.min(0.0);

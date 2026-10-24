@@ -64,11 +64,9 @@ pub fn ltp(epj: f64) -> [[f64; 3]; 3] {
     let v_mid = pxp(&peqr, &eqx);
 
     /* Assemble the matrix. */
-    for i in 0..3 {
-        rp[0][i] = eqx[i];
-        rp[1][i] = v_mid[i];
-        rp[2][i] = peqr[i];
-    }
+    rp[0] = eqx;
+    rp[1] = v_mid;
+    rp[2] = peqr;
 
     rp
 }

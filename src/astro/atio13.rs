@@ -11,7 +11,7 @@ use super::{IauAstrom, apio13, atioq};
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     ri     double   CIRS right ascension (CIO-based, radians)
 ///     di     double   CIRS declination (radians)
 ///     utc1   double   UTC as a 2-part...
@@ -27,7 +27,7 @@ use super::{IauAstrom, apio13, atioq};
 ///     wl     double   wavelength (micrometers, Note 7)
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     aob    double*  observed azimuth (radians: N=0,E=90)
 ///     zob    double*  observed zenith distance (radians)
 ///     hob    double*  observed hour angle (radians)
@@ -82,7 +82,9 @@ use super::{IauAstrom, apio13, atioq};
 ///      available, an adequate estimate of hm can be obtained from the
 ///      expression
 ///
+///      ```text
 ///            hm = -29.3 * tsl * log ( phpa / 1013.25 );
+///      ```
 ///
 ///      where tsl is the approximate sea-level air temperature in K
 ///      (See Astrophysical Quantities, C.W.Allen, 3rd edition, section
@@ -90,7 +92,9 @@ use super::{IauAstrom, apio13, atioq};
 ///      estimated from the height of the observing station, hm, as
 ///      follows:
 ///
+///      ```text
 ///            phpa = 1013.25 * exp ( -hm / ( 29.3 * tsl ) );
+///      ```
 ///
 ///      Note, however, that the refraction is nearly proportional to
 ///      the pressure and that an accurate phpa value is important for
@@ -129,7 +133,7 @@ use super::{IauAstrom, apio13, atioq};
 ///      accordance with the models used.
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauApio13    astrometry parameters, CIRS-observed, 2013
 ///     iauAtioq     quick CIRS to observed
 ///  ```

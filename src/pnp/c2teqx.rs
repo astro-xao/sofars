@@ -29,7 +29,9 @@ use crate::vm::{cr, rxr, rz};
 ///
 ///        [TRS] = rpom * R_3(gst) * rbpn * [CRS]
 ///
+///        ```text
 ///              = rc2t * [CRS]
+///        ```
 ///
 ///     where [CRS] is a vector in the Geocentric Celestial Reference
 ///     System and [TRS] is a vector in the International Terrestrial

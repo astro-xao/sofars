@@ -23,12 +23,14 @@ use crate::consts::{DAS2R, DJ00, DJC};
 ///     JD(TT)=2450123.7 could be expressed in any of these ways,
 ///     among others:
 ///
+///     ```text
 ///            date1          date2
 ///
 ///         2450123.7           0.0       (JD method)
 ///         2451545.0       -1421.3       (J2000 method)
 ///         2400000.5       50123.2       (MJD method)
 ///         2450123.5           0.2       (date & time method)
+///     ```
 ///
 ///     The JD method is the most natural and convenient to use in
 ///     cases where the loss of several decimal digits of resolution
@@ -39,17 +41,21 @@ use crate::consts::{DAS2R, DJ00, DJC};
 ///
 ///  2) Naming the following points:
 ///
+///     ```text
 ///           e = J2000.0 ecliptic pole,
 ///           p = GCRS pole,
 ///           E = mean ecliptic pole of date,
 ///     and   P = mean pole of date,
+///     ```
 ///
 ///     the four Fukushima-Williams angles are as follows:
 ///
+///     ```text
 ///        gamb = gamma_bar = epE
 ///        phib = phi_bar = pE
 ///        psib = psi_bar = pEP
 ///        epsa = epsilon_A = EP
+///     ```
 ///
 ///  3) The matrix representing the combined effects of frame bias and
 ///     precession is:
@@ -71,10 +77,8 @@ use crate::consts::{DAS2R, DJ00, DJC};
 ///  Called:
 ///     iauObl06     mean obliquity, IAU 2006
 pub fn pfw06(date1: f64, date2: f64) -> (f64, f64, f64, f64) {
-    let t;
-
     /* Interval between fundamental date J2000.0 and given date (JC). */
-    t = ((date1 - DJ00) + date2) / DJC;
+    let t = ((date1 - DJ00) + date2) / DJC;
 
     /* P03 bias+precession angles. */
     let gamb = (-0.052928
