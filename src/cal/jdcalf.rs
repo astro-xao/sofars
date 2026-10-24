@@ -53,17 +53,12 @@ use crate::cal::jd2cal;
 /// P. Kenneth Seidelmann (ed), University Science Books (1992),
 /// Section 12.92 (p604).
 pub fn jdcalf(ndp: i32, dj1: f64, dj2: f64) -> Result<(i32, i32, i32, i32, i32), i32> {
-    let j;
-    let denom;
-
     /* Denominator of fraction (e.g. 100 for 2 decimal places). */
-    if (ndp >= 0) && (ndp <= 9) {
-        j = 0;
-        denom = 10.0f64.powi(ndp);
+    let (j, denom) = if (ndp >= 0) && (ndp <= 9) {
+        (0, 10.0f64.powi(ndp))
     } else {
-        j = 1;
-        denom = 1.0;
-    }
+        (1, 1.0)
+    };
 
     /* Copy the date, big then small. */
     let (mut d1, d2) = if dj1.abs() >= dj2.abs() {
