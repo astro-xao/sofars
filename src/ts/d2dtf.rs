@@ -13,18 +13,18 @@ use crate::{cal::jd2cal, consts::DAYSEC};
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     scale     char[]  time scale ID (Note 1)
 ///     ndp       int     resolution (Note 2)
 ///     d1,d2     double  time as a 2-part Julian Date (Notes 3,4)
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     iy,im,id  int     year, month, day in Gregorian calendar (Note 5)
 ///     ihmsf     int[4]  hours, minutes, seconds, fraction (Note 1)
 ///  ```
 ///  Returned (function value):
-///  ```
+///  ```text
 ///               int     status: +1 = dubious year (Note 5)
 ///                                0 = OK
 ///                               -1 = unacceptable date (Note 6)
@@ -37,7 +37,7 @@ use crate::{cal::jd2cal, consts::DAYSEC};
 ///
 ///  2) ndp is the number of decimal places in the seconds field, and can
 ///     have negative as well as positive values, such as:
-///  ```
+///  ```text
 ///     ndp         resolution
 ///     -4            1 00 00
 ///     -3            0 10 00
@@ -71,7 +71,7 @@ use crate::{cal::jd2cal, consts::DAYSEC};
 ///  6) For calendar conventions and limitations, see iauCal2jd.
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauJd2cal    JD to Gregorian calendar
 ///     iauD2tf      decompose days to hms
 ///     iauDat       delta(AT) = TAI-UTC
@@ -105,15 +105,15 @@ pub fn d2dtf(scale: &str, ndp: i32, d1: f64, d2: f64) -> Result<(i32, i32, i32, 
     leap = false;
     if scale == "UTC" {
         /* TAI-UTC at 0h today. */
-        match dat(iy1, im1, id1, 0.0) {
-            Ok(d) => dat0 = d,
-            Err(j) => return Err(j),
+        {
+            let d = dat(iy1, im1, id1, 0.0)?;
+            dat0 = d
         }
 
         /* TAI-UTC at 12h today (to detect drift). */
-        match dat(iy1, im1, id1, 0.5) {
-            Ok(d) => dat12 = d,
-            Err(j) => return Err(j),
+        {
+            let d = dat(iy1, im1, id1, 0.5)?;
+            dat12 = d
         }
 
         /* TAI-UTC at 0h tomorrow (to detect jumps). */
@@ -125,9 +125,9 @@ pub fn d2dtf(scale: &str, ndp: i32, d1: f64, d2: f64) -> Result<(i32, i32, i32, 
             }
             Err(j) => return Err(j),
         }
-        match dat(iy2, im2, id2, 0.0) {
-            Ok(d) => dat24 = d,
-            Err(j) => return Err(j),
+        {
+            let d = dat(iy2, im2, id2, 0.0)?;
+            dat24 = d
         }
 
         /* Any sudden change in TAI-UTC (seconds). */

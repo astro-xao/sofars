@@ -12,11 +12,11 @@ use crate::fundargs::{fad03, fae03, faf03, fal03, falp03, faom03, fapa03, fave03
 ///  Status:  canonical model.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     date1,date2  double   TT as a 2-part Julian Date (Note 1)
 ///  ```
 ///  Returned (function value):
-///  ```
+///  ```text
 ///                  double   complementary terms (Note 2)
 ///  ```
 ///  Notes:
@@ -25,7 +25,7 @@ use crate::fundargs::{fad03, fae03, faf03, fal03, falp03, faom03, fapa03, fave03
 ///     convenient way between the two arguments.  For example,
 ///     JD(TT)=2450123.7 could be expressed in any of these ways,
 ///     among others:
-///  ```
+///  ```text
 ///            date1          date2
 ///
 ///         2450123.7           0.0       (JD method)
@@ -72,7 +72,7 @@ use crate::fundargs::{fad03, fae03, faf03, fal03, falp03, faom03, fapa03, fave03
 ///     IERS Conventions 2003).
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauFal03     mean anomaly of the Moon
 ///     iauFalp03    mean anomaly of the Sun
 ///     iauFaf03     mean argument of the latitude of the Moon
@@ -97,7 +97,6 @@ use crate::fundargs::{fad03, fae03, faf03, fal03, falp03, faom03, fapa03, fave03
 ///     IERS Technical Note No. 32, BKG (2004)
 pub fn eect00(date1: f64, date2: f64) -> f64 {
     /* Time since J2000.0, in Julian centuries */
-    let t: f64;
 
     /* Miscellaneous */
     let mut a: f64;
@@ -108,7 +107,6 @@ pub fn eect00(date1: f64, date2: f64) -> f64 {
     let mut fa = [0.0; 8];
 
     /* Returned value. */
-    let eect: f64;
 
     /* ----------------------------------------- */
     /* The series for the EE complementary terms */
@@ -307,7 +305,7 @@ pub fn eect00(date1: f64, date2: f64) -> f64 {
     /* ------------------------------------------------------------------ */
 
     /* Interval between fundamental epoch J2000.0 and current date (JC). */
-    t = ((date1 - DJ00) + date2) / DJC;
+    let t: f64 = ((date1 - DJ00) + date2) / DJC;
 
     /* Fundamental Arguments (from IERS Conventions 2003) */
 
@@ -355,7 +353,7 @@ pub fn eect00(date1: f64, date2: f64) -> f64 {
         s1 += E1[i].s * a.sin() + E1[i].c * a.cos();
     }
 
-    eect = (s0 + s1 * t) * DAS2R;
+    let eect: f64 = (s0 + s1 * t) * DAS2R;
 
     eect
 }

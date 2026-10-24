@@ -4,11 +4,31 @@ license = "MIT"
 repository = "https://github.com/astro-xao/sofars"
 version = "0.6.1"
 edition = "2024"
+rust-version = "1.85"
 description = "Pure Rust implementation of the IAU SOFA library"
 authors = ["Huxulm <huxulm@gmail.com>"]
 documentation = "https://docs.rs/sofars"
 keywords = ["astronomy", "iau", "sofa"]
+categories = ["science", "mathematics"]
 readme = "README.md"
+exclude = [".devcontainer/", ".github/"]
+
+[lints.rust]
+unsafe_code = "forbid"
+
+# The crate is a line-by-line port of the SOFA C library. These lints flag
+# patterns inherited from the reference implementation (long argument lists,
+# full-precision literals, index-based loops, SOFA-formatted doc comments)
+# that are kept deliberately to stay close to the original source.
+[lints.clippy]
+too_many_arguments = "allow"
+excessive_precision = "allow"
+type_complexity = "allow"
+needless_range_loop = "allow"
+large_const_arrays = "allow"
+manual_range_contains = "allow"
+doc_overindented_list_items = "allow"
+doc_lazy_continuation = "allow"
 
 [dev-dependencies]
 criterion = { version = "0.8", features = ["html_reports"] }

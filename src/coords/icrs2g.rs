@@ -53,17 +53,17 @@ pub fn icrs2g(dr: f64, dd: f64) -> (f64, f64) {
     let mut v2 = [0.0; 3];
 
     /*
-    **  L2,B2 system of Galactic coordinates in the form presented in the
-    **  Hipparcos Catalogue.  In degrees:
-    **
-    **  P = 192.85948    right ascension of the Galactic north pole in ICRS
-    **  Q =  27.12825    declination of the Galactic north pole in ICRS
-    **  R =  32.93192    Galactic longitude of the ascending node of
-    **                   the Galactic equator on the ICRS equator
-    **
-    **  ICRS to Galactic rotation matrix, obtained by computing
-    **  R_3(-R) R_1(pi/2-Q) R_3(pi/2+P) to the full precision shown:
-    */
+     **  L2,B2 system of Galactic coordinates in the form presented in the
+     **  Hipparcos Catalogue.  In degrees:
+     **
+     **  P = 192.85948    right ascension of the Galactic north pole in ICRS
+     **  Q =  27.12825    declination of the Galactic north pole in ICRS
+     **  R =  32.93192    Galactic longitude of the ascending node of
+     **                   the Galactic equator on the ICRS equator
+     **
+     **  ICRS to Galactic rotation matrix, obtained by computing
+     **  R_3(-R) R_1(pi/2-Q) R_3(pi/2+P) to the full precision shown:
+     */
     let r = [
         [
             -0.054875560416215368492398900454,

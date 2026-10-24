@@ -38,10 +38,7 @@ use crate::coords::{eform, gc2gde};
 ///    the error status is returned.
 pub fn gc2gd(n: i32, xyz: [f64; 3]) -> Result<(f64, f64, f64), i32> {
     /* Obtain reference ellipsoid parameters. */
-    let (a, f) = match eform(n) {
-        Ok(res) => res,
-        Err(e) => return Err(e),
-    };
+    let (a, f) = eform(n)?;
 
     /* If OK, transform x,y,z to longitude, geodetic latitude, height. */
     match gc2gde(a, f, xyz) {

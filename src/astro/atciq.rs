@@ -20,7 +20,7 @@ use crate::vm::{anp, c2s, rxp};
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     rc,dc  double     ICRS RA,Dec at J2000.0 (radians, Note 1)
 ///     pr     double     RA proper motion (radians/year, Note 2)
 ///     pd     double     Dec proper motion (radians/year)
@@ -45,7 +45,7 @@ use crate::vm::{anp, c2s, rxp};
 ///      refb   double       refraction constant B (radians)
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     ri,di   double    CIRS RA,Dec (radians)
 ///  ```
 ///  Notes:
@@ -57,7 +57,7 @@ use crate::vm::{anp, c2s, rxp};
 ///  2) The proper motion in RA is dRA/dt rather than cos(Dec)*dRA/dt.
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauPmpx      proper motion and parallax
 ///     iauLdsun     light deflection by the Sun
 ///     iauAb        stellar aberration

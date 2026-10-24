@@ -8,13 +8,13 @@
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     ha     double     hour angle
 ///     dec    double     declination
 ///     phi    double     site latitude
 ///  ```
 ///  Returned (function value):
-///  ```
+///  ```text
 ///            double     parallactic angle
 ///  ```
 ///  Notes:

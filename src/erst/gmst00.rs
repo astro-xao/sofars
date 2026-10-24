@@ -14,12 +14,12 @@ use super::era00;
 ///  Status:  canonical model.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     uta,utb    double    UT1 as a 2-part Julian Date (Notes 1,2)
 ///     tta,ttb    double    TT as a 2-part Julian Date (Notes 1,2)
 ///  ```
 ///  Returned (function value):
-///  ```
+///  ```text
 ///                double    Greenwich mean sidereal time (radians)
 ///  ```
 ///  Notes:
@@ -28,7 +28,7 @@ use super::era00;
 ///     Julian Dates, apportioned in any convenient way between the
 ///     argument pairs.  For example, JD(UT1)=2450123.7 could be
 ///     expressed in any of these ways, among others:
-///  ```
+///  ```text
 ///            Part A         Part B
 ///
 ///         2450123.7           0.0       (JD method)
@@ -62,7 +62,7 @@ use super::era00;
 ///     Conventions 2003.
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauEra00     Earth rotation angle, IAU 2000
 ///     iauAnp       normalize angle into range 0 to 2pi
 ///  ```
@@ -79,10 +79,9 @@ pub fn gmst00(uta: f64, utb: f64, tta: f64, ttb: f64) -> f64 {
     let t = ((tta - DJ00) + ttb) / DJC;
 
     // Greenwich Mean Sidereal Time, IAU 2000.
-    let gmst = anp(era00(uta, utb)
+
+    anp(era00(uta, utb)
         + (0.014506
             + (4612.15739966 + (1.39667721 + (-0.00009344 + (0.00001882) * t) * t) * t) * t)
-            * DAS2R);
-
-    gmst
+            * DAS2R)
 }

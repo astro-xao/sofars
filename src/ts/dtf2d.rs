@@ -103,23 +103,23 @@ pub fn dtf2d(
     let dleap;
     if scale == "UTC" {
         /* TAI-UTC at 0h today. */
-        match dat(iy, im, id, 0.0) {
-            Ok(d) => dat0 = d,
-            Err(j) => return Err(j),
+        {
+            let d = dat(iy, im, id, 0.0)?;
+            dat0 = d
         }
         /* TAI-UTC at 12h today (to detect drift). */
-        match dat(iy, im, id, 0.5) {
-            Ok(d) => dat12 = d,
-            Err(j) => return Err(j),
+        {
+            let d = dat(iy, im, id, 0.5)?;
+            dat12 = d
         }
         /* TAI-UTC at 0h tomorrow (to detect jumps). */
         (iy2, im2, id2) = match jd2cal(dj, 1.5) {
             Ok((y, m, d, _)) => (y, m, d),
             Err(j) => return Err(j),
         };
-        match dat(iy2, im2, id2, 0.0) {
-            Ok(d) => dat24 = d,
-            Err(j) => return Err(j),
+        {
+            let d = dat(iy2, im2, id2, 0.0)?;
+            dat24 = d
         }
         /* Any sudden change in TAI-UTC between today and tomorrow. */
         dleap = dat24 - (2.0 * dat12 - dat0);

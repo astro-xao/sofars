@@ -1,4 +1,4 @@
-use super::{apco13, aticq, atoiq, IauAstrom};
+use super::{IauAstrom, apco13, aticq, atoiq};
 
 ///  Observed place at a groundbased site to ICRS astrometric RA,Dec.
 ///
@@ -11,7 +11,7 @@ use super::{apco13, aticq, atoiq, IauAstrom};
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     type   char[]   type of coordinates - "R", "H" or "A" (Notes 1,2)
 ///     ob1    double   observed Az, HA or RA (radians; Az is N=0,E=90)
 ///     ob2    double   observed ZD or Dec (radians)
@@ -28,11 +28,11 @@ use super::{apco13, aticq, atoiq, IauAstrom};
 ///     wl     double   wavelength (micrometers, Note 9)
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     rc,dc  double   ICRS astrometric RA,Dec (radians)
 ///  ```
 ///  Returned (function value):
-///  ```
+///  ```text
 ///            int      status: +1 = dubious year (Note 4)
 ///                              0 = OK
 ///                             -1 = unacceptable date
@@ -99,7 +99,9 @@ use super::{apco13, aticq, atoiq, IauAstrom};
 ///      available, an adequate estimate of hm can be obtained from the
 ///      expression
 ///
+///      ```text
 ///            hm = -29.3 * tsl * log ( phpa / 1013.25 );
+///      ```
 ///
 ///      where tsl is the approximate sea-level air temperature in K
 ///      (See Astrophysical Quantities, C.W.Allen, 3rd edition, section
@@ -107,7 +109,9 @@ use super::{apco13, aticq, atoiq, IauAstrom};
 ///      estimated from the height of the observing station, hm, as
 ///      follows:
 ///
+///      ```text
 ///            phpa = 1013.25 * exp ( -hm / ( 29.3 * tsl ) );
+///      ```
 ///
 ///      Note, however, that the refraction is nearly proportional to
 ///      the pressure and that an accurate phpa value is important for

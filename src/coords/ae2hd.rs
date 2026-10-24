@@ -4,13 +4,13 @@
 ///  to hour angle and declination.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     az       double       azimuth
 ///     el       double       altitude (informally, elevation)
 ///     phi      double       site latitude
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     ha       double       hour angle (local)
 ///     dec      double       declination
 ///  ```

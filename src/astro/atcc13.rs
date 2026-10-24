@@ -11,7 +11,7 @@ use super::{IauAstrom, apci13, atccq};
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     rc     double   ICRS right ascension at J2000.0 (radians, Note 1)
 ///     dc     double   ICRS declination at J2000.0 (radians, Note 1)
 ///     pr     double   RA proper motion (radians/year, Note 2)
@@ -36,7 +36,7 @@ use super::{IauAstrom, apci13, atccq};
 ///     convenient way between the two arguments.  For example,
 ///     JD(TDB)=2450123.7 could be expressed in any of these ways, among
 ///     others:
-///  ```
+///  ```text
 ///            date1          date2
 ///
 ///         2450123.7           0.0       (JD method)
@@ -57,7 +57,7 @@ use super::{IauAstrom, apci13, atccq};
 ///     accuracy.
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauApci13    astrometry parameters, ICRS-CIRS, 2013
 ///     iauAtccq     quick catalog ICRS to astrometric
 ///  ```

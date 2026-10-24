@@ -34,10 +34,7 @@ pub fn utcut1(utc1: f64, utc2: f64, dut1: f64) -> Result<(f64, f64), i32> {
 
     let dta = dut1 - dat_val;
 
-    let (tai1, tai2) = match utctai(utc1, utc2) {
-        Ok(v) => v,
-        Err(js) => return Err(js),
-    };
+    let (tai1, tai2) = utctai(utc1, utc2)?;
 
     let (ut11, ut12) = match taiut1(tai1, tai2, dta) {
         Ok((ut11, ut12)) => (ut11, ut12),

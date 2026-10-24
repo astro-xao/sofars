@@ -205,7 +205,7 @@ pub fn fk524(
     let (r_res, d_res, w_res, ur_res, ud_res, rd_res) = pv2s(&pv_vec);
     if px > tiny {
         rv = rd_res / pxvf;
-        px = px / w_res;
+        px /= w_res;
     }
 
     /* Return the results. */

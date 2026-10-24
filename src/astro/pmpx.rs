@@ -13,7 +13,7 @@ use crate::{
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     rc,dc  double     ICRS RA,Dec at catalog epoch (radians)
 ///     pr     double     RA proper motion (radians/year, Note 1)
 ///     pd     double     Dec proper motion (radians/year)
@@ -23,7 +23,7 @@ use crate::{
 ///     pob    double[3]  SSB to observer vector (au)
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     pco    double[3]  coordinate direction (BCRS unit vector)
 ///  ```
 ///  Notes:
@@ -47,7 +47,7 @@ use crate::{
 ///     (2013), Section 7.2.
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauPdp       scalar product of two p-vectors
 ///     iauPn        decompose p-vector into modulus and direction
 ///  ```

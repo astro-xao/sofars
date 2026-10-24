@@ -11,13 +11,13 @@ use super::eect00;
 ///  Status:  canonical model.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     date1,date2  double    TT as a 2-part Julian Date (Note 1)
 ///     epsa         double    mean obliquity (Note 2)
 ///     dpsi         double    nutation in longitude (Note 3)
 ///  ```
 ///  Returned (function value):
-///  ```
+///  ```text
 ///  
 ///                  double    equation of the equinoxes (Note 4)
 ///  ```
@@ -27,7 +27,7 @@ use super::eect00;
 ///     convenient way between the two arguments.  For example,
 ///     JD(TT)=2450123.7 could be expressed in any of these ways,
 ///     among others:
-///  ```
+///  ```text
 ///            date1          date2
 ///
 ///         2450123.7           0.0       (JD method)
@@ -53,7 +53,7 @@ use super::eect00;
 ///     (2002).
 ///
 ///  Called:
-///  ```
+///  ```text
 ///  
 ///     iauEect00    equation of the equinoxes complementary terms
 ///  ```

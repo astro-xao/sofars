@@ -1,4 +1,4 @@
-use super::{apio13, atoiq, IauAstrom};
+use super::{IauAstrom, apio13, atoiq};
 
 ///  Observed place to CIRS.
 ///
@@ -11,7 +11,7 @@ use super::{apio13, atoiq, IauAstrom};
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     type_  char[]   type of coordinates - "R", "H" or "A" (Notes 1,2)
 ///     ob1    double   observed Az, HA or RA (radians; Az is N=0,E=90)
 ///     ob2    double   observed ZD or Dec (radians)
@@ -28,11 +28,11 @@ use super::{apio13, atoiq, IauAstrom};
 ///     wl     double   wavelength (micrometers, Note 9)
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     ri,di  double   CIRS RA,Dec (radians)
 ///  ```
 ///  Returned (function value):
-///  ```
+///  ```text
 ///            int      status: +1 = dubious year (Note 4)
 ///                              0 = OK
 ///                             -1 = unacceptable date
@@ -99,7 +99,9 @@ use super::{apio13, atoiq, IauAstrom};
 ///      available, an adequate estimate of hm can be obtained from the
 ///      expression
 ///
+///      ```text
 ///            hm = -29.3 * tsl * log ( phpa / 1013.25 );
+///      ```
 ///
 ///      where tsl is the approximate sea-level air temperature in K
 ///      (See Astrophysical Quantities, C.W.Allen, 3rd edition, section
@@ -107,7 +109,9 @@ use super::{apio13, atoiq, IauAstrom};
 ///      estimated from the height of the observing station, hm, as
 ///      follows:
 ///
+///      ```text
 ///            phpa = 1013.25 * exp ( -hm / ( 29.3 * tsl ) );
+///      ```
 ///
 ///      Note, however, that the refraction is nearly proportional to
 ///      the pressure and that an accurate phpa value is important for
@@ -160,7 +164,7 @@ pub fn atoi13(
     let mut astrom = IauAstrom::default();
 
     /* Star-independent astrometry parameters for CIRS->observed. */
-    if let Err(j) = apio13(
+    apio13(
         utc1,
         utc2,
         dut1,
@@ -174,9 +178,7 @@ pub fn atoi13(
         rh,
         wl,
         &mut astrom,
-    ) {
-        return Err(j);
-    }
+    )?;
 
     /* Transform observed to CIRS. */
     let (ri, di) = atoiq(type_, ob1, ob2, &astrom);

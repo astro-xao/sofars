@@ -13,7 +13,7 @@ use super::{IauAstrom, aper};
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     ut11    double      UT1 as a 2-part...
 ///     ut12    double      ...Julian Date (Note 1)
 ///     astrom  iauASTROM*  star-independent astrometry parameters:
@@ -35,7 +35,7 @@ use super::{IauAstrom, aper};
 ///      refb   double       not used
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     astrom  iauASTROM*  star-independent astrometry parameters:
 ///      pmt    double       unchanged
 ///      eb     double[3]    unchanged
@@ -60,7 +60,7 @@ use super::{IauAstrom, aper};
 ///     apportioned in any convenient way between the arguments ut11 and
 ///     ut12.  For example, JD(UT1)=2450123.7 could be expressed in any
 ///     of these ways, among others:
-///  ```
+///  ```text
 ///            ut11           ut12
 ///
 ///         2450123.7           0.0       (JD method)
@@ -88,7 +88,7 @@ use super::{IauAstrom, aper};
 ///
 ///     The various functions support different classes of observer and
 ///     portions of the transformation chain:
-///  ```
+///  ```text
 ///          functions         observer        transformation
 ///
 ///       iauApcg iauApcg13    geocentric      ICRS <-> GCRS
@@ -110,7 +110,7 @@ use super::{IauAstrom, aper};
 ///     transformation), and atmospheric refraction.
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauAper      astrometry parameters: update ERA
 ///     iauEra00     Earth rotation angle, IAU 2000
 ///  ```

@@ -19,7 +19,7 @@ use crate::vm::{cp, ir, pn};
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     date1  double       TDB as a 2-part...
 ///     date2  double       ...Julian Date (Note 1)
 ///     pv     double[2][3] observer's geocentric pos/vel (m, m/s)
@@ -27,7 +27,7 @@ use crate::vm::{cp, ir, pn};
 ///     ehp    double[3]    Earth heliocentric P (au)
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     astrom iauASTROM*   star-independent astrometry parameters:
 ///      pmt    double       PM time interval (SSB, Julian years)
 ///      eb     double[3]    SSB to observer (vector, au)
@@ -52,7 +52,7 @@ use crate::vm::{cp, ir, pn};
 ///     convenient way between the two arguments.  For example,
 ///     JD(TDB)=2450123.7 could be expressed in any of these ways, among
 ///     others:
-///  ```
+///  ```text
 ///            date1          date2
 ///
 ///         2450123.7           0.0       (JD method)
@@ -95,7 +95,7 @@ use crate::vm::{cp, ir, pn};
 ///
 ///     The various functions support different classes of observer and
 ///     portions of the transformation chain:
-///  ```
+///  ```text
 ///          functions         observer        transformation
 ///
 ///       iauApcg iauApcg13    geocentric      ICRS <-> GCRS
@@ -120,7 +120,7 @@ use crate::vm::{cp, ir, pn};
 ///     iauAtciq* and iauAticq*.
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauCp        copy p-vector
 ///     iauPm        modulus of p-vector
 ///     iauPn        decompose p-vector into modulus and direction

@@ -23,7 +23,7 @@ use super::{IauAstrom, IauLdBody, ab, ldn};
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     ri,di  double      CIRS RA,Dec (radians)
 ///     astrom iauASTROM*  star-independent astrometry parameters:
 ///      pmt    double       PM time interval (SSB, Julian years)
@@ -49,7 +49,7 @@ use super::{IauAstrom, IauLdBody, ab, ldn};
 ///      pv     [2][3]       barycentric PV of the body (au, au/day)
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     rc,dc  double     ICRS astrometric RA,Dec (radians)
 ///  ```
 ///  Notes:
@@ -80,7 +80,7 @@ use super::{IauAstrom, IauLdBody, ab, ldn};
 ///     threshold, the deflection is artificially reduced, reaching zero
 ///     for phi = 0.   Example values suitable for a terrestrial
 ///     observer, together with masses, are as follows:
-///  ```
+///  ```text
 ///        body i     b[i].bm        b[i].dl
 ///
 ///        Sun        1.0            6e-6
@@ -93,7 +93,7 @@ use super::{IauAstrom, IauLdBody, ab, ldn};
 ///     limiter greater than zero.
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauS2c       spherical coordinates to unit vector
 ///     iauTrxp      product of transpose of r-matrix and p-vector
 ///     iauZp        zero p-vector
@@ -103,7 +103,6 @@ use super::{IauAstrom, IauLdBody, ab, ldn};
 ///     iauAnp       normalize angle into range +/- pi
 ///  ```
 pub fn aticqn(ri: f64, di: f64, astrom: &mut IauAstrom, n: i32, b: &[IauLdBody]) -> (f64, f64) {
-    let pi: [f64; 3];
     let mut ppr = [0.0; 3];
     let mut pnat = [0.0; 3];
     let mut pco = [0.0; 3];
@@ -115,7 +114,7 @@ pub fn aticqn(ri: f64, di: f64, astrom: &mut IauAstrom, n: i32, b: &[IauLdBody])
     let mut after: [f64; 3];
 
     // CIRS RA,Dec to Cartesian.
-    pi = s2c(ri, di);
+    let pi: [f64; 3] = s2c(ri, di);
 
     // Bias-precession-nutation, giving GCRS proper direction.
     trxp(&astrom.bpn, &pi, &mut ppr);

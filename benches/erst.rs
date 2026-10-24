@@ -1,6 +1,6 @@
-use std::hint::black_box;
-use criterion::{criterion_group, criterion_main, Criterion};
+use criterion::{Criterion, criterion_group, criterion_main};
 use sofars::erst;
+use std::hint::black_box;
 
 fn bench_erst(c: &mut Criterion) {
     let mut group = c.benchmark_group("erst");
@@ -12,7 +12,14 @@ fn bench_erst(c: &mut Criterion) {
     let dpsi = -0.9630909107115582393e-5;
 
     group.bench_function("ee00", |b| {
-        b.iter(|| erst::ee00(black_box(dj1), black_box(dj2), black_box(epsa), black_box(dpsi)))
+        b.iter(|| {
+            erst::ee00(
+                black_box(dj1),
+                black_box(dj2),
+                black_box(epsa),
+                black_box(dpsi),
+            )
+        })
     });
 
     group.bench_function("ee00a", |b| {
@@ -40,11 +47,25 @@ fn bench_erst(c: &mut Criterion) {
     });
 
     group.bench_function("gmst00", |b| {
-        b.iter(|| erst::gmst00(black_box(dj1), black_box(dj2), black_box(dj1), black_box(dj2)))
+        b.iter(|| {
+            erst::gmst00(
+                black_box(dj1),
+                black_box(dj2),
+                black_box(dj1),
+                black_box(dj2),
+            )
+        })
     });
 
     group.bench_function("gmst06", |b| {
-        b.iter(|| erst::gmst06(black_box(dj1), black_box(dj2), black_box(dj1), black_box(dj2)))
+        b.iter(|| {
+            erst::gmst06(
+                black_box(dj1),
+                black_box(dj2),
+                black_box(dj1),
+                black_box(dj2),
+            )
+        })
     });
 
     group.bench_function("gmst82", |b| {
@@ -52,7 +73,14 @@ fn bench_erst(c: &mut Criterion) {
     });
 
     group.bench_function("gst00a", |b| {
-        b.iter(|| erst::gst00a(black_box(dj1), black_box(dj2), black_box(dj1), black_box(dj2)))
+        b.iter(|| {
+            erst::gst00a(
+                black_box(dj1),
+                black_box(dj2),
+                black_box(dj1),
+                black_box(dj2),
+            )
+        })
     });
 
     group.bench_function("gst00b", |b| {
@@ -60,17 +88,44 @@ fn bench_erst(c: &mut Criterion) {
     });
 
     let rnpb = [
-        [0.9999989440476103608, -0.1332881761240011518e-2, -0.5790767434730085097e-3],
-        [0.1332858254308954453e-2, 0.9999991109044505944, -0.4097782710401555759e-4],
-        [0.5791308472168153320e-3, 0.4020595661593994396e-4, 0.9999998314954572365],
+        [
+            0.9999989440476103608,
+            -0.1332881761240011518e-2,
+            -0.5790767434730085097e-3,
+        ],
+        [
+            0.1332858254308954453e-2,
+            0.9999991109044505944,
+            -0.4097782710401555759e-4,
+        ],
+        [
+            0.5791308472168153320e-3,
+            0.4020595661593994396e-4,
+            0.9999998314954572365,
+        ],
     ];
 
     group.bench_function("gst06", |b| {
-        b.iter(|| erst::gst06(black_box(dj1), black_box(dj2), black_box(dj1), black_box(dj2), black_box(&rnpb)))
+        b.iter(|| {
+            erst::gst06(
+                black_box(dj1),
+                black_box(dj2),
+                black_box(dj1),
+                black_box(dj2),
+                black_box(&rnpb),
+            )
+        })
     });
 
     group.bench_function("gst06a", |b| {
-        b.iter(|| erst::gst06a(black_box(dj1), black_box(dj2), black_box(dj1), black_box(dj2)))
+        b.iter(|| {
+            erst::gst06a(
+                black_box(dj1),
+                black_box(dj2),
+                black_box(dj1),
+                black_box(dj2),
+            )
+        })
     });
 
     group.bench_function("gst94", |b| {

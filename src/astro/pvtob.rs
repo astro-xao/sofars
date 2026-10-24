@@ -14,7 +14,7 @@ use crate::vm::trxp;
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     elong   double       longitude (radians, east +ve, Note 1)
 ///     phi     double       latitude (geodetic, radians, Note 1)
 ///     hm      double       height above ref. ellipsoid (geodetic, m)
@@ -23,7 +23,7 @@ use crate::vm::trxp;
 ///     theta   double       Earth rotation angle (radians, Note 3)
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     pv      double[2][3] position/velocity vector (m, m/s, CIRS)
 ///  ```
 ///  Notes:
@@ -62,7 +62,7 @@ use crate::vm::trxp;
 ///     (2013), Section 7.4.3.3.
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauGd2gc     geodetic to geocentric transformation
 ///     iauPom00     polar motion matrix
 ///     iauTrxp      product of transpose of r-matrix and p-vector

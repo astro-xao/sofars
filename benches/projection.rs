@@ -1,6 +1,6 @@
-use std::hint::black_box;
-use criterion::{criterion_group, criterion_main, Criterion};
+use criterion::{Criterion, criterion_group, criterion_main};
 use sofars::projection::*;
+use std::hint::black_box;
 
 fn bench_projection(c: &mut Criterion) {
     let mut group = c.benchmark_group("projection");
@@ -20,7 +20,14 @@ fn bench_projection(c: &mut Criterion) {
     });
 
     group.bench_function("tpsts", |b| {
-        b.iter(|| tpsts(black_box(xi), black_box(eta), black_box(2.3), black_box(1.5)))
+        b.iter(|| {
+            tpsts(
+                black_box(xi),
+                black_box(eta),
+                black_box(2.3),
+                black_box(1.5),
+            )
+        })
     });
 
     group.bench_function("tpstv", |b| {
@@ -28,12 +35,17 @@ fn bench_projection(c: &mut Criterion) {
     });
 
     group.bench_function("tpxes", |b| {
-        b.iter(|| tpxes(black_box(ra), black_box(1.55), black_box(2.3), black_box(1.5)))
+        b.iter(|| {
+            tpxes(
+                black_box(ra),
+                black_box(1.55),
+                black_box(2.3),
+                black_box(1.5),
+            )
+        })
     });
 
-    group.bench_function("tpxev", |b| {
-        b.iter(|| tpxev(black_box(v), black_box(v)))
-    });
+    group.bench_function("tpxev", |b| b.iter(|| tpxev(black_box(v), black_box(v))));
 
     group.finish();
 }

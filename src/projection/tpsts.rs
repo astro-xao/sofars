@@ -30,11 +30,13 @@ use crate::vm::anp;
 ///
 /// 4) This function is a member of the following set:
 ///
+/// ```text
 ///        spherical      vector         solve for
 ///
 ///        tpxes         tpxev          xi,eta
 ///      > tpsts <       tpstv           star
 ///        tpors         tporv          origin
+/// ```
 ///
 /// References:
 ///

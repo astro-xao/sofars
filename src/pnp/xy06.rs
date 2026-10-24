@@ -1573,6 +1573,7 @@ pub fn xy06(date1: f64, date2: f64) -> (f64, f64) {
     ];
 
     /* Amplitude coefficients (microarcsec) */
+    #[allow(clippy::approx_constant)]
     const A: [f64; 4755] = [
         /* 1-105 */
         -6844318.44,

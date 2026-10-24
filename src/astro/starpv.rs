@@ -119,14 +119,7 @@ use crate::{
 ///
 ///  Copyright (C) 2023 IAU SOFA Board.  See notes at end.
 ///
-pub fn starpv(
-    ra: f64,
-    dec: f64,
-    pmr: f64,
-    pmd: f64,
-    px: f64,
-    rv: f64,
-) -> ([[f64; 3]; 2], i32) {
+pub fn starpv(ra: f64, dec: f64, pmr: f64, pmd: f64, px: f64, rv: f64) -> ([[f64; 3]; 2], i32) {
     /* Smallest allowed parallax */
     const PXMIN: f64 = 1e-7;
 

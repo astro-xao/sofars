@@ -1,6 +1,6 @@
-use std::hint::black_box;
-use criterion::{criterion_group, criterion_main, Criterion};
+use criterion::{Criterion, criterion_group, criterion_main};
 use sofars::cal::*;
+use std::hint::black_box;
 
 fn bench_calendars(c: &mut Criterion) {
     let mut group = c.benchmark_group("calendars");
@@ -13,17 +13,13 @@ fn bench_calendars(c: &mut Criterion) {
         b.iter(|| epb(black_box(2415019.8135), black_box(30103.18648)))
     });
 
-    group.bench_function("epb2jd", |b| {
-        b.iter(|| epb2jd(black_box(1957.3)))
-    });
+    group.bench_function("epb2jd", |b| b.iter(|| epb2jd(black_box(1957.3))));
 
     group.bench_function("epj", |b| {
         b.iter(|| epj(black_box(2451545.0), black_box(-7392.5)))
     });
 
-    group.bench_function("epj2jd", |b| {
-        b.iter(|| epj2jd(black_box(1996.8)))
-    });
+    group.bench_function("epj2jd", |b| b.iter(|| epj2jd(black_box(1996.8))));
 
     group.bench_function("jd2cal", |b| {
         b.iter(|| jd2cal(black_box(2400000.5), black_box(50123.9999)))

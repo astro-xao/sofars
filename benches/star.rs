@@ -1,6 +1,6 @@
-use std::hint::black_box;
-use criterion::{criterion_group, criterion_main, Criterion};
+use criterion::{Criterion, criterion_group, criterion_main};
 use sofars::star::*;
+use std::hint::black_box;
 
 fn bench_star(c: &mut Criterion) {
     let mut group = c.benchmark_group("star");
@@ -16,7 +16,16 @@ fn bench_star(c: &mut Criterion) {
     let date2 = 54479.0;
 
     group.bench_function("fk425", |b| {
-        b.iter(|| fk425(black_box(r), black_box(d), black_box(dr), black_box(dd), black_box(p), black_box(v)))
+        b.iter(|| {
+            fk425(
+                black_box(r),
+                black_box(d),
+                black_box(dr),
+                black_box(dd),
+                black_box(p),
+                black_box(v),
+            )
+        })
     });
 
     group.bench_function("fk45z", |b| {
@@ -24,31 +33,70 @@ fn bench_star(c: &mut Criterion) {
     });
 
     group.bench_function("fk524", |b| {
-        b.iter(|| fk524(black_box(r), black_box(d), black_box(dr), black_box(dd), black_box(p), black_box(v)))
+        b.iter(|| {
+            fk524(
+                black_box(r),
+                black_box(d),
+                black_box(dr),
+                black_box(dd),
+                black_box(p),
+                black_box(v),
+            )
+        })
     });
 
     group.bench_function("fk52h", |b| {
-        b.iter(|| fk52h(black_box(r), black_box(d), black_box(dr), black_box(dd), black_box(p), black_box(v)))
+        b.iter(|| {
+            fk52h(
+                black_box(r),
+                black_box(d),
+                black_box(dr),
+                black_box(dd),
+                black_box(p),
+                black_box(v),
+            )
+        })
     });
 
     group.bench_function("fk54z", |b| {
         b.iter(|| fk54z(black_box(r), black_box(d), black_box(bepoch)))
     });
 
-    group.bench_function("fk5hip", |b| {
-        b.iter(|| fk5hip())
-    });
+    group.bench_function("fk5hip", |b| b.iter(fk5hip));
 
     group.bench_function("fk5hz", |b| {
-        b.iter(|| fk5hz(black_box(r), black_box(d), black_box(date1), black_box(date2)))
+        b.iter(|| {
+            fk5hz(
+                black_box(r),
+                black_box(d),
+                black_box(date1),
+                black_box(date2),
+            )
+        })
     });
 
     group.bench_function("h2fk5", |b| {
-        b.iter(|| h2fk5(black_box(r), black_box(d), black_box(dr), black_box(dd), black_box(p), black_box(v)))
+        b.iter(|| {
+            h2fk5(
+                black_box(r),
+                black_box(d),
+                black_box(dr),
+                black_box(dd),
+                black_box(p),
+                black_box(v),
+            )
+        })
     });
 
     group.bench_function("hfk5z", |b| {
-        b.iter(|| hfk5z(black_box(r), black_box(d), black_box(date1), black_box(date2)))
+        b.iter(|| {
+            hfk5z(
+                black_box(r),
+                black_box(d),
+                black_box(date1),
+                black_box(date2),
+            )
+        })
     });
 
     group.finish();

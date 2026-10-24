@@ -12,11 +12,11 @@ use crate::vm::anpm;
 ///  Status:  canonical model.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     date1,date2   double     TDB date (Note 1)
 ///  ```
 ///  Returned (function value):
-///  ```
+///  ```text
 ///                   double     equation of the equinoxes (Note 2)
 ///  ```
 ///  Notes:
@@ -25,7 +25,7 @@ use crate::vm::anpm;
 ///     convenient way between the two arguments.  For example,
 ///     JD(TT)=2450123.7 could be expressed in any of these ways,
 ///     among others:
-///  ```
+///  ```text
 ///            date1          date2
 ///
 ///         2450123.7           0.0       (JD method)
@@ -45,7 +45,7 @@ use crate::vm::anpm;
 ///        Greenwich apparent ST = GMST + equation of the equinoxes
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauAnpm      normalize angle into range +/- pi
 ///     iauNut80     nutation, IAU 1980
 ///     iauObl80     mean obliquity, IAU 1980
@@ -74,7 +74,6 @@ pub fn eqeq94(date1: f64, date2: f64) -> f64 {
     let eps0 = obl80(date1, date2);
 
     /* Equation of the equinoxes. */
-    let ee = dpsi * eps0.cos() + DAS2R * (0.00264 * om.sin() + 0.000063 * (om + om).sin());
 
-    ee
+    dpsi * eps0.cos() + DAS2R * (0.00264 * om.sin() + 0.000063 * (om + om).sin())
 }

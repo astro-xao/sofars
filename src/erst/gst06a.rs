@@ -12,12 +12,12 @@ use crate::pnp::pnm06a;
 ///  Status:  canonical model.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     uta,utb    double    UT1 as a 2-part Julian Date (Notes 1,2)
 ///     tta,ttb    double    TT as a 2-part Julian Date (Notes 1,2)
 ///  ```
 ///  Returned (function value):
-///  ```
+///  ```text
 ///                double    Greenwich apparent sidereal time (radians)
 ///  ```
 ///  Notes:
@@ -26,7 +26,7 @@ use crate::pnp::pnm06a;
 ///     Julian Dates, apportioned in any convenient way between the
 ///     argument pairs.  For example, JD(UT1)=2450123.7 could be
 ///     expressed in any of these ways, among others:
-///  ```
+///  ```text
 ///             uta            utb
 ///
 ///         2450123.7           0.0       (JD method)
@@ -57,7 +57,7 @@ use crate::pnp::pnm06a;
 ///  4) The result is returned in the range 0 to 2pi.
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauPnm06a    classical NPB matrix, IAU 2006/2000A
 ///     iauGst06     Greenwich apparent ST, IAU 2006, given NPB matrix
 ///  ```

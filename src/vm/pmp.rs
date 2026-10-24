@@ -6,12 +6,12 @@
 ///  Status:  vector/matrix support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     a        double[3]      first p-vector
 ///     b        double[3]      second p-vector
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     amb      double[3]      a - b
 ///  ```
 ///  Note:

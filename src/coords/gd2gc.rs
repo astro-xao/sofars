@@ -41,10 +41,7 @@ use crate::coords::{eform, gd2gce};
 ///    lead to arithmetic exceptions.
 pub fn gd2gc(n: i32, elong: f64, phi: f64, height: f64) -> Result<[f64; 3], i32> {
     /* Obtain reference ellipsoid parameters. */
-    let (a, f) = match eform(n) {
-        Ok(res) => res,
-        Err(e) => return Err(e),
-    };
+    let (a, f) = eform(n)?;
 
     /* If OK, transform longitude, geodetic latitude, height to x,y,z. */
     match gd2gce(a, f, elong, phi, height) {

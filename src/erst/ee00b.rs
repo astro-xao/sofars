@@ -23,7 +23,7 @@ use crate::pnp::{nut00b, obl80, pr00};
 ///     convenient way between the two arguments.  For example,
 ///     JD(TT)=2450123.7 could be expressed in any of these ways,
 ///     among others:
-///  ```
+///  ```text
 ///            date1          date2
 ///
 ///         2450123.7           0.0       (JD method)
@@ -48,7 +48,7 @@ use crate::pnp::{nut00b, obl80, pr00};
 ///     Conventions 2003 and Capitaine et al. (2003).
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauPr00      IAU 2000 precession adjustments
 ///     iauObl80     mean obliquity, IAU 1980
 ///     iauNut00b    nutation, IAU 2000B
@@ -76,7 +76,6 @@ pub fn ee00b(date1: f64, date2: f64) -> f64 {
     let (dpsi, _) = nut00b(date1, date2);
 
     // Equation of the equinoxes.
-    let ee = ee00(date1, date2, epsa, dpsi);
 
-    ee
+    ee00(date1, date2, epsa, dpsi)
 }

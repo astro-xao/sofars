@@ -13,11 +13,11 @@ use super::{ee00b, gmst00};
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     uta,utb    double    UT1 as a 2-part Julian Date (Notes 1,2)
 ///  ```
 ///  Returned (function value):
-///  ```
+///  ```text
 ///                double    Greenwich apparent sidereal time (radians)
 ///  ```
 ///  Notes:
@@ -26,7 +26,7 @@ use super::{ee00b, gmst00};
 ///     convenient way between the argument pair.  For example,
 ///     JD(UT1)=2450123.7 could be expressed in any of these ways,
 ///     among others:
-///  ```
+///  ```text
 ///             uta            utb
 ///
 ///         2450123.7           0.0       (JD method)
@@ -65,7 +65,7 @@ use super::{ee00b, gmst00};
 ///     Conventions 2003.
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauGmst00    Greenwich mean sidereal time, IAU 2000
 ///     iauEe00b     equation of the equinoxes, IAU 2000B
 ///     iauAnp       normalize angle into range 0 to 2pi
@@ -86,7 +86,6 @@ use super::{ee00b, gmst00};
 pub fn gst00b(uta: f64, utb: f64) -> f64 {
     let gmst00 = gmst00(uta, utb, uta, utb);
     let ee00b = ee00b(uta, utb);
-    let gst = anp(gmst00 + ee00b);
 
-    gst
+    anp(gmst00 + ee00b)
 }

@@ -13,14 +13,14 @@
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///    phpa   double    pressure at the observer (hPa = millibar)
 ///    tc     double    ambient temperature at the observer (deg C)
 ///    rh     double    relative humidity at the observer (range 0-1)
 ///    wl     double    wavelength (micrometers)
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///    refa   double*   tan Z coefficient (radians)
 ///    refb   double*   tan^3 Z coefficient (radians)
 ///  ```
@@ -49,14 +49,14 @@
 ///
 ///     The accuracy with respect to raytracing through a model
 ///     atmosphere was as follows:
-///  ```
+///  ```text
 ///                            worst         RMS
 ///
 ///       optical/IR           62 mas       8 mas
 ///       radio               319 mas      49 mas
 ///  ```
 ///     For this particular set of conditions:
-///  ```
+///  ```text
 ///       lapse rate 0.0065 K/meter
 ///       latitude 50 degrees
 ///       sea level
@@ -66,7 +66,7 @@
 ///       wavelength 5740 Angstroms
 ///  ```
 ///     the results were as follows:
-///  ```
+///  ```text
 ///       ZD       raytrace     iauRefco   Saastamoinen
 ///
 ///       10         10.27        10.27        10.27
@@ -148,27 +148,24 @@
 ///     University of New South Wales, Sydney, Australia, 2002.
 ///
 ///     Stone, Ronald C., P.A.S.P. 108, 1051-1058, 1996.
+#[allow(clippy::manual_clamp)]
 pub fn refco(phpa: f64, tc: f64, rh: f64, wl: f64) -> (f64, f64) {
-    let optic: bool;
-    let p: f64;
-    let t: f64;
-    let r: f64;
-    let w: f64;
     let ps: f64;
     let pw: f64;
-    let tk: f64;
+
     let wlsq: f64;
     let gamma: f64;
     let mut beta: f64;
 
     // Decide whether optical/IR or radio case: switch at 100 microns.
-    optic = wl <= 100.0;
+    let optic: bool = wl <= 100.0;
 
-    // Restrict parameters to safe values.
-    t = tc.max(-150.0).min(200.0);
-    p = phpa.max(0.0).min(10000.0);
-    r = rh.max(0.0).min(1.0);
-    w = wl.max(0.1).min(1e6);
+    // Restrict parameters to safe values. `max`/`min` (rather than `clamp`)
+    // match SOFA's gmax/gmin, which map NaN inputs to the lower bound.
+    let t: f64 = tc.max(-150.0).min(200.0);
+    let p: f64 = phpa.max(0.0).min(10000.0);
+    let r: f64 = rh.max(0.0).min(1.0);
+    let w: f64 = wl.max(0.1).min(1e6);
 
     // Water vapour pressure at the observer.
     if p > 0.0 {
@@ -180,7 +177,7 @@ pub fn refco(phpa: f64, tc: f64, rh: f64, wl: f64) -> (f64, f64) {
     }
 
     // Refractive index minus 1 at the observer.
-    tk = t + 273.15;
+    let tk: f64 = t + 273.15;
     if optic {
         wlsq = w * w;
         gamma = ((77.53484e-6 + (4.39108e-7 + 3.666e-9 / wlsq) / wlsq) * p - 11.2684e-6 * pw) / tk;

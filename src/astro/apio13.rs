@@ -17,7 +17,7 @@ use super::{IauAstrom, apio, refco};
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     utc1   double      UTC as a 2-part...
 ///     utc2   double      ...quasi Julian Date (Notes 1,2)
 ///     dut1   double      UT1-UTC (seconds)
@@ -31,7 +31,7 @@ use super::{IauAstrom, apio, refco};
 ///     wl     double      wavelength (micrometers, Note 7)
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     astrom iauASTROM*  star-independent astrometry parameters:
 ///      pmt    double       unchanged
 ///      eb     double[3]    unchanged
@@ -51,7 +51,7 @@ use super::{IauAstrom, apio, refco};
 ///      refb   double       refraction constant B (radians)
 ///  ```
 ///  Returned (function value):
-///  ```
+///  ```text
 ///            int         status: +1 = dubious year (Note 2)
 ///                                 0 = OK
 ///                                -1 = unacceptable date
@@ -102,7 +102,9 @@ use super::{IauAstrom, apio, refco};
 ///      available, an adequate estimate of hm can be obtained from the
 ///      expression
 ///
+///      ```text
 ///            hm = -29.3 * tsl * log ( phpa / 1013.25 );
+///      ```
 ///
 ///      where tsl is the approximate sea-level air temperature in K
 ///      (See Astrophysical Quantities, C.W.Allen, 3rd edition, section
@@ -110,7 +112,9 @@ use super::{IauAstrom, apio, refco};
 ///      estimated from the height of the observing station, hm, as
 ///      follows:
 ///
+///      ```text
 ///            phpa = 1013.25 * exp ( -hm / ( 29.3 * tsl ) );
+///      ```
 ///
 ///      Note, however, that the refraction is nearly proportional to the
 ///      pressure and that an accurate phpa value is important for
@@ -134,7 +138,7 @@ use super::{IauAstrom, apio, refco};
 ///
 ///      The various functions support different classes of observer and
 ///      portions of the transformation chain:
-///  ```
+///  ```text
 ///          functions         observer        transformation
 ///
 ///       iauApcg iauApcg13    geocentric      ICRS <-> GCRS
@@ -144,6 +148,7 @@ use super::{IauAstrom, apio, refco};
 ///       iauAper iauAper13    terrestrial     update Earth rotation
 ///       iauApio iauApio13    terrestrial     CIRS <-> observed
 ///  ```
+///  ```text
 ///      Those with names ending in "13" use contemporary SOFA models to
 ///      compute the various ephemerides.  The others accept ephemerides
 ///      supplied by the caller.
@@ -154,12 +159,13 @@ use super::{IauAstrom, apio, refco};
 ///      observed takes account of Earth rotation, polar motion, diurnal
 ///      aberration and parallax (unless subsumed into the ICRS <-> GCRS
 ///      transformation), and atmospheric refraction.
+///  ```
 ///
 ///  11) The context structure astrom produced by this function is used
 ///      by iauAtioq and iauAtoiq.
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauUtctai    UTC to TAI
 ///     iauTaitt     TAI to TT
 ///     iauUtcut1    UTC to UT1
@@ -183,20 +189,11 @@ pub fn apio13(
     wl: f64,
     astrom: &mut IauAstrom,
 ) -> Result<(), i32> {
-    let (tai1, tai2) = match utctai(utc1, utc2) {
-        Ok(v) => v,
-        Err(j) => return Err(j),
-    };
+    let (tai1, tai2) = utctai(utc1, utc2)?;
 
-    let (tt1, tt2) = match taitt(tai1, tai2) {
-        Ok(v) => v,
-        Err(j) => return Err(j),
-    };
+    let (tt1, tt2) = taitt(tai1, tai2)?;
 
-    let (ut11, ut12) = match utcut1(utc1, utc2, dut1) {
-        Ok(v) => v,
-        Err(j) => return Err(j),
-    };
+    let (ut11, ut12) = utcut1(utc1, utc2, dut1)?;
 
     /* TIO locator s'. */
     let sp = sp00(tt1, tt2);

@@ -22,7 +22,7 @@ use super::{IauAstrom, ab, ldsun};
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     rc,dc  double     ICRS astrometric RA,Dec (radians)
 ///     astrom iauASTROM* star-independent astrometry parameters:
 ///      pmt    double       PM time interval (SSB, Julian years)
@@ -43,7 +43,7 @@ use super::{IauAstrom, ab, ldsun};
 ///      refb   double       refraction constant B (radians)
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     ri,di  double     CIRS RA,Dec (radians)
 ///  ```
 ///  Note:
@@ -60,7 +60,7 @@ use super::{IauAstrom, ab, ldsun};
 ///     arcsecond astrometry in space", Astr. J. 125, 1580-1597 (2003).
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauS2c       spherical coordinates to unit vector
 ///     iauLdsun     light deflection due to Sun
 ///     iauAb        stellar aberration

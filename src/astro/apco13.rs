@@ -22,7 +22,7 @@ use crate::ts::{taitt, utctai, utcut1};
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     utc1   double     UTC as a 2-part...
 ///     utc2   double     ...quasi Julian Date (Notes 1,2)
 ///     dut1   double     UT1-UTC (seconds, Note 3)
@@ -36,7 +36,7 @@ use crate::ts::{taitt, utctai, utcut1};
 ///     wl     double     wavelength (micrometers, Note 7)
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     astrom iauASTROM* star-independent astrometry parameters:
 ///      pmt    double       PM time interval (SSB, Julian years)
 ///      eb     double[3]    SSB to observer (vector, au)
@@ -57,7 +57,7 @@ use crate::ts::{taitt, utctai, utcut1};
 ///     eo     double*    equation of the origins (ERA-GST, radians)
 ///  ```
 ///  Returned (function value):
-///  ```
+///  ```text
 ///            int        status: +1 = dubious year (Note 2)
 ///                                0 = OK
 ///                               -1 = unacceptable date
@@ -108,7 +108,9 @@ use crate::ts::{taitt, utctai, utcut1};
 ///      available, an adequate estimate of hm can be obtained from the
 ///      expression
 ///
+///      ```text
 ///            hm = -29.3 * tsl * log ( phpa / 1013.25 );
+///      ```
 ///
 ///      where tsl is the approximate sea-level air temperature in K
 ///      (See Astrophysical Quantities, C.W.Allen, 3rd edition, section
@@ -116,7 +118,9 @@ use crate::ts::{taitt, utctai, utcut1};
 ///      estimated from the height of the observing station, hm, as
 ///      follows:
 ///
+///      ```text
 ///            phpa = 1013.25 * exp ( -hm / ( 29.3 * tsl ) );
+///      ```
 ///
 ///      Note, however, that the refraction is nearly proportional to
 ///      the pressure and that an accurate phpa value is important for
@@ -140,7 +144,7 @@ use crate::ts::{taitt, utctai, utcut1};
 ///
 ///      The various functions support different classes of observer and
 ///      portions of the transformation chain:
-///  ```
+///  ```text
 ///          functions         observer        transformation
 ///
 ///       iauApcg iauApcg13    geocentric      ICRS <-> GCRS
@@ -150,6 +154,7 @@ use crate::ts::{taitt, utctai, utcut1};
 ///       iauAper iauAper13    terrestrial     update Earth rotation
 ///       iauApio iauApio13    terrestrial     CIRS <-> observed
 ///  ```
+///  ```text
 ///      Those with names ending in "13" use contemporary SOFA models to
 ///      compute the various ephemerides.  The others accept ephemerides
 ///      supplied by the caller.
@@ -160,12 +165,13 @@ use crate::ts::{taitt, utctai, utcut1};
 ///      observed takes account of Earth rotation, polar motion, diurnal
 ///      aberration and parallax (unless subsumed into the ICRS <-> GCRS
 ///      transformation), and atmospheric refraction.
+///  ```
 ///
 ///  11) The context structure astrom produced by this function is used
 ///      by iauAtioq, iauAtoiq, iauAtciq* and iauAticq*.
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauUtctai    UTC to TAI
 ///     iauTaitt     TAI to TT
 ///     iauUtcut1    UTC to UT1
@@ -195,25 +201,12 @@ pub fn apco13(
     astrom: &mut IauAstrom,
     eo: &mut f64,
 ) -> Result<i32, i32> {
-    let s: f64;
-    let theta: f64;
-    let sp: f64;
-
     /* UTC to other time scales. */
-    let (tai1, tai2) = match utctai(utc1, utc2) {
-        Ok(v) => v,
-        Err(j) => return Err(j),
-    };
+    let (tai1, tai2) = utctai(utc1, utc2)?;
 
-    let (tt1, tt2) = match taitt(tai1, tai2) {
-        Ok(v) => v,
-        Err(j) => return Err(j),
-    };
+    let (tt1, tt2) = taitt(tai1, tai2)?;
 
-    let (ut11, ut12) = match utcut1(utc1, utc2, dut1) {
-        Ok(v) => v,
-        Err(j) => return Err(j),
-    };
+    let (ut11, ut12) = utcut1(utc1, utc2, dut1)?;
 
     let (ehpv, ebpv) = epv00(tt1, tt2).unwrap();
 
@@ -224,13 +217,13 @@ pub fn apco13(
     let (x, y) = bpn2xy(&r);
 
     /* Obtain CIO locator s. */
-    s = s06(tt1, tt2, x, y);
+    let s: f64 = s06(tt1, tt2, x, y);
 
     /* Earth rotation angle. */
-    theta = era00(ut11, ut12);
+    let theta: f64 = era00(ut11, ut12);
 
     /* TIO locator s'. */
-    sp = sp00(tt1, tt2);
+    let sp: f64 = sp00(tt1, tt2);
 
     /* Refraction constants A and B. */
     let (refa, refb) = refco(phpa, tc, rh, wl);

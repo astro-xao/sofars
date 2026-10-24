@@ -15,7 +15,7 @@ use crate::vm::{anpm, ir, rx, ry, rz};
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     sp     double      the TIO locator s' (radians, Note 1)
 ///     theta  double      Earth rotation angle (radians)
 ///     elong  double      longitude (radians, east +ve, Note 2)
@@ -26,7 +26,7 @@ use crate::vm::{anpm, ir, rx, ry, rz};
 ///     refb   double      refraction constant B (radians, Note 4)
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     astrom iauASTROM*  star-independent astrometry parameters:
 ///      pmt    double       unchanged
 ///      eb     double[3]    unchanged
@@ -87,7 +87,7 @@ use crate::vm::{anpm, ir, rx, ry, rz};
 ///
 ///     The various functions support different classes of observer and
 ///     portions of the transformation chain:
-///  ```
+///  ```text
 ///          functions         observer        transformation
 ///
 ///       iauApcg iauApcg13    geocentric      ICRS <-> GCRS
@@ -112,7 +112,7 @@ use crate::vm::{anpm, ir, rx, ry, rz};
 ///     iauAtioq and iauAtoiq.
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauIr        initialize r-matrix to identity
 ///     iauRz        rotate around Z-axis
 ///     iauRy        rotate around Y-axis
@@ -135,8 +135,7 @@ pub fn apio(
     let r = &mut [[0.0; 3]; 3];
     let mut a;
     let mut b;
-    let eral;
-    let c;
+
     let pv = &mut [[0.0; 3]; 2];
 
     // Form the rotation matrix, CIRS to apparent [HA,Dec].
@@ -149,7 +148,7 @@ pub fn apio(
     // Solve for local Earth rotation angle.
     a = r[0][0];
     b = r[0][1];
-    eral = if a != 0.0 || b != 0.0 {
+    let eral = if a != 0.0 || b != 0.0 {
         b.atan2(a)
     } else {
         0.0
@@ -158,7 +157,7 @@ pub fn apio(
 
     // Solve for polar motion [X,Y] with respect to local meridian.
     a = r[0][0];
-    c = r[0][2];
+    let c = r[0][2];
     astrom.xpl = c.atan2((a * a + b * b).sqrt());
     a = r[1][2];
     b = r[2][2];

@@ -22,7 +22,6 @@ pub fn gmst82(dj1: f64, dj2: f64) -> f64 {
     let f = DAYSEC * (d1.rem(1.0) + d2.rem(1.0));
 
     // GMST at this UT1.
-    let gmst = anp(DS2R * ((a + (b + (c + d * t) * t) * t) + f));
 
-    gmst
+    anp(DS2R * ((a + (b + (c + d * t) * t) * t) + f))
 }

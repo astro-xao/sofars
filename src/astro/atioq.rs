@@ -18,7 +18,7 @@ use super::IauAstrom;
 ///  Status:  support function.
 ///
 ///  Given:
-///  ```
+///  ```text
 ///     ri     double     CIRS right ascension
 ///     di     double     CIRS declination
 ///     astrom iauASTROM* star-independent astrometry parameters:
@@ -40,7 +40,7 @@ use super::IauAstrom;
 ///      refb   double       refraction constant B (radians)
 ///  ```
 ///  Returned:
-///  ```
+///  ```text
 ///     aob    double*    observed azimuth (radians: N=0,E=90)
 ///     zob    double*    observed zenith distance (radians)
 ///     hob    double*    observed hour angle (radians)
@@ -96,7 +96,7 @@ use super::IauAstrom;
 ///     perform the requisite adjustment to the astrom structure.
 ///
 ///  Called:
-///  ```
+///  ```text
 ///     iauS2c       spherical coordinates to unit vector
 ///     iauC2s       p-vector to spherical
 ///     iauAnp       normalize angle into range 0 to 2pi
