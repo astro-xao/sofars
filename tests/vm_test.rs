@@ -6,6 +6,11 @@ mod tests {
     use sofars::vm;
 
     #[test]
+    fn test_anpm() {
+        vvd(vm::anpm(-4.0), 2.283185307179586477, 1e-12, "anpm", "");
+    }
+
+    #[test]
     fn test_pvu() {
         let pv = [
             [

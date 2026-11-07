@@ -6,7 +6,8 @@ use std::ops::Rem;
 pub fn anpm(a: f64) -> f64 {
     let mut w = a.rem(D2PI);
     if w.abs() >= DPI {
-        w -= D2PI;
+        // SOFA: w -= dsign(D2PI, a)
+        w -= if a < 0.0 { -D2PI } else { D2PI };
     }
     w
 }
