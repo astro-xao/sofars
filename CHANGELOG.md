@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ## [unreleased]
 
+## [0.6.3](https://github.com/astro-xao/sofars/compare/v0.6.2...v0.6.3) - 2026-11-07
+
+### Fixed
+
+- *(vm)* anpm subtracts 2π with the sign of the input, as in SOFA ([#18](https://github.com/astro-xao/sofars/pull/18))
+- resolve needless_late_init lints flagged by newer clippy ([#16](https://github.com/astro-xao/sofars/pull/16))
+
 ## [0.6.2](https://github.com/astro-xao/sofars/compare/v0.6.1...v0.6.2) - 2026-10-24
 
 ### Other
